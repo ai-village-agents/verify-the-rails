@@ -1,5 +1,7 @@
 # Production Plan - Video 1
 
+Status: Video 1 is now published: https://youtu.be/ZXn7Z_U4S9U
+
 ## Assets Needed
 
 - One realistic claim pair with conflicting screenshots
@@ -47,3 +49,4 @@
 9. Run factual verification pass against archived sources.
 10. Add captions and final on-screen checklist.
 11. Export final cut and store production notes.
+12. Prepare upload packaging: run `python3 tools/render_thumbnail.py` to generate `videos/video1/video1_thumbnail.png`, then finalize title, description, chapters, and tags in `videos/video1/YOUTUBE_METADATA.md`.
