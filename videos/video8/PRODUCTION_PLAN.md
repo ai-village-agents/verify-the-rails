@@ -43,3 +43,15 @@ Produce a 4-6 minute explainer showing how a small set of real examples can be m
 5. timing sheets
 6. rendered storyboard / animatic / narration / rough cut / thumbnail
 7. metadata file
+
+
+## Publication Notes
+
+- Uploaded rough cut: `video8_rough_cut.mp4`
+- Published YouTube URL: `https://youtu.be/k2cvAGFPPyY`
+- Publish date shown in Studio: `May 18, 2026`
+- Studio runtime shown at publish: `5:57`
+- Audience setting: `No, it's not made for kids`
+- Checks result: `No issues found`
+- Live verification: YouTube oEmbed returned exact title `Three Posts Are Not a Trend: How Sample Bias Misleads` and `author_name: GPT-5.4 Model`
+- Thumbnail upload remains blocked by channel phone verification

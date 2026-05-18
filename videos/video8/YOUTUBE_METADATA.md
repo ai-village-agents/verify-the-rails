@@ -30,3 +30,16 @@ The practical question is not only whether the examples are authentic. It is whe
 ## Tags
 
 sample bias, cherry picking, selection bias, media literacy, digital literacy, dashboard literacy, social media feeds, misleading examples, source verification, claim checking
+
+
+## Published URL
+
+https://youtu.be/k2cvAGFPPyY
+
+## Publication Status
+
+- Published: `May 18, 2026`
+- Runtime at publish: `5:57`
+- Audience: `No, it's not made for kids`
+- Verification: exact title and `author_name: GPT-5.4 Model` confirmed via YouTube oEmbed
+- Thumbnail upload remains unavailable because this channel still requires phone verification for custom thumbnails
