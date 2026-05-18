@@ -84,6 +84,18 @@ PALETTES = {
         "inference": "#B87A7A",
         "ok": "#7FC8A1",
     },
+    "video7": {
+        "bg": "#0C131B",
+        "panel": "#172535",
+        "panel_alt": "#22384E",
+        "line": "#3E5A75",
+        "text": "#EEF5FB",
+        "muted": "#A9BDCF",
+        "primary": "#78BEFF",
+        "secondary": "#E8B86E",
+        "inference": "#C98989",
+        "ok": "#84CFAD",
+    },
 }
 
 PALETTE = PALETTES["video1"]
@@ -1205,6 +1217,181 @@ VIDEO6_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None
     ("12_closing_card.png", frame6_closing_card),
 ]
 
+
+# Video 7 frames
+
+def frame7_title_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Same Label, Different Metric", "Definition drift can break comparisons")
+    panel(draw, (170, 290, 1750, 860), fill="panel_alt")
+    text_block(draw, (250, 390), "Same label, different metric.", size=74, bold=True)
+    tag(draw, (250, 560), "Label unchanged", "primary")
+    tag(draw, (560, 560), "Rule set A", "secondary")
+    tag(draw, (760, 560), "Rule set B", "inference")
+    panel(draw, (250, 640, 820, 770), fill="panel", border="primary")
+    panel(draw, (910, 640, 1480, 770), fill="panel", border="inference")
+    text_block(draw, (300, 684), "Active users", size=46, color="text", bold=True)
+    text_block(draw, (960, 684), "Active users", size=46, color="text", bold=True)
+
+
+def frame7_metric_jump_hook(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Metric Jump Hook", "Unchanged label does not guarantee comparability")
+    panel(draw, (170, 270, 900, 880), border="secondary")
+    panel(draw, (1020, 270, 1750, 880), border="inference")
+    tag(draw, (210, 310), "Dashboard card", "secondary")
+    tag(draw, (1060, 310), "Dashboard card", "inference")
+    text_block(draw, (240, 430), "Active users", size=56, bold=True)
+    text_block(draw, (240, 540), "Jan: 24,000", size=78, color="secondary", bold=True)
+    text_block(draw, (240, 790), "Same label", size=36, color="primary")
+    text_block(draw, (1090, 430), "Active users", size=56, bold=True)
+    text_block(draw, (1090, 540), "Apr: 31,000", size=78, color="inference", bold=True)
+    text_block(draw, (1090, 790), "Same label", size=36, color="primary")
+
+
+def frame7_reality_or_definition(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Reality or Definition?", "Diagnostic split before trend claims")
+    panel(draw, (220, 300, 1700, 860), fill="panel")
+    panel(draw, (290, 390, 860, 760), fill="panel_alt", border="ok")
+    panel(draw, (1060, 390, 1630, 760), fill="panel_alt", border="secondary")
+    text_block(draw, (350, 470), "Did reality\nchange?", size=62, color="ok", bold=True)
+    text_block(draw, (1120, 470), "Or did definition\nchange?", size=62, color="secondary", bold=True)
+    draw.line((860, 570, 980, 570), fill=PALETTE["line"], width=8)
+    draw.polygon([(980, 540), (1035, 570), (980, 600)], fill=PALETTE["line"])
+    text_block(draw, (630, 810), "Same label, different metric.", size=40, color="muted", bold=True)
+
+
+def frame7_definition_drift_rails(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Definition Drift Rails", "Observed / Inference / Unknown")
+    rows = [
+        ("Observed", "Label stayed the same while inclusion rules changed.", "primary"),
+        ("Inference", "Part of the jump may be definition drift.", "inference"),
+        ("Unknown", "How much is true behavior vs rule change.", "secondary"),
+    ]
+    y = 300
+    for label, content, color in rows:
+        panel(draw, (150, y, 1770, y + 190), fill="panel_alt")
+        tag(draw, (200, y + 74), label, color)
+        text_block(draw, (520, y + 78), content, size=38)
+        y += 215
+
+
+def frame7_active_users_note_reveal(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Active Users Note Reveal", "Methodology changed under the same heading")
+    panel(draw, (170, 270, 1750, 860), border="primary")
+    text_block(draw, (250, 360), "Active users", size=64, bold=True)
+    text_block(draw, (250, 470), "24,000 -> 31,000", size=82, color="secondary", bold=True)
+    panel(draw, (250, 610, 1670, 790), fill="panel_alt", border="inference")
+    text_block(draw, (290, 650), "Methodology note: Now includes API token activity", size=44, color="inference", bold=True)
+    text_block(draw, (290, 712), "Previously web + mobile only", size=38, color="muted")
+    tag(draw, (1300, 350), "Label unchanged", "primary")
+
+
+def frame7_resolved_cases_expansion(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Resolved Cases Expansion", "Bucket widened while label stayed fixed")
+    panel(draw, (180, 280, 1740, 860), fill="panel")
+    panel(draw, (240, 360, 1680, 760), fill="panel_alt", border="primary")
+    text_block(draw, (280, 410), "Resolved cases", size=58, bold=True)
+    panel(draw, (300, 510, 760, 700), fill="panel", border="ok")
+    text_block(draw, (330, 565), "Before:\nfully resolved only", size=40, color="ok")
+    panel(draw, (860, 510, 1620, 700), fill="panel", border="secondary")
+    text_block(draw, (890, 555), "Now:\nfully + partial + admin closed", size=40, color="secondary")
+    draw.line((760, 605, 860, 605), fill=PALETTE["line"], width=8)
+    tag(draw, (1320, 410), "Label unchanged", "primary")
+
+
+def frame7_incidents_scope_broadening(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Incidents Scope Broadening", "Headline identical, severity scope expanded")
+    panel(draw, (180, 280, 1740, 860), fill="panel")
+    panel(draw, (240, 360, 1680, 760), fill="panel_alt", border="primary")
+    text_block(draw, (280, 410), "Incidents", size=58, bold=True)
+    panel(draw, (300, 500, 760, 690), fill="panel", border="secondary")
+    text_block(draw, (330, 555), "Before:\nhigh severity", size=44, color="secondary")
+    panel(draw, (860, 500, 1620, 690), fill="panel", border="inference")
+    text_block(draw, (890, 535), "Now:\nhigh + low + near-miss", size=44, color="inference")
+    text_block(draw, (300, 735), "Severity legend expanded; label did not.", size=36, color="muted")
+    tag(draw, (1320, 410), "Label unchanged", "primary")
+
+
+def frame7_number_real_not_comparable(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Number Real, Not Comparable", "Counting rule changed")
+    panel(draw, (170, 300, 900, 860), border="ok")
+    panel(draw, (1020, 300, 1750, 860), border="secondary")
+    tag(draw, (210, 340), "Authenticity", "ok")
+    tag(draw, (1060, 340), "Comparability", "secondary")
+    text_block(draw, (240, 470), "Number can be real", size=62, color="ok", bold=True)
+    text_block(draw, (240, 600), "Source is authentic", size=38)
+    text_block(draw, (1090, 470), "Comparison can fail", size=62, color="secondary", bold=True)
+    text_block(draw, (1090, 600), "Counting rule changed", size=42, color="inference", bold=True)
+    draw.line((900, 570, 1020, 570), fill=PALETTE["line"], width=8)
+
+
+def frame7_claim_boundary_template(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Claim Boundary Template", "Reusable language for definition drift")
+    panel(draw, (150, 290, 1770, 490), fill="panel_alt")
+    panel(draw, (150, 520, 1770, 720), fill="panel_alt")
+    panel(draw, (150, 750, 1770, 950), fill="panel_alt")
+    tag(draw, (200, 370), "Observed", "primary")
+    tag(draw, (200, 600), "Inference", "inference")
+    tag(draw, (200, 830), "Unknown", "secondary")
+    text_block(draw, (500, 376), "Definition changed while headline label stayed the same.", size=38)
+    text_block(draw, (500, 606), "Trend claim is limited until like-for-like counts are rebuilt.", size=38)
+    text_block(draw, (500, 836), "True behavior change share vs definition change share.", size=38)
+
+
+def frame7_verification_checklist(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Verification Checklist", "Six steps for same-label metric changes")
+    steps = [
+        "1 Label",
+        "2 Definition",
+        "3 Inclusion rules",
+        "4 Change date",
+        "5 Comparability",
+        "6 O-I-U note",
+    ]
+    y = 260
+    for step in steps:
+        panel(draw, (230, y, 1690, y + 112), fill="panel_alt")
+        draw.ellipse((278, y + 34, 326, y + 82), fill=PALETTE["ok"])
+        text_block(draw, (292, y + 40), "✓", size=24, color="bg", bold=True)
+        text_block(draw, (360, y + 34), step, size=42)
+        y += 126
+
+
+def frame7_reusable_note_example(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Reusable Note Example", "Plain-language worksheet")
+    panel(draw, (170, 290, 1750, 910), fill="panel")
+    panel(draw, (250, 370, 1670, 860), fill="panel_alt", border="line")
+    text_block(draw, (300, 440), "Observed: A uses D1, B uses D2", size=48, color="primary", bold=True)
+    text_block(draw, (300, 570), "Inference: metric changed", size=48, color="inference", bold=True)
+    text_block(draw, (300, 700), "Unknown: behavior vs definition share", size=46, color="secondary", bold=True)
+    text_block(draw, (300, 810), "Same label, different metric.", size=34, color="muted")
+
+
+def frame7_closing_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Closing", "Definition line before trend line")
+    panel(draw, (220, 320, 1700, 860), fill="panel_alt")
+    text_block(draw, (300, 450), "Same label does not guarantee same metric.", size=62, bold=True)
+    text_block(draw, (330, 570), "Check the definition line before the trend line.", size=50, color="muted", bold=True)
+    tag(draw, (620, 700), "Observed", "primary")
+    tag(draw, (840, 700), "Unknown", "secondary")
+    tag(draw, (1060, 700), "Inference", "inference")
+    tag(draw, (1280, 700), "Context", "ok")
+
+
+VIDEO7_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None]]] = [
+    ("01_title_card.png", frame7_title_card),
+    ("02_metric_jump_hook.png", frame7_metric_jump_hook),
+    ("03_reality_or_definition.png", frame7_reality_or_definition),
+    ("04_definition_drift_rails.png", frame7_definition_drift_rails),
+    ("05_active_users_note_reveal.png", frame7_active_users_note_reveal),
+    ("06_resolved_cases_expansion.png", frame7_resolved_cases_expansion),
+    ("07_incidents_scope_broadening.png", frame7_incidents_scope_broadening),
+    ("08_number_real_not_comparable.png", frame7_number_real_not_comparable),
+    ("09_claim_boundary_template.png", frame7_claim_boundary_template),
+    ("10_verification_checklist.png", frame7_verification_checklist),
+    ("11_reusable_note_example.png", frame7_reusable_note_example),
+    ("12_closing_card.png", frame7_closing_card),
+]
+
 VIDEO_FRAMES = {
     "video1": VIDEO1_FRAMES,
     "video2": VIDEO2_FRAMES,
@@ -1212,6 +1399,7 @@ VIDEO_FRAMES = {
     "video4": VIDEO4_FRAMES,
     "video5": VIDEO5_FRAMES,
     "video6": VIDEO6_FRAMES,
+    "video7": VIDEO7_FRAMES,
 }
 
 

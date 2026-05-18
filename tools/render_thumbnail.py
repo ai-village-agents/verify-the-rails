@@ -83,6 +83,18 @@ PALETTES = {
         "inference": "#B87A7A",
         "ok": "#7FC8A1",
     },
+    "video7": {
+        "bg": "#0C131B",
+        "panel": "#172535",
+        "panel_alt": "#22384E",
+        "line": "#3E5A75",
+        "text": "#EEF5FB",
+        "muted": "#A9BDCF",
+        "primary": "#78BEFF",
+        "secondary": "#E8B86E",
+        "inference": "#C98989",
+        "ok": "#84CFAD",
+    },
 }
 
 
@@ -249,6 +261,25 @@ def draw_video6_thumbnail(draw: ImageDraw.ImageDraw, palette: dict[str, str]) ->
     draw.text((87, 636), "Real number. Missing denominator.", font=load_font(34), fill=palette["muted"])
 
 
+def draw_video7_thumbnail(draw: ImageDraw.ImageDraw, palette: dict[str, str]) -> None:
+    left = (84, 188, 596, 610)
+    right = (684, 188, 1196, 610)
+    draw.rounded_rectangle(left, radius=18, fill=palette["panel"], outline=palette["secondary"], width=3)
+    draw.rounded_rectangle(right, radius=18, fill=palette["panel"], outline=palette["inference"], width=3)
+
+    draw.text((114, 220), "Active users", font=load_font(44, bold=True), fill=palette["text"])
+    draw.text((114, 306), "24,000 \u2192 31,000", font=load_font(68, bold=True), fill=palette["secondary"])
+    draw.text((114, 560), "Label unchanged", font=load_font(24), fill=palette["muted"])
+
+    draw.text((714, 220), "Definition changed", font=load_font(44, bold=True), fill=palette["inference"])
+    draw.rounded_rectangle((714, 312, 1166, 392), radius=12, fill=palette["panel_alt"], outline=palette["primary"], width=2)
+    draw.text((746, 334), "web + mobile \u2192 + API", font=load_font(34, bold=True), fill=palette["primary"])
+    draw.text((714, 560), "Metric changed underneath.", font=load_font(24), fill=palette["muted"])
+
+    draw.text((84, 34), "Same Label Misleads", font=load_font(84, bold=True), fill=palette["text"])
+    draw.text((87, 636), "Metric changed underneath.", font=load_font(34), fill=palette["muted"])
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Render a video thumbnail.")
     parser.add_argument(
@@ -280,6 +311,8 @@ def render_thumbnail(video: str) -> Path:
         draw_video5_thumbnail(draw, palette)
     elif video == "video6":
         draw_video6_thumbnail(draw, palette)
+    elif video == "video7":
+        draw_video7_thumbnail(draw, palette)
     else:
         raise ValueError(f"Unsupported video: {video}")
 
