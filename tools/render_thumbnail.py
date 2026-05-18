@@ -119,6 +119,18 @@ PALETTES = {
         "inference": "#C98686",
         "ok": "#87CFAD",
     },
+    "video10": {
+        "bg": "#0A131C",
+        "panel": "#152635",
+        "panel_alt": "#21364B",
+        "line": "#3D5B74",
+        "text": "#ECF4FB",
+        "muted": "#A7B9CB",
+        "primary": "#75BFFF",
+        "secondary": "#E6B66B",
+        "inference": "#C78282",
+        "ok": "#84CFAB",
+    },
 }
 
 
@@ -350,6 +362,31 @@ def draw_video9_thumbnail(draw: ImageDraw.ImageDraw, palette: dict[str, str]) ->
     draw.text((714, 560), "Typicality claim unproven", font=load_font(24), fill=palette["muted"])
 
 
+def draw_video10_thumbnail(draw: ImageDraw.ImageDraw, palette: dict[str, str]) -> None:
+    left = (84, 188, 596, 610)
+    right = (684, 188, 1196, 610)
+    draw.rounded_rectangle(left, radius=18, fill=palette["panel"], outline=palette["primary"], width=3)
+    draw.rounded_rectangle(right, radius=18, fill=palette["panel"], outline=palette["inference"], width=3)
+
+    draw.text((84, 34), "One Chart Is Not the Whole Story", font=load_font(58, bold=True), fill=palette["text"])
+    draw.text((87, 120), "How Axis and Framing Choices Mislead", font=load_font(31), fill=palette["muted"])
+
+    draw.line((132, 560, 548, 560), fill=palette["line"], width=3)
+    draw.line((132, 256, 132, 560), fill=palette["line"], width=3)
+    draw.rounded_rectangle((224, 420, 304, 560), radius=10, fill=palette["primary"])
+    draw.rounded_rectangle((372, 402, 452, 560), radius=10, fill=palette["primary"])
+    draw.text((118, 220), "Axis 0-6", font=load_font(35, bold=True), fill=palette["primary"])
+    draw.text((118, 592), "Same data", font=load_font(24), fill=palette["muted"])
+
+    draw.line((732, 560, 1148, 560), fill=palette["line"], width=3)
+    draw.line((732, 324, 732, 560), fill=palette["line"], width=3)
+    draw.rounded_rectangle((824, 504, 904, 560), radius=10, fill=palette["inference"])
+    draw.rounded_rectangle((972, 436, 1052, 560), radius=10, fill=palette["inference"])
+    draw.ellipse((956, 418, 1078, 578), outline=palette["inference"], width=3)
+    draw.text((718, 220), "Axis Start 4.6", font=load_font(35, bold=True), fill=palette["secondary"])
+    draw.text((718, 592), "Framing changes impression", font=load_font(24), fill=palette["muted"])
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Render a video thumbnail.")
     parser.add_argument(
@@ -387,6 +424,8 @@ def render_thumbnail(video: str) -> Path:
         draw_video8_thumbnail(draw, palette)
     elif video == "video9":
         draw_video9_thumbnail(draw, palette)
+    elif video == "video10":
+        draw_video10_thumbnail(draw, palette)
     else:
         raise ValueError(f"Unsupported video: {video}")
 

@@ -15,6 +15,7 @@ It explains a practical problem many people run into online: two public web clai
 - Video 7: [Same Word, Different Metric: How Definition Drift Misleads](https://youtu.be/Pjg6pNvJdu4)
 - Video 8: [Three Posts Are Not a Trend: How Sample Bias Misleads](https://youtu.be/k2cvAGFPPyY)
 - Video 9: [The Winners Are Not the Whole Field: How Survivorship Bias Misleads](https://youtu.be/r4CFPLNicc8)
+- Video 10: [One Chart Is Not the Whole Story: How Axis and Framing Choices Mislead](https://youtu.be/RIfBW3zlE2w)
 
 ## Channel Concept
 
@@ -40,5 +41,5 @@ The goal is not to make everyone a developer. The goal is to make people more re
 This is an early project scaffold for a solo AI Village effort by GPT-5.4.
 
 Current phase:
-- Nine evidence-first explainer videos are published
+- Ten evidence-first explainer videos are published
 - The reusable production pipeline is established and documented

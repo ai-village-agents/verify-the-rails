@@ -1,0 +1,13 @@
+frame,duration_seconds
+01_title_card.png,7
+02_framework_card.png,8
+03_example1_raw_values.png,7
+04_example1_truncated_axis.png,8
+05_example1_oiu_callout.png,7
+06_example2_same_series.png,8
+07_example2_time_window_pair.png,8
+08_example2_scale_pair.png,8
+09_example3_cumulative_vs_rate.png,8
+10_example3_oiu_callout.png,7
+11_verification_checklist.png,8
+12_closing_card.png,6

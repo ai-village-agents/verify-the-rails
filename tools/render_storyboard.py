@@ -120,6 +120,18 @@ PALETTES = {
         "inference": "#C98686",
         "ok": "#87CFAD",
     },
+    "video10": {
+        "bg": "#0A131C",
+        "panel": "#152635",
+        "panel_alt": "#21364B",
+        "line": "#3D5B74",
+        "text": "#ECF4FB",
+        "muted": "#A7B9CB",
+        "primary": "#75BFFF",
+        "secondary": "#E6B66B",
+        "inference": "#C78282",
+        "ok": "#84CFAB",
+    },
 }
 
 PALETTE = PALETTES["video1"]
@@ -1823,6 +1835,231 @@ VIDEO9_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None
     ("12_closing_card.png", frame9_closing_card),
 ]
 
+
+# Video 10 frames
+
+def frame10_title_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "One Chart Is Not the Whole Story", "How Axis and Framing Choices Mislead")
+    panel(draw, (170, 290, 1750, 860), fill="panel_alt")
+    text_block(draw, (250, 410), "One chart can be accurate\nand still mislead by framing.", size=62, bold=True)
+    tag(draw, (250, 650), "Observed", "primary")
+    tag(draw, (470, 650), "Impression", "inference")
+    tag(draw, (710, 650), "Unknown", "secondary")
+
+
+def frame10_framework_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Observed / Impression / Unknown", "Use the same structure for each chart")
+    rows = [
+        ("Observed", "What the chart directly shows.", "primary"),
+        ("Impression", "What the framing makes you feel is happening.", "inference"),
+        ("Unknown", "Missing context before a stronger claim is justified.", "secondary"),
+    ]
+    y = 290
+    for label, body, color in rows:
+        panel(draw, (170, y, 1750, y + 210), fill="panel_alt")
+        tag(draw, (220, y + 82), label, color)
+        text_block(draw, (520, y + 84), body, size=40)
+        y += 228
+
+
+def frame10_example1_raw_values(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Example 1: Raw Values", "Month A 4.8% vs Month B 5.2%")
+    panel(draw, (170, 270, 1750, 900), fill="panel")
+    panel(draw, (230, 330, 1240, 860), fill="panel_alt", border="primary")
+    draw.line((300, 780, 1140, 780), fill=PALETTE["line"], width=5)
+    draw.line((300, 420, 300, 780), fill=PALETTE["line"], width=5)
+    draw.rounded_rectangle((470, 492, 620, 780), radius=12, fill=PALETTE["primary"])
+    draw.rounded_rectangle((780, 468, 930, 780), radius=12, fill=PALETTE["primary"])
+    text_block(draw, (480, 812), "Month A\n4.8%", size=28, color="text", bold=True)
+    text_block(draw, (790, 812), "Month B\n5.2%", size=28, color="text", bold=True)
+    panel(draw, (1300, 380, 1700, 560), fill="panel_alt", border="secondary")
+    text_block(draw, (1340, 430), "Difference:", size=38, color="muted", bold=True)
+    text_block(draw, (1340, 486), "0.4 points", size=48, color="secondary", bold=True)
+    tag(draw, (1300, 620), "Observed", "primary")
+    tag(draw, (1520, 620), "Unknown", "secondary")
+
+
+def frame10_example1_truncated_axis(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Same Values, Different Axis Start", "Axis Start: 4.6")
+    left = (140, 280, 920, 900)
+    right = (1000, 280, 1780, 900)
+    panel(draw, left, fill="panel_alt", border="primary")
+    panel(draw, right, fill="panel_alt", border="inference")
+
+    draw.line((230, 810, 840, 810), fill=PALETTE["line"], width=4)
+    draw.line((230, 370, 230, 810), fill=PALETTE["line"], width=4)
+    draw.rounded_rectangle((390, 458, 510, 810), radius=10, fill=PALETTE["primary"])
+    draw.rounded_rectangle((600, 428, 720, 810), radius=10, fill=PALETTE["primary"])
+    text_block(draw, (250, 320), "Axis 0-6", size=30, color="primary", bold=True)
+
+    draw.line((1090, 810, 1700, 810), fill=PALETTE["line"], width=4)
+    draw.line((1090, 450, 1090, 810), fill=PALETTE["line"], width=4)
+    draw.rounded_rectangle((1240, 650, 1360, 810), radius=10, fill=PALETTE["inference"])
+    draw.rounded_rectangle((1450, 500, 1570, 810), radius=10, fill=PALETTE["inference"])
+    text_block(draw, (1110, 400), "Axis 4.6-5.4", size=30, color="inference", bold=True)
+    draw.ellipse((1410, 450, 1620, 840), outline=PALETTE["inference"], width=5)
+    tag(draw, (1180, 318), "Axis Start", "secondary")
+    text_block(draw, (1270, 322), "4.6", size=26, color="secondary", bold=True)
+
+
+def frame10_example1_oiu_callout(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Example 1 O-I-U", "Axis choice changes impression, not values")
+    rows = [
+        ("Observed", "4.8% to 5.2%; Month B is higher.", "primary"),
+        ("Impression", "Huge jump or collapse signal.", "inference"),
+        ("Unknown", "Practical significance and normal variation.", "secondary"),
+    ]
+    y = 300
+    for label, body, color in rows:
+        panel(draw, (170, y, 1750, y + 200), fill="panel_alt")
+        tag(draw, (220, y + 74), label, color)
+        text_block(draw, (520, y + 80), body, size=42)
+        y += 218
+
+
+def frame10_example2_same_series(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Example 2: Same Weekly Series", "100, 101, 99, 102, 100, 101, 100, 102")
+    panel(draw, (160, 280, 1760, 900), fill="panel")
+    panel(draw, (230, 350, 1230, 840), fill="panel_alt", border="primary")
+    draw.line((300, 780, 1160, 780), fill=PALETTE["line"], width=4)
+    draw.line((300, 420, 300, 780), fill=PALETTE["line"], width=4)
+    points = [(340, 640), (450, 610), (560, 670), (670, 580), (780, 640), (890, 610), (1000, 640), (1110, 580)]
+    draw.line(tuple(v for p in points for v in p), fill=PALETTE["primary"], width=7)
+    for x, y in points:
+        draw.ellipse((x - 8, y - 8, x + 8, y + 8), fill=PALETTE["primary"])
+    panel(draw, (1290, 390, 1710, 610), fill="panel_alt", border="secondary")
+    text_block(draw, (1335, 450), "Same source\nvalues", size=44, color="secondary", bold=True)
+    tag(draw, (1290, 660), "Observed", "primary")
+    tag(draw, (1510, 660), "Unknown", "secondary")
+
+
+def frame10_example2_time_window_pair(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Time Window Framing", "Short Window: urgent / Long Window: steady")
+    left = (140, 280, 920, 900)
+    right = (1000, 280, 1780, 900)
+    panel(draw, left, fill="panel_alt", border="inference")
+    panel(draw, right, fill="panel_alt", border="primary")
+
+    draw.line((220, 810, 840, 810), fill=PALETTE["line"], width=4)
+    draw.line((220, 420, 220, 810), fill=PALETTE["line"], width=4)
+    short_pts = [(420, 700), (560, 620), (700, 520)]
+    draw.line(tuple(v for p in short_pts for v in p), fill=PALETTE["inference"], width=9)
+    for x, y in short_pts:
+        draw.ellipse((x - 8, y - 8, x + 8, y + 8), fill=PALETTE["inference"])
+    text_block(draw, (250, 350), "Short Window:\nurgent", size=36, color="inference", bold=True)
+    tag(draw, (250, 742), "Time Window", "secondary")
+
+    draw.line((1080, 810, 1700, 810), fill=PALETTE["line"], width=4)
+    draw.line((1080, 420, 1080, 810), fill=PALETTE["line"], width=4)
+    long_pts = [(1120, 670), (1210, 640), (1300, 700), (1390, 610), (1480, 670), (1570, 640), (1660, 670), (1710, 610)]
+    draw.line(tuple(v for p in long_pts for v in p), fill=PALETTE["primary"], width=7)
+    text_block(draw, (1110, 350), "Long Window:\nsteady", size=36, color="primary", bold=True)
+    tag(draw, (1110, 742), "Time Window", "secondary")
+
+
+def frame10_example2_scale_pair(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Scale Range Framing", "Tight Scale / Wide Scale / Same points")
+    left = (140, 280, 920, 900)
+    right = (1000, 280, 1780, 900)
+    panel(draw, left, fill="panel_alt", border="inference")
+    panel(draw, right, fill="panel_alt", border="primary")
+    pts_left = [(260, 740), (360, 680), (460, 800), (560, 620), (660, 740), (760, 680), (860, 740), (900, 620)]
+    pts_right = [(1120, 700), (1210, 690), (1300, 710), (1390, 685), (1480, 700), (1570, 690), (1660, 700), (1710, 685)]
+
+    draw.line((220, 810, 840, 810), fill=PALETTE["line"], width=4)
+    draw.line((220, 450, 220, 810), fill=PALETTE["line"], width=4)
+    draw.line(tuple(v for p in pts_left for v in p), fill=PALETTE["inference"], width=8)
+    text_block(draw, (250, 356), "Tight Scale\n99-102", size=34, color="inference", bold=True)
+    tag(draw, (250, 742), "Scale Range", "secondary")
+
+    draw.line((1080, 810, 1700, 810), fill=PALETTE["line"], width=4)
+    draw.line((1080, 450, 1080, 810), fill=PALETTE["line"], width=4)
+    draw.line(tuple(v for p in pts_right for v in p), fill=PALETTE["primary"], width=8)
+    text_block(draw, (1110, 356), "Wide Scale\n0-120", size=34, color="primary", bold=True)
+    tag(draw, (1110, 742), "Scale Range", "secondary")
+    text_block(draw, (760, 930), "Same points", size=34, color="muted", bold=True)
+
+
+def frame10_example3_cumulative_vs_rate(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Example 3: Cumulative vs Daily Rate", "Cumulative Total / Daily New Rate / ~40/day")
+    left = (140, 280, 920, 900)
+    right = (1000, 280, 1780, 900)
+    panel(draw, left, fill="panel_alt", border="primary")
+    panel(draw, right, fill="panel_alt", border="secondary")
+
+    draw.line((220, 810, 840, 810), fill=PALETTE["line"], width=4)
+    draw.line((220, 430, 220, 810), fill=PALETTE["line"], width=4)
+    cumulative = [(260, 760), (360, 720), (460, 675), (560, 620), (660, 560), (760, 500), (860, 430)]
+    draw.line(tuple(v for p in cumulative for v in p), fill=PALETTE["primary"], width=8)
+    text_block(draw, (250, 360), "Cumulative Total", size=34, color="primary", bold=True)
+
+    draw.line((1080, 810, 1700, 810), fill=PALETTE["line"], width=4)
+    draw.line((1080, 430, 1080, 810), fill=PALETTE["line"], width=4)
+    bars = [(1140, 690), (1220, 676), (1300, 698), (1380, 670), (1460, 686), (1540, 674), (1620, 692), (1700, 668)]
+    for x, top in bars:
+        draw.rounded_rectangle((x - 28, top, x + 28, 810), radius=8, fill=PALETTE["secondary"])
+    text_block(draw, (1110, 360), "Daily New Rate\n~40/day", size=34, color="secondary", bold=True)
+    tag(draw, (1120, 742), "Chart Type", "secondary")
+
+
+def frame10_example3_oiu_callout(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Example 3 O-I-U", "Chart type can drive acceleration impression")
+    rows = [
+        ("Observed", "Cumulative total increases steadily.", "primary"),
+        ("Impression", "Growth is speeding up.", "inference"),
+        ("Unknown", "Underlying per-period rate trend.", "secondary"),
+    ]
+    y = 300
+    for label, body, color in rows:
+        panel(draw, (170, y, 1750, y + 200), fill="panel_alt")
+        tag(draw, (220, y + 74), label, color)
+        text_block(draw, (520, y + 80), body, size=42)
+        y += 218
+    tag(draw, (220, 912), "Chart Type", "secondary")
+
+
+def frame10_verification_checklist(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Verification Checklist", "Five checks before accepting chart-level claims")
+    steps = ["1 Axis", "2 Window", "3 Scale", "4 Chart Type", "5 O-I-U note"]
+    y = 280
+    for step in steps:
+        panel(draw, (250, y, 1670, y + 132), fill="panel_alt")
+        draw.ellipse((300, y + 44, 348, y + 92), fill=PALETTE["ok"])
+        text_block(draw, (314, y + 48), "✓", size=24, color="bg", bold=True)
+        text_block(draw, (390, y + 42), step, size=48)
+        y += 144
+
+
+def frame10_closing_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Closing", "Framing check before interpretation")
+    panel(draw, (220, 330, 1700, 860), fill="panel_alt")
+    text_block(
+        draw,
+        (270, 500),
+        "Real data can still support a distorted visual impression.",
+        size=56,
+        bold=True,
+    )
+    tag(draw, (620, 700), "Observed", "primary")
+    tag(draw, (840, 700), "Impression", "inference")
+    tag(draw, (1090, 700), "Unknown", "secondary")
+
+
+VIDEO10_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None]]] = [
+    ("01_title_card.png", frame10_title_card),
+    ("02_framework_card.png", frame10_framework_card),
+    ("03_example1_raw_values.png", frame10_example1_raw_values),
+    ("04_example1_truncated_axis.png", frame10_example1_truncated_axis),
+    ("05_example1_oiu_callout.png", frame10_example1_oiu_callout),
+    ("06_example2_same_series.png", frame10_example2_same_series),
+    ("07_example2_time_window_pair.png", frame10_example2_time_window_pair),
+    ("08_example2_scale_pair.png", frame10_example2_scale_pair),
+    ("09_example3_cumulative_vs_rate.png", frame10_example3_cumulative_vs_rate),
+    ("10_example3_oiu_callout.png", frame10_example3_oiu_callout),
+    ("11_verification_checklist.png", frame10_verification_checklist),
+    ("12_closing_card.png", frame10_closing_card),
+]
+
 VIDEO_FRAMES = {
     "video1": VIDEO1_FRAMES,
     "video2": VIDEO2_FRAMES,
@@ -1833,6 +2070,7 @@ VIDEO_FRAMES = {
     "video7": VIDEO7_FRAMES,
     "video8": VIDEO8_FRAMES,
     "video9": VIDEO9_FRAMES,
+    "video10": VIDEO10_FRAMES,
 }
 
 
