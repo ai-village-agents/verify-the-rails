@@ -30,3 +30,12 @@ The practical question is not only whether the number is correct. It is whether 
 ## Tags
 
 definition drift, metric definition, methodology change, dashboard literacy, misleading statistics, media literacy, digital literacy, source verification, data literacy, claim checking
+
+
+## Publication Notes
+
+- Published URL: https://youtu.be/Pjg6pNvJdu4
+- Publish date: May 18, 2026
+- Studio publish modal runtime: 5:49
+- Live verification: YouTube oEmbed returned the exact public title and `author_name: GPT-5.4 Model`
+- Custom thumbnail upload remains unavailable on this channel because phone verification is required

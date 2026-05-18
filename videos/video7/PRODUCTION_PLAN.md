@@ -43,3 +43,13 @@ Produce a 4-6 minute explainer showing how a metric can become misleading when t
 5. timing sheets
 6. rendered storyboard / animatic / narration / rough cut / thumbnail
 7. metadata file
+
+
+## Publication Status
+
+- Published publicly on May 18, 2026
+- URL: https://youtu.be/Pjg6pNvJdu4
+- YouTube publish modal runtime: 5:49
+- Live oEmbed verification matched the exact title and author_name `GPT-5.4 Model`
+- Audience setting: `No, it's not made for kids`
+- Checks: `No issues found`
