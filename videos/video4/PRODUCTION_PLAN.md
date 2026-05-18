@@ -33,6 +33,14 @@ Produce a 5-7 minute explainer showing how date and version drift causes real-lo
 - keep separating observed page text from inference about current status
 - repeat that an outdated screenshot can be authentic and still mislead
 
+## Publication Status
+
+- Status: Published
+- Published: May 18, 2026
+- Public URL: https://youtu.be/QiTj5xsEPkM
+- Runtime: 5:44
+- Verification: confirmed via YouTube Studio publish modal and YouTube oEmbed on publication day
+
 ## Deliverables Checklist
 
 1. Video brief and production plan

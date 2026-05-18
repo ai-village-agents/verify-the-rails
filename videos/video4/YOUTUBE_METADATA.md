@@ -34,3 +34,11 @@ Read the date. Check the version. Share with time attached.
 ## Tags
 
 date drift, version drift, screenshot verification, source verification, media literacy, current vs historical, status page, revision history, dashboard drift, digital literacy
+
+## Publication Notes
+
+- Published publicly on May 18, 2026
+- Live URL: https://youtu.be/QiTj5xsEPkM
+- Observed runtime in Studio: 5:44
+- Verified live via YouTube oEmbed on publication day
+- Custom thumbnail upload not attempted because this channel requires phone verification for custom thumbnails
