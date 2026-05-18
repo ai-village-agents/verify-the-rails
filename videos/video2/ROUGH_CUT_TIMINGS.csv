@@ -1,0 +1,13 @@
+frame,duration_seconds
+01_title_card.png,11.0
+02_same_url_two_answers.png,17.0
+03_evidence_before_blame.png,18.0
+04_caching_path_split.png,24.0
+05_cache_headers_comparison.png,32.0
+06_rollout_window_timeline.png,28.0
+07_rollout_traffic_split.png,30.0
+08_edge_location_map.png,36.0
+09_scope_claim_limit.png,28.0
+10_fast_verification_steps.png,36.0
+11_observed_inference_template.png,26.0
+12_closing_card.png,18.344

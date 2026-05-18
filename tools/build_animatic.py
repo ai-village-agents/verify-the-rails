@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Build a simple storyboard animatic for Video 1 using ffmpeg concat demuxer."""
+"""Build a simple storyboard animatic using ffmpeg concat demuxer."""
 
 from __future__ import annotations
 
+import argparse
 import csv
 import shutil
 import subprocess
@@ -10,13 +11,9 @@ import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-VIDEO_DIR = ROOT / "videos" / "video1"
-FRAMES_DIR = VIDEO_DIR / "storyboard_frames"
-SHOT_TIMINGS_CSV = VIDEO_DIR / "SHOT_TIMINGS.csv"
-OUTPUT_PATH = VIDEO_DIR / "video1_animatic.mp4"
 
 
-def load_shot_timings(csv_path: Path) -> list[tuple[str, float]]:
+def load_shot_timings(csv_path: Path, frames_dir: Path) -> list[tuple[str, float]]:
     if not csv_path.exists():
         raise FileNotFoundError(f"Missing shot timings file: {csv_path}")
 
@@ -42,7 +39,7 @@ def load_shot_timings(csv_path: Path) -> list[tuple[str, float]]:
             if duration <= 0:
                 raise ValueError(f"Row {row_num}: duration_seconds must be > 0")
 
-            frame_path = FRAMES_DIR / frame
+            frame_path = frames_dir / frame
             if not frame_path.exists():
                 raise FileNotFoundError(f"Row {row_num}: missing frame file {frame_path}")
 
@@ -54,36 +51,53 @@ def load_shot_timings(csv_path: Path) -> list[tuple[str, float]]:
     return shots
 
 
-def write_concat_file(concat_path: Path, shots: list[tuple[str, float]]) -> None:
+def write_concat_file(concat_path: Path, shots: list[tuple[str, float]], frames_dir: Path) -> None:
     # Repeat the final frame without duration so ffmpeg holds it for the prior duration.
     lines: list[str] = []
     for frame, duration in shots:
-        abs_frame_path = (FRAMES_DIR / frame).resolve()
+        abs_frame_path = (frames_dir / frame).resolve()
         escaped = str(abs_frame_path).replace("'", "'\\''")
         lines.append(f"file '{escaped}'")
         lines.append(f"duration {duration:.3f}")
 
-    final_frame = str((FRAMES_DIR / shots[-1][0]).resolve()).replace("'", "'\\''")
+    final_frame = str((frames_dir / shots[-1][0]).resolve()).replace("'", "'\\''")
     lines.append(f"file '{final_frame}'")
 
     concat_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Build a storyboard animatic.")
+    parser.add_argument(
+        "--video",
+        default="video1",
+        help="Video directory name under videos/ to use (default: video1)",
+    )
+    return parser.parse_args()
+
+
 def build_animatic() -> None:
+    args = parse_args()
+
     ffmpeg_bin = shutil.which("ffmpeg")
     if not ffmpeg_bin:
         raise RuntimeError("ffmpeg not found in PATH. Please install ffmpeg and retry.")
 
-    shots = load_shot_timings(SHOT_TIMINGS_CSV)
+    video_dir = ROOT / "videos" / args.video
+    frames_dir = video_dir / "storyboard_frames"
+    shot_timings_csv = video_dir / "SHOT_TIMINGS.csv"
+    output_path = video_dir / f"{args.video}_animatic.mp4"
+
+    shots = load_shot_timings(shot_timings_csv, frames_dir)
     total_duration = sum(duration for _, duration in shots)
 
-    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    with tempfile.NamedTemporaryFile(prefix="video1_animatic_", suffix=".txt", delete=False) as tmp:
+    with tempfile.NamedTemporaryFile(prefix=f"{args.video}_animatic_", suffix=".txt", delete=False) as tmp:
         concat_path = Path(tmp.name)
 
     try:
-        write_concat_file(concat_path, shots)
+        write_concat_file(concat_path, shots, frames_dir)
 
         cmd = [
             ffmpeg_bin,
@@ -98,13 +112,13 @@ def build_animatic() -> None:
             "vfr",
             "-pix_fmt",
             "yuv420p",
-            str(OUTPUT_PATH),
+            str(output_path),
         ]
         subprocess.run(cmd, check=True)
     finally:
         concat_path.unlink(missing_ok=True)
 
-    print(f"Built {OUTPUT_PATH}")
+    print(f"Built {output_path}")
     print(f"Shots: {len(shots)}")
     print(f"Rough total duration: {total_duration:.1f}s")
 

@@ -1,31 +1,44 @@
 #!/usr/bin/env python3
-"""Render placeholder storyboard frames for Video 1.
-
-Outputs 1920x1080 PNG files to videos/video1/storyboard_frames/.
-"""
+"""Render placeholder storyboard frames for a selected video."""
 
 from __future__ import annotations
 
+import argparse
 from pathlib import Path
 from typing import Callable
 
 from PIL import Image, ImageDraw, ImageFont
 
 WIDTH, HEIGHT = 1920, 1080
-OUT_DIR = Path("videos/video1/storyboard_frames")
 
-PALETTE = {
-    "bg": "#0C0F13",
-    "panel": "#151A21",
-    "panel_alt": "#1C232D",
-    "line": "#313A46",
-    "text": "#F4F6F8",
-    "muted": "#A6B1BE",
-    "primary": "#5BC0FF",
-    "secondary": "#FFC857",
-    "inference": "#FF7B72",
-    "ok": "#73DFA7",
+PALETTES = {
+    "video1": {
+        "bg": "#0C0F13",
+        "panel": "#151A21",
+        "panel_alt": "#1C232D",
+        "line": "#313A46",
+        "text": "#F4F6F8",
+        "muted": "#A6B1BE",
+        "primary": "#5BC0FF",
+        "secondary": "#FFC857",
+        "inference": "#FF7B72",
+        "ok": "#73DFA7",
+    },
+    "video2": {
+        "bg": "#0E1117",
+        "panel": "#17202A",
+        "panel_alt": "#22303D",
+        "line": "#3A4A59",
+        "text": "#F2F5F7",
+        "muted": "#A9B6C2",
+        "primary": "#6DD3CE",
+        "secondary": "#F2B880",
+        "inference": "#FF8E72",
+        "ok": "#8AD68A",
+    },
 }
+
+PALETTE = PALETTES["video1"]
 
 
 def load_font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
@@ -80,6 +93,8 @@ def tag(draw: ImageDraw.ImageDraw, xy: tuple[int, int], label: str, key: str) ->
     text_block(draw, (x + 14, y + 8), label, size=22, color=key, bold=True)
 
 
+# Video 1 frames
+
 def frame_title_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
     draw_header(draw, "Two True Screenshots, One Wrong Conclusion", "Video 1 storyboard placeholder")
     text_block(draw, (120, 340), "How source, time, and delivery path create conflict", size=48, color="text", bold=True)
@@ -128,7 +143,12 @@ def draw_timeline(draw: ImageDraw.ImageDraw, detailed: bool) -> None:
     y = 600
     x0, x1 = 180, 1740
     draw.line((x0, y, x1, y), fill=PALETTE["line"], width=6)
-    points = [(260, "8:00", "Primary: June 1", "primary"), (700, "9:15", "Newsletter mirrors", "secondary"), (1140, "11:40", "Updated: July 1", "ok"), (1580, "1:20", "Blog shows old", "inference")]
+    points = [
+        (260, "8:00", "Primary: June 1", "primary"),
+        (700, "9:15", "Newsletter mirrors", "secondary"),
+        (1140, "11:40", "Updated: July 1", "ok"),
+        (1580, "1:20", "Blog shows old", "inference"),
+    ]
     for x, tm, label, color in points:
         draw.ellipse((x - 16, y - 16, x + 16, y + 16), fill=PALETTE[color])
         text_block(draw, (x - 40, y - 95), tm, size=24, color="muted", bold=True)
@@ -173,8 +193,8 @@ def frame_lag_consequence_bridge(img: Image.Image, draw: ImageDraw.ImageDraw) ->
     panel(draw, (1060, 300, 1720, 840))
     tag(draw, (240, 340), "Stale Response", "inference")
     tag(draw, (1100, 340), "Fresh Response", "ok")
-    text_block(draw, (250, 470), "Viewer reports:\n\"I saw June 1\"", size=44)
-    text_block(draw, (1110, 470), "Viewer reports:\n\"I saw July 1\"", size=44)
+    text_block(draw, (250, 470), 'Viewer reports:\n"I saw June 1"', size=44)
+    text_block(draw, (1110, 470), 'Viewer reports:\n"I saw July 1"', size=44)
 
 
 def frame_summary_error_comparison(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
@@ -233,7 +253,7 @@ def frame_closing_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
     text_block(draw, (670, 560), "Check first, share second.", size=48, color="muted")
 
 
-FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None]]] = [
+VIDEO1_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None]]] = [
     ("01_title_card.png", frame_title_card),
     ("02_conflicting_screenshots.png", frame_conflicting_screenshots),
     ("03_assumption_reframe.png", frame_assumption_reframe),
@@ -249,12 +269,208 @@ FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None]]] = [
 ]
 
 
+# Video 2 frames
+
+def frame2_title_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Same URL, Different Answer", "Caching, rollout lag, and edge variance")
+    text_block(draw, (120, 340), "One link can return different results", size=56, bold=True)
+    text_block(draw, (120, 430), "Evidence first. Explanation second.", size=36, color="muted")
+    tag(draw, (120, 520), "OBSERVED", "primary")
+    tag(draw, (330, 520), "LIKELY", "secondary")
+    tag(draw, (500, 520), "UNKNOWN", "inference")
+
+
+def frame2_same_url_two_answers(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "One URL, Opposite Results", "10:02 AM PT vs 10:03 AM PT")
+    panel(draw, (120, 260, 900, 860), border="inference")
+    panel(draw, (1020, 260, 1800, 860), border="ok")
+    text_block(draw, (160, 300), "Capture A", size=30, color="muted", bold=True)
+    text_block(draw, (160, 360), "Line A resumes at 12:00 PM", size=42, bold=True)
+    text_block(draw, (160, 780), "10:02 AM PT", size=30, color="inference", bold=True)
+    text_block(draw, (1060, 300), "Capture B", size=30, color="muted", bold=True)
+    text_block(draw, (1060, 360), "Line A remains suspended", size=42, bold=True)
+    text_block(draw, (1060, 780), "10:03 AM PT", size=30, color="ok", bold=True)
+
+
+def frame2_evidence_before_blame(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Reframe", "Observed fact before inference")
+    panel(draw, (180, 300, 860, 860))
+    panel(draw, (1060, 300, 1740, 860))
+    tag(draw, (220, 340), "Observed", "primary")
+    tag(draw, (1100, 340), "Inference", "secondary")
+    text_block(draw, (230, 430), "- What text appeared\n- Exact timestamp\n- Location/network", size=42)
+    text_block(draw, (1110, 430), "- Possible cause\n- Confidence level\n- Missing evidence", size=42)
+
+
+def frame2_caching_path_split(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Mechanism 1: Caching", "Stale and fresh can coexist briefly")
+    panel(draw, (160, 360, 520, 760))
+    panel(draw, (700, 280, 1220, 500), fill="panel_alt")
+    panel(draw, (700, 600, 1220, 820), fill="panel_alt")
+    panel(draw, (1400, 360, 1760, 760))
+    text_block(draw, (250, 520), "User A", size=42, bold=True)
+    text_block(draw, (1470, 520), "User B", size=42, bold=True)
+    text_block(draw, (840, 350), "Edge Cache\n(stale)", size=38, color="inference", bold=True)
+    text_block(draw, (830, 675), "Origin/Fresh\n(updated)", size=38, color="ok", bold=True)
+    draw.line((520, 560, 700, 390), fill=PALETTE["muted"], width=6)
+    draw.line((1760, 560, 1220, 390), fill=PALETTE["muted"], width=6)
+    draw.line((1760, 560, 1220, 710), fill=PALETTE["muted"], width=6)
+
+
+def frame2_cache_headers_comparison(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Evidence Example", "Compare headers and timestamps")
+    panel(draw, (140, 260, 920, 870))
+    panel(draw, (1000, 260, 1780, 870))
+    tag(draw, (180, 300), "Response A", "inference")
+    tag(draw, (1040, 300), "Response B", "ok")
+    text_block(draw, (200, 390), "cache-status: hit\nAge: 185\nstatus: suspended", size=40)
+    text_block(draw, (1060, 390), "cache-status: miss\nAge: 3\nstatus: resumes at noon", size=40)
+    text_block(draw, (200, 720), "Observed data", size=30, color="primary", bold=True)
+    text_block(draw, (1060, 720), "Observed data", size=30, color="primary", bold=True)
+
+
+def frame2_rollout_window_timeline(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Mechanism 2: Rollout Lag", "Deploy window allows coexistence")
+    panel(draw, (140, 280, 1780, 860), fill="panel")
+    draw.line((220, 610, 1700, 610), fill=PALETTE["line"], width=8)
+    points = [
+        (320, "9:55", "Deploy starts", "secondary"),
+        (860, "10:02", "Capture A", "inference"),
+        (1120, "10:03", "Capture B", "ok"),
+        (1600, "10:20", "Deploy completes", "secondary"),
+    ]
+    for x, tm, label, color in points:
+        draw.ellipse((x - 18, 592, x + 18, 628), fill=PALETTE[color])
+        text_block(draw, (x - 46, 530), tm, size=24, color="muted", bold=True)
+        text_block(draw, (x - 120, 650), label, size=28, bold=True)
+    draw.rectangle((300, 450, 1620, 520), outline=PALETTE["secondary"], width=3)
+    text_block(draw, (330, 465), "Observed deploy window from release notes", size=30)
+
+
+def frame2_rollout_traffic_split(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Traffic Split", "Both versions can answer during rollout")
+    panel(draw, (180, 300, 860, 860))
+    panel(draw, (1060, 300, 1740, 860))
+    tag(draw, (220, 340), "Version 1", "inference")
+    tag(draw, (1100, 340), "Version 2", "ok")
+    text_block(draw, (240, 470), "70% traffic\n\nold status text", size=48)
+    text_block(draw, (1120, 470), "30% traffic\n\nnew status text", size=48)
+    text_block(draw, (640, 900), "Temporary coexistence during phased deployment", size=30, color="muted")
+
+
+def frame2_edge_location_map(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Mechanism 3: Edge and Location", "Routing path affects visible state")
+    panel(draw, (150, 260, 1770, 860), fill="panel")
+    panel(draw, (260, 470, 660, 760), fill="panel_alt")
+    panel(draw, (1260, 470, 1660, 760), fill="panel_alt")
+    panel(draw, (760, 300, 1160, 560), fill="panel_alt")
+    text_block(draw, (355, 565), "US-West\nEdge", size=38, color="inference", bold=True)
+    text_block(draw, (1355, 565), "US-East\nEdge", size=38, color="ok", bold=True)
+    text_block(draw, (870, 380), "Origin", size=44, bold=True)
+    draw.line((660, 600, 760, 470), fill=PALETTE["muted"], width=6)
+    draw.line((1260, 600, 1160, 470), fill=PALETTE["muted"], width=6)
+    text_block(draw, (630, 800), "Observed: locations can differ briefly during propagation", size=30, color="primary")
+
+
+def frame2_scope_claim_limit(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Scope the Claim", "Single fetch does not prove global state")
+    panel(draw, (200, 320, 1720, 840))
+    tag(draw, (260, 370), "Observed", "primary")
+    tag(draw, (540, 370), "Inference", "secondary")
+    tag(draw, (820, 370), "Unknown", "inference")
+    text_block(draw, (280, 470), "Observed: one capture from one location at one time.", size=44)
+    text_block(draw, (280, 570), "Inference: likely cache/rollout propagation behavior.", size=44)
+    text_block(draw, (280, 670), "Unknown: exact backend cause without logs.", size=44)
+
+
+def frame2_fast_verification_steps(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Fast Verification", "Context-rich fetches before sharing")
+    steps = [
+        "Record exact timestamp + time zone",
+        "Note location and network path",
+        "Save exact page wording",
+        "Capture response metadata when possible",
+        "Write observed and inferred separately",
+    ]
+    y = 270
+    for idx, step in enumerate(steps, start=1):
+        panel(draw, (170, y, 1750, y + 130), fill="panel_alt")
+        draw.ellipse((215, y + 42, 267, y + 94), fill=PALETTE["primary"])
+        text_block(draw, (234, y + 51), str(idx), size=22, color="bg", bold=True)
+        text_block(draw, (310, y + 42), step, size=40)
+        y += 145
+
+
+def frame2_observed_inference_template(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Template Wording", "Precise, useful, uncertainty-aware")
+    panel(draw, (150, 320, 1770, 560))
+    panel(draw, (150, 620, 1770, 860))
+    tag(draw, (190, 360), "Observed", "primary")
+    tag(draw, (190, 660), "Inference", "secondary")
+    text_block(
+        draw,
+        (420, 390),
+        '10:03 AM PT US-West: "suspended"; 10:04 AM PT US-East: "resumes at noon".',
+        size=38,
+    )
+    text_block(
+        draw,
+        (420, 690),
+        "Likely propagation or rollout lag; cause not confirmed without platform logs.",
+        size=38,
+    )
+
+
+def frame2_closing_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Closing", "Verification doctrine")
+    text_block(draw, (540, 430), "Single fetch = clue", size=72, bold=True)
+    text_block(draw, (430, 560), "Multiple context-rich fetches = evidence", size=58, color="muted")
+
+
+VIDEO2_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None]]] = [
+    ("01_title_card.png", frame2_title_card),
+    ("02_same_url_two_answers.png", frame2_same_url_two_answers),
+    ("03_evidence_before_blame.png", frame2_evidence_before_blame),
+    ("04_caching_path_split.png", frame2_caching_path_split),
+    ("05_cache_headers_comparison.png", frame2_cache_headers_comparison),
+    ("06_rollout_window_timeline.png", frame2_rollout_window_timeline),
+    ("07_rollout_traffic_split.png", frame2_rollout_traffic_split),
+    ("08_edge_location_map.png", frame2_edge_location_map),
+    ("09_scope_claim_limit.png", frame2_scope_claim_limit),
+    ("10_fast_verification_steps.png", frame2_fast_verification_steps),
+    ("11_observed_inference_template.png", frame2_observed_inference_template),
+    ("12_closing_card.png", frame2_closing_card),
+]
+
+VIDEO_FRAMES = {
+    "video1": VIDEO1_FRAMES,
+    "video2": VIDEO2_FRAMES,
+}
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Render storyboard placeholder frames.")
+    parser.add_argument(
+        "--video",
+        default="video1",
+        choices=sorted(VIDEO_FRAMES.keys()),
+        help="Video directory name under videos/ (default: video1)",
+    )
+    return parser.parse_args()
+
+
 def main() -> None:
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-    for name, painter in FRAMES:
+    global PALETTE
+
+    args = parse_args()
+    PALETTE = PALETTES[args.video]
+    out_dir = Path("videos") / args.video / "storyboard_frames"
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    for name, painter in VIDEO_FRAMES[args.video]:
         img, draw = base_canvas()
         painter(img, draw)
-        out_path = OUT_DIR / name
+        out_path = out_dir / name
         img.save(out_path, format="PNG")
         print(f"Wrote {out_path}")
 
