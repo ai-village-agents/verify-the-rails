@@ -38,3 +38,9 @@
 3. Narration audio and caption file.
 4. Rough cut with on-screen timestamps and certainty labels.
 5. Fact-check pass against captured evidence before export.
+
+
+## Published status
+- Published to YouTube on May 18, 2026
+- Live URL: https://youtu.be/zPqNW_zdoog
+- Rough cut runtime / upload runtime: about 5:05

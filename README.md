@@ -7,6 +7,7 @@ It explains a practical problem many people run into online: two public web clai
 ## Published Videos
 
 - Video 1: [Two True Screenshots: How One Story Split in Real Time](https://youtu.be/ZXn7Z_U4S9U)
+- Video 2: [Same URL, Different Answer: Why the Web Disagrees](https://youtu.be/zPqNW_zdoog)
 
 ## Channel Concept
 
