@@ -108,6 +108,18 @@ PALETTES = {
         "inference": "#C88484",
         "ok": "#86CFAE",
     },
+    "video9": {
+        "bg": "#0B121B",
+        "panel": "#162538",
+        "panel_alt": "#20354C",
+        "line": "#3C5A77",
+        "text": "#ECF4FB",
+        "muted": "#A9BDCF",
+        "primary": "#78C1FF",
+        "secondary": "#E7B86A",
+        "inference": "#C98686",
+        "ok": "#87CFAD",
+    },
 }
 
 PALETTE = PALETTES["video1"]
@@ -1574,6 +1586,243 @@ VIDEO8_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None
     ("12_closing_card.png", frame8_closing_card),
 ]
 
+
+# Video 9 frames
+
+def frame9_title_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "The Winners Are Not the Whole Field", "How Survivorship Bias Misleads")
+    panel(draw, (170, 280, 1750, 900), fill="panel_alt")
+    for x, y, r, color in [
+        (360, 500, 16, "muted"),
+        (470, 610, 14, "muted"),
+        (620, 470, 15, "muted"),
+        (760, 640, 14, "muted"),
+        (910, 520, 14, "muted"),
+        (1040, 660, 14, "muted"),
+        (1180, 500, 13, "muted"),
+        (1330, 620, 15, "muted"),
+        (1510, 540, 14, "muted"),
+        (570, 740, 14, "muted"),
+        (1240, 760, 14, "muted"),
+    ]:
+        draw.ellipse((x - r, y - r, x + r, y + r), fill=PALETTE[color])
+    for x, y in [(640, 560), (980, 430), (1380, 470)]:
+        draw.ellipse((x - 22, y - 22, x + 22, y + 22), fill=PALETTE["primary"])
+    text_block(draw, (250, 790), "Survivors show possibility, not prevalence.", size=40, color="secondary", bold=True)
+
+
+def frame9_winner_list_hook(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Winner-Heavy Inputs", "Common sources that hide missing cases")
+    panel(draw, (240, 260, 1680, 900), fill="panel")
+    cards = [
+        (320, 330, "Founder success thread"),
+        (320, 500, "Current winners list"),
+        (320, 670, "Creator growth advice"),
+    ]
+    for x, y, label in cards:
+        panel(draw, (x, y, 1520, y + 130), fill="panel_alt", border="primary")
+        text_block(draw, (380, y + 42), label, size=48, color="text", bold=True)
+    for y in [360, 530, 700]:
+        panel(draw, (1120, y, 1600, y + 90), fill="panel", border="line")
+    text_block(draw, (1138, 386), "missing field", size=32, color="secondary", bold=True)
+    text_block(draw, (1138, 556), "hidden failures", size=32, color="secondary", bold=True)
+    text_block(draw, (1138, 726), "denominator unknown", size=32, color="secondary", bold=True)
+
+
+def frame9_possibility_vs_prevalence(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Possibility vs Prevalence", "Different claims need different evidence")
+    panel(draw, (160, 280, 900, 880), border="primary")
+    panel(draw, (1020, 280, 1760, 880), border="secondary")
+    text_block(draw, (220, 360), "Proves possibility", size=54, color="primary", bold=True)
+    draw.line((280, 700, 420, 520, 560, 610, 700, 460, 840, 540), fill=PALETTE["primary"], width=10)
+    text_block(draw, (230, 760), "One working path exists", size=34, color="muted")
+    text_block(draw, (1080, 360), "Does not prove typicality", size=52, color="inference", bold=True)
+    bars = [(1120, 760), (1240, 700), (1360, 640), (1480, 780), (1600, 680)]
+    for x, top in bars:
+        draw.rounded_rectangle((x, top, x + 80, 800), radius=12, fill=PALETTE["secondary"])
+    text_block(draw, (1080, 840), "Need full field for prevalence", size=34, color="secondary", bold=True)
+
+
+def frame9_survivorship_mechanism_rails(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Survivorship Mechanism", "Observed / Inference / Unknown")
+    panel(draw, (170, 280, 1750, 700), fill="panel")
+    panel(draw, (300, 390, 860, 600), fill="panel_alt", border="secondary")
+    panel(draw, (1100, 390, 1620, 600), fill="panel_alt", border="primary")
+    text_block(draw, (390, 455), "starting\npopulation", size=44, color="secondary", bold=True)
+    text_block(draw, (1190, 455), "visible\nsurvivors", size=44, color="primary", bold=True)
+    draw.polygon([(900, 410), (1080, 495), (900, 580)], fill=PALETTE["line"])
+    rows = [
+        ("Observed", "Visible winners are real examples.", "primary"),
+        ("Inference", "Winner traits explain most outcomes.", "inference"),
+        ("Unknown", "How many similar attempts disappeared.", "secondary"),
+    ]
+    y = 740
+    for label, body, color in rows:
+        panel(draw, (170, y, 1750, y + 96), fill="panel_alt")
+        tag(draw, (220, y + 26), label, color)
+        text_block(draw, (500, y + 30), body, size=36)
+        y += 106
+
+
+def frame9_founder_thread_example(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Founder Thread Example", "One winner story plus missing attempts")
+    panel(draw, (180, 280, 1740, 900), fill="panel")
+    panel(draw, (260, 340, 1180, 840), fill="panel_alt", border="primary")
+    text_block(draw, (310, 390), "One founder won", size=52, color="primary", bold=True)
+    text_block(draw, (310, 470), "Tactics documented", size=42, color="text")
+    draw.line((340, 620, 1080, 620), fill=PALETTE["line"], width=6)
+    for x in [380, 560, 740, 920, 1060]:
+        draw.ellipse((x - 14, 606, x + 14, 634), fill=PALETTE["primary"])
+    for x, y in [(1280, 420), (1400, 520), (1520, 620), (1380, 740), (1600, 460), (1660, 680)]:
+        draw.ellipse((x - 12, y - 12, x + 12, y + 12), fill=PALETTE["muted"])
+    text_block(draw, (1240, 780), "How many similar attempts failed?", size=36, color="secondary", bold=True)
+
+
+def frame9_founder_oiu_breakout(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Founder O-I-U Breakout", "Apply rails before broad advice")
+    panel(draw, (170, 300, 1750, 520), fill="panel_alt", border="primary")
+    draw.line((290, 430, 1630, 430), fill=PALETTE["line"], width=6)
+    for x in [360, 620, 880, 1140, 1400, 1560]:
+        draw.ellipse((x - 12, 418, x + 12, 442), fill=PALETTE["primary"])
+    rows = [
+        ("Observed", "one success path", "primary"),
+        ("Inference", "broadly reliable method", "inference"),
+        ("Unknown", "denominator of failures", "secondary"),
+    ]
+    y = 580
+    for label, body, color in rows:
+        panel(draw, (170, y, 1750, y + 120), fill="panel_alt")
+        tag(draw, (220, y + 38), label, color)
+        text_block(draw, (500, y + 42), body, size=42)
+        y += 132
+
+
+def frame9_current_tools_example(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Current Tools Example", "Leader map can omit sunset peers")
+    panel(draw, (170, 280, 1750, 900), fill="panel")
+    panel(draw, (240, 350, 1120, 840), fill="panel_alt", border="primary")
+    text_block(draw, (280, 390), "Current leaders shown", size=48, color="primary", bold=True)
+    for x, y, label in [(300, 500, "Tool A"), (520, 600, "Tool B"), (760, 520, "Tool C"), (920, 680, "Tool D")]:
+        panel(draw, (x, y, x + 180, y + 82), fill="panel", border="primary")
+        text_block(draw, (x + 28, y + 24), label, size=30, bold=True)
+    text_block(draw, (1240, 410), "Traits look predictive", size=44, color="text", bold=True)
+    panel(draw, (1240, 560, 1680, 760), fill="panel_alt", border="secondary")
+    text_block(draw, (1290, 610), "sunset archive", size=40, color="secondary", bold=True)
+    text_block(draw, (1290, 672), "Discontinued peers omitted", size=30, color="muted")
+
+
+def frame9_tools_oiu_breakout(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Tools O-I-U Breakout", "Survivor set vs hidden graveyard set")
+    panel(draw, (170, 280, 940, 650), fill="panel_alt", border="primary")
+    panel(draw, (980, 280, 1750, 650), fill="panel_alt", border="secondary")
+    text_block(draw, (240, 340), "active survivors", size=44, color="primary", bold=True)
+    text_block(draw, (1060, 340), "faded graveyard", size=44, color="secondary", bold=True)
+    for x, y in [(260, 430), (430, 500), (600, 440), (760, 530)]:
+        panel(draw, (x, y, x + 140, y + 70), fill="panel", border="primary")
+    for x, y in [(1070, 430), (1230, 510), (1390, 450), (1550, 540)]:
+        panel(draw, (x, y, x + 140, y + 70), fill="panel", border="line")
+    rows = [
+        ("Observed", "active survivors", "primary"),
+        ("Inference", "trait causes success", "inference"),
+        ("Unknown", "similar failed products", "secondary"),
+    ]
+    y = 700
+    for label, body, color in rows:
+        panel(draw, (170, y, 1750, y + 104), fill="panel_alt")
+        tag(draw, (220, y + 30), label, color)
+        text_block(draw, (500, y + 34), body, size=38)
+        y += 116
+
+
+def frame9_creator_advice_example(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Creator Advice Example", "Visible channels can hide silent attrition")
+    panel(draw, (170, 280, 1750, 900), fill="panel")
+    panel(draw, (240, 350, 980, 840), fill="panel_alt", border="primary")
+    text_block(draw, (280, 390), "Visible channels analyzed", size=44, color="primary", bold=True)
+    for i, label in enumerate(["Channel A", "Channel B", "Channel C"]):
+        y0 = 490 + i * 110
+        panel(draw, (290, y0, 920, y0 + 86), fill="panel", border="primary")
+        text_block(draw, (330, y0 + 26), label, size=36, bold=True)
+    panel(draw, (1060, 350, 1680, 840), fill="panel_alt", border="secondary")
+    text_block(draw, (1120, 420), "Habits extracted", size=44, color="text", bold=True)
+    text_block(draw, (1120, 520), "Silent failures missing", size=40, color="secondary", bold=True)
+    for y in [610, 690, 770]:
+        draw.line((1120, y, 1600, y), fill=PALETTE["muted"], width=5)
+
+
+def frame9_creator_oiu_and_checklist(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Creator O-I-U and Checklist", "Turn example into verification routine")
+    panel(draw, (160, 280, 940, 900), fill="panel")
+    rows = [
+        ("Observed", "visible channels analyzed", "primary"),
+        ("Inference", "habits drive most outcomes", "inference"),
+        ("Unknown", "non-survivor channel outcomes", "secondary"),
+    ]
+    y = 340
+    for label, body, color in rows:
+        panel(draw, (220, y, 880, y + 150), fill="panel_alt")
+        tag(draw, (260, y + 52), label, color)
+        text_block(draw, (500, y + 58), body, size=30)
+        y += 170
+    panel(draw, (980, 280, 1760, 900), fill="panel")
+    steps = ["1 Start population", "2 Attrition", "3 Non-survivor source", "4 Possible vs typical", "5 O-I-U note"]
+    y = 350
+    for idx, step in enumerate(steps):
+        fill = "primary" if idx == 0 else "secondary" if idx in (1, 2) else "inference" if idx == 3 else "ok"
+        panel(draw, (1040, y, 1700, y + 90), fill="panel_alt", border=fill)
+        text_block(draw, (1080, y + 28), step, size=34, bold=True)
+        y += 106
+
+
+def frame9_apply_checklist_fast(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Apply Checklist Fast", "One worksheet across founder / tools / creator")
+    panel(draw, (170, 280, 1750, 900), fill="panel")
+    panel(draw, (230, 350, 1690, 830), fill="panel_alt", border="line")
+    headers = ["Case", "Status", "Boundary"]
+    x_positions = [280, 760, 1210]
+    for x, label in zip(x_positions, headers):
+        text_block(draw, (x, 390), label, size=36, color="muted", bold=True)
+    rows = [
+        ("Case: winner-heavy claim", "Status: possibility shown", "Typicality unproven"),
+        ("Founder / tools / creator", "Observed: survivors visible", "Need full denominator"),
+    ]
+    y = 470
+    for row in rows:
+        panel(draw, (260, y, 1660, y + 140), fill="panel")
+        text_block(draw, (280, y + 34), row[0], size=34, color="primary", bold=True)
+        text_block(draw, (760, y + 34), row[1], size=34, color="ok", bold=True)
+        text_block(draw, (1210, y + 34), row[2], size=34, color="secondary", bold=True)
+        y += 170
+    text_block(draw, (300, 850), "Survivors show possibility, not prevalence.", size=38, color="inference", bold=True)
+
+
+def frame9_closing_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Closing", "Bounded claim doctrine")
+    panel(draw, (220, 320, 1700, 860), fill="panel_alt")
+    text_block(draw, (300, 430), "Visible survivors are real evidence.", size=64, bold=True)
+    text_block(draw, (340, 545), "They are not the whole distribution.", size=58, color="muted", bold=True)
+    for x in [450, 760, 1080, 1390]:
+        draw.ellipse((x - 20, 725, x + 20, 765), fill=PALETTE["primary"])
+    for x in [330, 560, 650, 860, 960, 1180, 1270, 1510]:
+        draw.ellipse((x - 12, 745, x + 12, 769), fill=PALETTE["muted"])
+    text_block(draw, (530, 805), "Survivors show possibility, not prevalence.", size=34, color="secondary", bold=True)
+
+
+VIDEO9_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None]]] = [
+    ("01_title_card.png", frame9_title_card),
+    ("02_winner_list_hook.png", frame9_winner_list_hook),
+    ("03_possibility_vs_prevalence.png", frame9_possibility_vs_prevalence),
+    ("04_survivorship_mechanism_rails.png", frame9_survivorship_mechanism_rails),
+    ("05_founder_thread_example.png", frame9_founder_thread_example),
+    ("06_founder_oiu_breakout.png", frame9_founder_oiu_breakout),
+    ("07_current_tools_example.png", frame9_current_tools_example),
+    ("08_tools_oiu_breakout.png", frame9_tools_oiu_breakout),
+    ("09_creator_advice_example.png", frame9_creator_advice_example),
+    ("10_creator_oiu_and_checklist.png", frame9_creator_oiu_and_checklist),
+    ("11_apply_checklist_fast.png", frame9_apply_checklist_fast),
+    ("12_closing_card.png", frame9_closing_card),
+]
+
 VIDEO_FRAMES = {
     "video1": VIDEO1_FRAMES,
     "video2": VIDEO2_FRAMES,
@@ -1583,6 +1832,7 @@ VIDEO_FRAMES = {
     "video6": VIDEO6_FRAMES,
     "video7": VIDEO7_FRAMES,
     "video8": VIDEO8_FRAMES,
+    "video9": VIDEO9_FRAMES,
 }
 
 

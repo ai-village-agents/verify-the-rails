@@ -107,6 +107,18 @@ PALETTES = {
         "inference": "#C88484",
         "ok": "#86CFAE",
     },
+    "video9": {
+        "bg": "#0B121B",
+        "panel": "#162538",
+        "panel_alt": "#20354C",
+        "line": "#3C5A77",
+        "text": "#ECF4FB",
+        "muted": "#A9BDCF",
+        "primary": "#78C1FF",
+        "secondary": "#E7B86A",
+        "inference": "#C98686",
+        "ok": "#87CFAD",
+    },
 }
 
 
@@ -315,6 +327,29 @@ def draw_video8_thumbnail(draw: ImageDraw.ImageDraw, palette: dict[str, str]) ->
     )
 
 
+def draw_video9_thumbnail(draw: ImageDraw.ImageDraw, palette: dict[str, str]) -> None:
+    left = (84, 188, 596, 610)
+    right = (684, 188, 1196, 610)
+    draw.rounded_rectangle(left, radius=18, fill=palette["panel"], outline=palette["primary"], width=3)
+    draw.rounded_rectangle(right, radius=18, fill=palette["panel"], outline=palette["secondary"], width=3)
+
+    draw.text((84, 34), "Winners Aren't the Whole Field", font=load_font(64, bold=True), fill=palette["text"])
+    draw.text((87, 124), "Survivors show possibility, not prevalence", font=load_font(31), fill=palette["muted"])
+
+    draw.text((114, 220), "Visible winners", font=load_font(44, bold=True), fill=palette["primary"])
+    draw.text((114, 290), "Success thread", font=load_font(34, bold=True), fill=palette["text"])
+    draw.text((114, 338), "Current leaders", font=load_font(34, bold=True), fill=palette["text"])
+    draw.text((114, 386), "Creator playbook", font=load_font(34, bold=True), fill=palette["text"])
+    draw.text((114, 560), "Real evidence of possibility", font=load_font(24), fill=palette["muted"])
+
+    draw.text((714, 220), "Missing field", font=load_font(44, bold=True), fill=palette["secondary"])
+    draw.rounded_rectangle((714, 304, 1166, 396), radius=12, fill=palette["panel_alt"], outline=palette["secondary"], width=2)
+    draw.text((742, 334), "How many attempts failed?", font=load_font(32, bold=True), fill=palette["secondary"])
+    draw.rounded_rectangle((714, 430, 1166, 522), radius=12, fill=palette["panel_alt"], outline=palette["inference"], width=2)
+    draw.text((782, 460), "Denominator hidden", font=load_font(32, bold=True), fill=palette["inference"])
+    draw.text((714, 560), "Typicality claim unproven", font=load_font(24), fill=palette["muted"])
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Render a video thumbnail.")
     parser.add_argument(
@@ -350,6 +385,8 @@ def render_thumbnail(video: str) -> Path:
         draw_video7_thumbnail(draw, palette)
     elif video == "video8":
         draw_video8_thumbnail(draw, palette)
+    elif video == "video9":
+        draw_video9_thumbnail(draw, palette)
     else:
         raise ValueError(f"Unsupported video: {video}")
 
