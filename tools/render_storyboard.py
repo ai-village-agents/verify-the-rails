@@ -48,6 +48,18 @@ PALETTES = {
         "inference": "#FF8B7C",
         "ok": "#9CE0A4",
     },
+    "video4": {
+        "bg": "#0F131A",
+        "panel": "#18212B",
+        "panel_alt": "#223140",
+        "line": "#405365",
+        "text": "#F5F7FA",
+        "muted": "#B5C0CB",
+        "primary": "#79B8FF",
+        "secondary": "#F2C078",
+        "inference": "#FF8F7A",
+        "ok": "#95D9A6",
+    },
 }
 
 PALETTE = PALETTES["video1"]
@@ -637,10 +649,187 @@ VIDEO3_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None
     ("12_closing_card.png", frame3_closing_card),
 ]
 
+
+# Video 4 frames
+
+def frame4_title_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "This Was True Yesterday", "How date and version drift breaks online claims")
+    panel(draw, (120, 260, 900, 860), border="inference")
+    panel(draw, (1020, 260, 1800, 860), border="ok")
+    tag(draw, (160, 300), "Authentic capture", "secondary")
+    tag(draw, (1060, 300), "Authentic capture", "secondary")
+    text_block(draw, (170, 400), "Scholarship Page", size=34, color="muted", bold=True)
+    text_block(draw, (170, 460), "Applications close", size=40, bold=True)
+    text_block(draw, (170, 520), "May 1", size=76, color="inference", bold=True)
+    text_block(draw, (170, 770), "Captured Monday", size=28, color="muted")
+    text_block(draw, (1070, 400), "Scholarship Page", size=34, color="muted", bold=True)
+    text_block(draw, (1070, 460), "Applications close", size=40, bold=True)
+    text_block(draw, (1070, 520), "May 15", size=76, color="ok", bold=True)
+    text_block(draw, (1070, 770), "Current Wednesday page", size=28, color="muted")
+    panel(draw, (600, 900, 1320, 1020), fill="panel_alt", border="primary")
+    text_block(draw, (670, 938), "When was this true?", size=52, color="text", bold=True)
+
+
+def frame4_two_real_captures(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Two Real Captures", "Authentic evidence can still disagree")
+    panel(draw, (120, 260, 900, 860), border="inference")
+    panel(draw, (1020, 260, 1800, 860), border="ok")
+    tag(draw, (160, 300), "Authentic capture", "secondary")
+    tag(draw, (1060, 300), "Authentic capture", "secondary")
+    text_block(draw, (180, 470), "Applications close May 1", size=56, color="inference", bold=True)
+    text_block(draw, (1080, 470), "Applications close May 15", size=56, color="ok", bold=True)
+    panel(draw, (700, 900, 1220, 1010), fill="panel_alt", border="secondary")
+    text_block(draw, (740, 934), "Fake? Or different moments?", size=38, bold=True)
+
+
+def frame4_when_was_this_true(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Reframe", "Ask the timing question first")
+    panel(draw, (380, 300, 1540, 780), fill="panel_alt", border="primary")
+    text_block(draw, (660, 470), "When was this true?", size=72, bold=True)
+    tag(draw, (540, 840), "wording", "primary")
+    tag(draw, (840, 840), "timestamp", "secondary")
+    tag(draw, (1180, 840), "version", "inference")
+
+
+def frame4_source_time_version(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Source + Time + Version", "Three checks before interpretation")
+    panel(draw, (260, 280, 1660, 860), fill="panel")
+    panel(draw, (460, 370, 900, 760), fill="panel_alt", border="primary")
+    panel(draw, (1010, 370, 1450, 760), fill="panel_alt", border="secondary")
+    panel(draw, (735, 560, 1185, 920), fill="panel_alt", border="ok")
+    text_block(draw, (540, 500), "exact wording", size=44, color="primary", bold=True)
+    text_block(draw, (1080, 500), "visible timestamp", size=42, color="secondary", bold=True)
+    text_block(draw, (800, 700), "version/update state", size=42, color="ok", bold=True)
+    draw.line((900, 560, 1010, 560), fill=PALETTE["line"], width=5)
+    draw.line((900, 610, 1010, 650), fill=PALETTE["line"], width=5)
+
+
+def frame4_deadline_update_timeline(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Deadline Update Timeline", "Historical capture vs current page")
+    panel(draw, (160, 280, 1760, 860))
+    draw.line((260, 620, 1660, 620), fill=PALETTE["line"], width=8)
+    points = [
+        (420, "Monday", "Capture: May 1", "inference"),
+        (1380, "Wednesday", "Current page: May 15", "ok"),
+    ]
+    for x, day, label, color in points:
+        draw.ellipse((x - 20, 600, x + 20, 640), fill=PALETTE[color])
+        text_block(draw, (x - 70, 530), day, size=30, color="muted", bold=True)
+        text_block(draw, (x - 180, 670), label, size=42, color=color, bold=True)
+    panel(draw, (610, 420, 1310, 515), fill="panel_alt", border="secondary")
+    text_block(draw, (690, 448), "Historical != current", size=44, color="secondary", bold=True)
+
+
+def frame4_status_page_updates(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Status Page Updates", "Time context changes meaning")
+    panel(draw, (240, 280, 1680, 860), border="line")
+    panel(draw, (300, 380, 1620, 530), fill="panel_alt", border="inference")
+    panel(draw, (300, 570, 1620, 720), fill="panel_alt", border="ok")
+    text_block(draw, (360, 430), "10:15 AM", size=40, color="inference", bold=True)
+    text_block(draw, (610, 430), "Investigating elevated error rates", size=44, bold=True)
+    text_block(draw, (360, 620), "11:40 AM", size=40, color="ok", bold=True)
+    text_block(draw, (610, 620), "Resolved", size=44, bold=True)
+    tag(draw, (300, 760), "time context changes meaning", "secondary")
+
+
+def frame4_draft_vs_final(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Draft vs Final", "Version stage changes claim strength")
+    panel(draw, (120, 260, 900, 860), border="secondary")
+    panel(draw, (1020, 260, 1800, 860), border="ok")
+    tag(draw, (160, 300), "Draft", "secondary")
+    tag(draw, (1060, 300), "Final", "ok")
+    text_block(draw, (180, 470), '"recommends"', size=72, color="secondary", bold=True)
+    text_block(draw, (1080, 470), '"approved"', size=72, color="ok", bold=True)
+    text_block(draw, (180, 760), "Not a final decision", size=34, color="muted")
+    text_block(draw, (1080, 760), "Final adopted state", size=34, color="muted")
+
+
+def frame4_moving_dashboard(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Moving Dashboard", "Snapshot and live state can both be valid")
+    panel(draw, (120, 260, 900, 860), border="secondary")
+    panel(draw, (1020, 260, 1800, 860), border="ok")
+    text_block(draw, (180, 390), "24,000 users", size=84, color="secondary", bold=True)
+    text_block(draw, (1080, 390), "29,000 users", size=84, color="ok", bold=True)
+    tag(draw, (180, 700), "Historical snapshot", "secondary")
+    tag(draw, (1080, 700), "Current dashboard", "ok")
+
+
+def frame4_claim_classification(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Claim Classification", "Label claims before sharing")
+    panel(draw, (120, 280, 620, 880), border="ok")
+    panel(draw, (710, 280, 1210, 880), border="secondary")
+    panel(draw, (1300, 280, 1800, 880), border="inference")
+    text_block(draw, (290, 340), "Current", size=48, color="ok", bold=True)
+    text_block(draw, (860, 340), "Historical", size=48, color="secondary", bold=True)
+    text_block(draw, (1460, 340), "Unclear", size=48, color="inference", bold=True)
+    text_block(draw, (160, 460), "Live page now\nsays May 15", size=38)
+    text_block(draw, (750, 460), "Monday screenshot\nshows May 1", size=38)
+    text_block(draw, (1340, 460), "No timestamp or\nversion shown", size=38)
+
+
+def frame4_fast_verification_steps(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Fast Verification Steps", "Use before reposting claims")
+    steps = [
+        "Capture the exact claim being made",
+        "Look for visible time markers",
+        "Check the current source",
+        "Look for version history",
+        "Classify: current / historical / unclear",
+    ]
+    y = 270
+    for idx, step in enumerate(steps, start=1):
+        panel(draw, (170, y, 1750, y + 130), fill="panel_alt")
+        draw.ellipse((215, y + 42, 267, y + 94), fill=PALETTE["primary"])
+        text_block(draw, (234, y + 50), str(idx), size=22, color="bg", bold=True)
+        text_block(draw, (310, y + 42), step, size=40)
+        y += 145
+
+
+def frame4_observed_inference_template(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Observed / Inference Template", "Reusable note format")
+    rows = [
+        ("Observed", "this screenshot shows the page saying X at the visible date or version.", "primary"),
+        ("Observed", "the current page now says Y.", "primary"),
+        ("Inference", "the source changed between those two checks.", "inference"),
+        ("Unknown", "exactly when the change happened, unless a log confirms it.", "secondary"),
+    ]
+    y = 290
+    for label, content, color in rows:
+        panel(draw, (140, y, 1780, y + 160), fill="panel_alt")
+        tag(draw, (180, y + 56), label, color)
+        text_block(draw, (430, y + 64), content, size=36)
+        y += 185
+
+
+def frame4_closing_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Closing", "Keep time attached to claims")
+    draw.line((260, 760, 1660, 760), fill=PALETTE["line"], width=6)
+    for x, color in [(420, "secondary"), (860, "primary"), (1280, "ok"), (1560, "inference")]:
+        draw.ellipse((x - 14, 746, x + 14, 774), fill=PALETTE[color])
+    text_block(draw, (460, 430), "Read the date. Check the version.", size=72, bold=True)
+    text_block(draw, (660, 560), "Share with time attached.", size=54, color="muted", bold=True)
+
+
+VIDEO4_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None]]] = [
+    ("01_title_card.png", frame4_title_card),
+    ("02_two_real_captures.png", frame4_two_real_captures),
+    ("03_when_was_this_true.png", frame4_when_was_this_true),
+    ("04_source_time_version.png", frame4_source_time_version),
+    ("05_deadline_update_timeline.png", frame4_deadline_update_timeline),
+    ("06_status_page_updates.png", frame4_status_page_updates),
+    ("07_draft_vs_final.png", frame4_draft_vs_final),
+    ("08_moving_dashboard.png", frame4_moving_dashboard),
+    ("09_claim_classification.png", frame4_claim_classification),
+    ("10_fast_verification_steps.png", frame4_fast_verification_steps),
+    ("11_observed_inference_template.png", frame4_observed_inference_template),
+    ("12_closing_card.png", frame4_closing_card),
+]
+
 VIDEO_FRAMES = {
     "video1": VIDEO1_FRAMES,
     "video2": VIDEO2_FRAMES,
     "video3": VIDEO3_FRAMES,
+    "video4": VIDEO4_FRAMES,
 }
 
 
