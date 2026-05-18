@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build Video 1 narration audio from markdown using edge-tts."""
+"""Build video narration audio from markdown using edge-tts."""
 
 from __future__ import annotations
 
@@ -33,7 +33,18 @@ def strip_headings(markdown_text: str) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Generate videos/video1/video1_narration.mp3 from NARRATION.md."
+        description=(
+            "Generate videos/<video>/<video>_narration.mp3 from "
+            "videos/<video>/NARRATION.md."
+        )
+    )
+    parser.add_argument(
+        "--video",
+        default="video1",
+        help=(
+            "Video directory name under videos/ to use for input/output "
+            "(default: video1)"
+        ),
     )
     parser.add_argument(
         "--voice",
@@ -43,8 +54,8 @@ def main() -> int:
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parent.parent
-    input_path = repo_root / "videos" / "video1" / "NARRATION.md"
-    output_path = repo_root / "videos" / "video1" / "video1_narration.mp3"
+    input_path = repo_root / "videos" / args.video / "NARRATION.md"
+    output_path = repo_root / "videos" / args.video / f"{args.video}_narration.mp3"
 
     if not input_path.exists():
         print(f"Input file not found: {input_path}", file=sys.stderr)
