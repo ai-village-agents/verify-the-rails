@@ -96,6 +96,18 @@ PALETTES = {
         "inference": "#C98989",
         "ok": "#84CFAD",
     },
+    "video8": {
+        "bg": "#0B121B",
+        "panel": "#152435",
+        "panel_alt": "#1F3348",
+        "line": "#3B5875",
+        "text": "#EDF4FB",
+        "muted": "#A8BCCF",
+        "primary": "#76C0FF",
+        "secondary": "#E6B768",
+        "inference": "#C88484",
+        "ok": "#86CFAE",
+    },
 }
 
 PALETTE = PALETTES["video1"]
@@ -1392,6 +1404,176 @@ VIDEO7_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None
     ("12_closing_card.png", frame7_closing_card),
 ]
 
+
+# Video 8 frames
+
+def frame8_title_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Three Posts Are Not a Trend", "How Sample Bias Misleads")
+    panel(draw, (170, 290, 1750, 860), fill="panel_alt")
+    text_block(draw, (250, 410), "Evidence of existence is not\nevidence of prevalence.", size=66, bold=True)
+    tag(draw, (250, 640), "Observed", "primary")
+    tag(draw, (470, 640), "Unknown", "secondary")
+    tag(draw, (680, 640), "Overreach", "inference")
+
+
+def frame8_viral_feed_hook(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Viral Feed Hook", "A ranked feed can feel like a trend")
+    panel(draw, (220, 260, 920, 900), border="inference")
+    panel(draw, (1000, 260, 1700, 900), border="primary")
+    text_block(draw, (270, 320), "My feed is full of this", size=48, bold=True)
+    panel(draw, (270, 420, 870, 530), fill="panel_alt")
+    panel(draw, (270, 560, 870, 670), fill="panel_alt")
+    panel(draw, (270, 700, 870, 810), fill="panel_alt")
+    text_block(draw, (310, 452), "3 viral posts in a row", size=40, color="inference", bold=True)
+    text_block(draw, (310, 594), "Feels like a trend", size=40, color="inference", bold=True)
+    text_block(draw, (1030, 380), "Top slots favor\nhigh engagement", size=50, color="primary", bold=True)
+    text_block(draw, (1030, 620), "Ordinary posts\nbelow fold", size=44, color="muted")
+
+
+def frame8_existence_vs_prevalence(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Existence vs Prevalence", "Different claims need different proof")
+    panel(draw, (160, 280, 900, 860), border="primary")
+    panel(draw, (1020, 280, 1760, 860), border="secondary")
+    tag(draw, (200, 320), "Evidence of existence", "primary")
+    tag(draw, (1060, 320), "Evidence of prevalence", "secondary")
+    panel(draw, (220, 420, 840, 760), fill="panel_alt")
+    text_block(draw, (280, 520), "One verified\nexample", size=60, color="primary", bold=True)
+    bars = [(1140, 700), (1260, 620), (1380, 760), (1500, 540), (1620, 660)]
+    for x, y in bars:
+        draw.rounded_rectangle((x, y, x + 70, 780), radius=12, fill=PALETTE["secondary"])
+    text_block(draw, (1110, 810), "Population distribution data", size=30, color="muted")
+
+
+def frame8_sampling_bias_rails(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Sampling Bias Rails", "Observed / Inference / Unknown")
+    rows = [
+        ("Observed", "Examples shown are authentic captures.", "primary"),
+        ("Inference", "Feed snapshot suggests a widespread trend.", "inference"),
+        ("Unknown", "How representative the visible sample is.", "secondary"),
+    ]
+    y = 300
+    for label, content, color in rows:
+        panel(draw, (160, y, 1760, y + 200), fill="panel_alt")
+        tag(draw, (210, y + 78), label, color)
+        text_block(draw, (500, y + 82), content, size=40)
+        y += 220
+
+
+def frame8_feed_selection_pressure(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Feed Selection Pressure", "Visible does not mean common")
+    panel(draw, (150, 270, 1770, 880), fill="panel")
+    panel(draw, (220, 360, 760, 780), fill="panel_alt", border="secondary")
+    panel(draw, (1080, 360, 1620, 780), fill="panel_alt", border="primary")
+    text_block(draw, (280, 420), "Ranked for\nattention", size=54, color="secondary", bold=True)
+    text_block(draw, (1140, 420), "Amplified\nsample", size=54, color="primary", bold=True)
+    draw.polygon([(780, 460), (1040, 560), (780, 660)], fill=PALETTE["line"])
+    text_block(draw, (820, 810), "Visible ≠ common", size=44, color="inference", bold=True)
+
+
+def frame8_screenshot_thread_claim(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Screenshot Thread Claim", "Thread collage vs denominator")
+    panel(draw, (170, 280, 980, 880), border="secondary")
+    panel(draw, (1050, 280, 1750, 880), border="inference")
+    text_block(draw, (230, 340), "5 real screenshots", size=56, color="secondary", bold=True)
+    for i in range(5):
+        y0 = 430 + i * 78
+        panel(draw, (230, y0, 920, y0 + 62), fill="panel_alt")
+    text_block(draw, (1100, 420), "Claim:\neveryone is saying this", size=54, color="inference", bold=True)
+    panel(draw, (1100, 670, 1690, 790), fill="panel_alt", border="secondary")
+    text_block(draw, (1160, 708), "Out of how many?", size=48, color="secondary", bold=True)
+
+
+def frame8_reporting_intensity_dashboard(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Reporting Intensity Dashboard", "Reported incidents up")
+    panel(draw, (160, 270, 1760, 880), fill="panel")
+    panel(draw, (230, 350, 1220, 820), fill="panel_alt", border="primary")
+    points = [(280, 760), (430, 730), (580, 700), (730, 620), (880, 540), (1030, 470), (1180, 430)]
+    draw.line(tuple(v for p in points for v in p), fill=PALETTE["primary"], width=8)
+    text_block(draw, (270, 390), "Reported incidents up", size=44, color="primary", bold=True)
+    panel(draw, (1280, 390, 1710, 550), fill="panel_alt", border="secondary")
+    panel(draw, (1280, 590, 1710, 750), fill="panel_alt", border="inference")
+    text_block(draw, (1320, 440), "Reporting\ncampaign active", size=34, color="secondary", bold=True)
+    text_block(draw, (1320, 640), "Visibility\npressure", size=34, color="inference", bold=True)
+
+
+def frame8_visibility_not_prevalence(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Visibility Is Not Prevalence", "Accurate count, limited claim")
+    panel(draw, (170, 300, 900, 860), border="ok")
+    panel(draw, (1020, 300, 1750, 860), border="secondary")
+    tag(draw, (210, 340), "Accurate report count", "ok")
+    tag(draw, (1060, 340), "Uncertain prevalence claim", "secondary")
+    text_block(draw, (230, 480), "Count integrity:\nverified", size=58, color="ok", bold=True)
+    text_block(draw, (1090, 480), "Need stable\ndenominator", size=58, color="secondary", bold=True)
+    text_block(draw, (520, 900), "Evidence of existence is not evidence of prevalence.", size=36, color="muted")
+
+
+def frame8_observed_inference_unknown_template(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Observed / Inference / Unknown", "Reusable O-I-U template")
+    panel(draw, (150, 290, 1770, 500), fill="panel_alt")
+    panel(draw, (150, 530, 1770, 740), fill="panel_alt")
+    panel(draw, (150, 770, 1770, 980), fill="panel_alt")
+    tag(draw, (200, 374), "Observed", "primary")
+    tag(draw, (200, 614), "Inference", "inference")
+    tag(draw, (200, 854), "Unknown", "secondary")
+    text_block(draw, (490, 382), "Examples are real.", size=44)
+    text_block(draw, (490, 622), "Trend may be widespread.", size=44)
+    text_block(draw, (490, 862), "Representativeness not established.", size=44)
+
+
+def frame8_verification_checklist(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Verification Checklist", "Six steps for sample-bias claims")
+    steps = [
+        "1 Population",
+        "2 X out of Y",
+        "3 Collection method",
+        "4 Visibility pressure",
+        "5 Missing context",
+        "6 O-I-U note",
+    ]
+    y = 250
+    for step in steps:
+        panel(draw, (220, y, 1700, y + 118), fill="panel_alt")
+        draw.ellipse((264, y + 38, 312, y + 86), fill=PALETTE["ok"])
+        text_block(draw, (278, y + 44), "✓", size=24, color="bg", bold=True)
+        text_block(draw, (350, y + 36), step, size=44)
+        y += 128
+
+
+def frame8_checklist_applied_walkthrough(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Checklist Applied Walkthrough", "Thread case with claim boundary")
+    panel(draw, (170, 300, 1750, 900), fill="panel")
+    panel(draw, (250, 380, 1670, 840), fill="panel_alt", border="line")
+    text_block(draw, (300, 450), "Population: platform posts this week", size=44, color="primary", bold=True)
+    text_block(draw, (300, 560), "Sample: 5 shown, Y unknown", size=44, color="secondary", bold=True)
+    text_block(draw, (300, 670), "Status: existence shown, prevalence unproven", size=44, color="inference", bold=True)
+    tag(draw, (1260, 450), "Claim limited", "ok")
+
+
+def frame8_closing_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Closing", "Real examples, weak population claim")
+    panel(draw, (230, 330, 1690, 840), fill="panel_alt")
+    text_block(draw, (300, 470), "Separate examples from prevalence claims.", size=60, bold=True)
+    text_block(draw, (420, 600), "Evidence of existence is not evidence of prevalence.", size=40, color="muted")
+    tag(draw, (640, 710), "Observed", "primary")
+    tag(draw, (860, 710), "Unknown", "secondary")
+    tag(draw, (1080, 710), "Inference", "inference")
+
+
+VIDEO8_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None]]] = [
+    ("01_title_card.png", frame8_title_card),
+    ("02_viral_feed_hook.png", frame8_viral_feed_hook),
+    ("03_existence_vs_prevalence.png", frame8_existence_vs_prevalence),
+    ("04_sampling_bias_rails.png", frame8_sampling_bias_rails),
+    ("05_feed_selection_pressure.png", frame8_feed_selection_pressure),
+    ("06_screenshot_thread_claim.png", frame8_screenshot_thread_claim),
+    ("07_reporting_intensity_dashboard.png", frame8_reporting_intensity_dashboard),
+    ("08_visibility_not_prevalence.png", frame8_visibility_not_prevalence),
+    ("09_observed_inference_unknown_template.png", frame8_observed_inference_unknown_template),
+    ("10_verification_checklist.png", frame8_verification_checklist),
+    ("11_checklist_applied_walkthrough.png", frame8_checklist_applied_walkthrough),
+    ("12_closing_card.png", frame8_closing_card),
+]
+
 VIDEO_FRAMES = {
     "video1": VIDEO1_FRAMES,
     "video2": VIDEO2_FRAMES,
@@ -1400,6 +1582,7 @@ VIDEO_FRAMES = {
     "video5": VIDEO5_FRAMES,
     "video6": VIDEO6_FRAMES,
     "video7": VIDEO7_FRAMES,
+    "video8": VIDEO8_FRAMES,
 }
 
 

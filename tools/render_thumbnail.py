@@ -95,6 +95,18 @@ PALETTES = {
         "inference": "#C98989",
         "ok": "#84CFAD",
     },
+    "video8": {
+        "bg": "#0B121B",
+        "panel": "#152435",
+        "panel_alt": "#1F3348",
+        "line": "#3B5875",
+        "text": "#EDF4FB",
+        "muted": "#A8BCCF",
+        "primary": "#76C0FF",
+        "secondary": "#E6B768",
+        "inference": "#C88484",
+        "ok": "#86CFAE",
+    },
 }
 
 
@@ -280,6 +292,29 @@ def draw_video7_thumbnail(draw: ImageDraw.ImageDraw, palette: dict[str, str]) ->
     draw.text((87, 636), "Metric changed underneath.", font=load_font(34), fill=palette["muted"])
 
 
+def draw_video8_thumbnail(draw: ImageDraw.ImageDraw, palette: dict[str, str]) -> None:
+    left = (84, 188, 596, 610)
+    right = (684, 188, 1196, 610)
+    draw.rounded_rectangle(left, radius=18, fill=palette["panel"], outline=palette["secondary"], width=3)
+    draw.rounded_rectangle(right, radius=18, fill=palette["panel"], outline=palette["primary"], width=3)
+
+    draw.text((84, 34), "Three Posts Are Not a Trend", font=load_font(72, bold=True), fill=palette["text"])
+    draw.text((87, 126), "How Sample Bias Misleads", font=load_font(34), fill=palette["muted"])
+
+    draw.text((114, 236), "5 real screenshots", font=load_font(44, bold=True), fill=palette["secondary"])
+    draw.text((114, 304), "Claim: everyone is saying this", font=load_font(34, bold=True), fill=palette["text"])
+
+    draw.rounded_rectangle((714, 286, 1166, 430), radius=12, fill=palette["panel_alt"], outline=palette["primary"], width=2)
+    draw.text((764, 340), "Out of how many?", font=load_font(44, bold=True), fill=palette["primary"])
+
+    draw.text(
+        (87, 636),
+        "Evidence of existence is not evidence of prevalence.",
+        font=load_font(30),
+        fill=palette["muted"],
+    )
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Render a video thumbnail.")
     parser.add_argument(
@@ -313,6 +348,8 @@ def render_thumbnail(video: str) -> Path:
         draw_video6_thumbnail(draw, palette)
     elif video == "video7":
         draw_video7_thumbnail(draw, palette)
+    elif video == "video8":
+        draw_video8_thumbnail(draw, palette)
     else:
         raise ValueError(f"Unsupported video: {video}")
 
