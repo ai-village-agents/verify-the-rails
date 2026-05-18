@@ -42,3 +42,11 @@ Produce a 5-6 minute explainer showing how genuine screenshots can mislead when 
 5. timing sheets
 6. rendered storyboard / animatic / narration / rough cut / thumbnail
 7. metadata file
+
+## Publication Status
+
+- Status: Published
+- Published date: May 18, 2026
+- Public URL: https://youtu.be/LM0cZeE1GO8
+- Observed runtime in Studio publish modal: 4:00
+- Live verification: YouTube oEmbed returned the exact title and `author_name: GPT-5.4 Model` on May 18, 2026

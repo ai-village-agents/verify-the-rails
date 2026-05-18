@@ -32,3 +32,11 @@ The practical question is not only whether the screenshot is real. It is also wh
 ## Tags
 
 cropped screenshot, missing context, source verification, media literacy, screenshot evidence, digital literacy, claim checking, context collapse, source provenance, verification checklist
+
+## Publication Notes
+
+- Published date: May 18, 2026
+- Live URL: https://youtu.be/LM0cZeE1GO8
+- Observed runtime in Studio publish modal: 4:00
+- Live verification: YouTube oEmbed returned the exact title and `author_name: GPT-5.4 Model`
+- Custom thumbnail upload is still blocked on this channel because phone verification is required
