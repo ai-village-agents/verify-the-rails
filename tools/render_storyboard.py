@@ -60,6 +60,18 @@ PALETTES = {
         "inference": "#FF8F7A",
         "ok": "#95D9A6",
     },
+    "video5": {
+        "bg": "#0B111A",
+        "panel": "#142235",
+        "panel_alt": "#1D3048",
+        "line": "#38506A",
+        "text": "#EEF4FA",
+        "muted": "#A7BACB",
+        "primary": "#7EC3FF",
+        "secondary": "#F2BE74",
+        "inference": "#C98282",
+        "ok": "#8DD6B0",
+    },
 }
 
 PALETTE = PALETTES["video1"]
@@ -825,11 +837,188 @@ VIDEO4_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None
     ("12_closing_card.png", frame4_closing_card),
 ]
 
+
+# Video 5 frames
+
+def frame5_title_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "The Crop Hides the Clue", "How missing context changes screenshot claims")
+    panel(draw, (180, 290, 960, 900), border="secondary")
+    panel(draw, (860, 250, 1740, 880), fill="panel_alt", border="primary")
+    tag(draw, (230, 340), "Inside crop", "secondary")
+    tag(draw, (910, 300), "Outside crop", "primary")
+    text_block(draw, (270, 500), "24,000 users", size=70, color="secondary", bold=True)
+    text_block(draw, (980, 500), "Last 24 hours", size=58, color="primary", bold=True)
+    text_block(draw, (360, 930), "Real screenshot. Smaller certainty.", size=38, color="muted")
+
+
+def frame5_real_crop_wrong_conclusion(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Real Crop, Wrong Conclusion?", "Authentic image does not guarantee full context")
+    panel(draw, (210, 290, 950, 840), border="secondary")
+    panel(draw, (980, 250, 1710, 880), border="primary")
+    tag(draw, (250, 330), "Inside crop", "secondary")
+    tag(draw, (1020, 290), "Outside crop", "primary")
+    text_block(draw, (280, 480), "24,000 users", size=68, color="secondary", bold=True)
+    text_block(draw, (1040, 470), "Filter: Last 24 hours", size=44, color="primary", bold=True)
+    panel(draw, (520, 900, 1410, 1015), fill="panel_alt", border="inference")
+    text_block(draw, (570, 938), "Real image, wrong conclusion?", size=52, color="inference", bold=True)
+
+
+def frame5_what_is_outside_frame(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "What Is Outside the Frame?", "Missing clues often set claim limits")
+    panel(draw, (180, 270, 1740, 840))
+    text_block(draw, (520, 360), "What is outside the frame?", size=76, bold=True)
+    clues = [
+        (300, 610, "date", "primary"),
+        (560, 610, "domain", "primary"),
+        (860, 610, "filter", "secondary"),
+        (1140, 610, "banner", "secondary"),
+        (1410, 610, "version", "inference"),
+    ]
+    for x, y, label, color in clues:
+        tag(draw, (x, y), label, color)
+
+
+def frame5_context_rails_grid(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Context Rails", "Check each rail before drawing conclusions")
+    cards = [
+        (180, 300, "Date", "Captured Mar 8, 9:12 AM PT", "primary"),
+        (560, 300, "Domain", "mirror.example.net", "inference"),
+        (940, 300, "Filter", "Last 24 hours", "secondary"),
+        (1320, 300, "Status Banner", "Resolved 20 min later", "ok"),
+        (750, 620, "Document Label", "Draft for review", "inference"),
+    ]
+    for x, y, title, body, color in cards:
+        panel(draw, (x, y, x + 360, y + 240), fill="panel_alt", border=color)
+        text_block(draw, (x + 26, y + 36), title, size=38, color=color, bold=True)
+        text_block(draw, (x + 26, y + 116), body, size=30)
+
+
+def frame5_chart_filter_reveal(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Chart Filter Reveal", "Crop hides what the metric counts")
+    panel(draw, (170, 280, 860, 860), border="secondary")
+    panel(draw, (940, 240, 1760, 890), border="primary")
+    tag(draw, (210, 320), "Inside crop", "secondary")
+    tag(draw, (980, 280), "Outside crop", "primary")
+    text_block(draw, (220, 500), "24,000 users", size=76, color="secondary", bold=True)
+    text_block(draw, (1000, 360), "Filter: Last 24 hours", size=44, color="primary", bold=True)
+    text_block(draw, (1000, 470), "Observed: number is real", size=36, color="primary")
+    text_block(draw, (1000, 560), "Inference: total users", size=36, color="inference")
+
+
+def frame5_status_banner_reveal(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Status Banner Reveal", "Current-state claims need full page context")
+    panel(draw, (170, 280, 860, 860), border="secondary")
+    panel(draw, (940, 240, 1760, 890), border="primary")
+    tag(draw, (210, 320), "Inside crop", "secondary")
+    tag(draw, (980, 280), "Outside crop", "primary")
+    text_block(draw, (220, 430), "Investigating elevated", size=42, bold=True)
+    text_block(draw, (220, 490), "error rates", size=42, bold=True)
+    panel(draw, (980, 360, 1720, 500), fill="panel_alt", border="ok")
+    text_block(draw, (1020, 406), "Resolved - 20 minutes later", size=42, color="ok", bold=True)
+
+
+def frame5_draft_header_reveal(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Draft Header Reveal", "Quoted text can be real but pre-final")
+    panel(draw, (170, 280, 860, 860), border="secondary")
+    panel(draw, (940, 240, 1760, 890), border="primary")
+    tag(draw, (210, 320), "Inside crop", "secondary")
+    tag(draw, (980, 280), "Outside crop", "primary")
+    text_block(draw, (220, 430), '"Policy update takes', size=40)
+    text_block(draw, (220, 490), 'effect July 1."', size=40)
+    panel(draw, (980, 360, 1680, 480), fill="panel_alt", border="inference")
+    text_block(draw, (1020, 400), "Header: Draft for review", size=44, color="inference", bold=True)
+    text_block(draw, (1020, 550), "Claim limit: not final policy", size=36, color="secondary", bold=True)
+
+
+def frame5_domain_context_reveal(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Domain Context Reveal", "Source claim changes with full frame")
+    panel(draw, (170, 280, 860, 860), border="secondary")
+    panel(draw, (940, 240, 1760, 890), border="primary")
+    tag(draw, (210, 320), "Inside crop", "secondary")
+    tag(draw, (980, 280), "Outside crop", "primary")
+    text_block(draw, (220, 430), "Official-looking notice", size=44, bold=True)
+    panel(draw, (980, 360, 1720, 490), fill="panel_alt", border="inference")
+    text_block(draw, (1020, 398), "Domain: mirror.example.net", size=42, color="inference", bold=True)
+    text_block(draw, (1020, 560), "Observed: copied text", size=34, color="primary")
+    text_block(draw, (1020, 630), "Unknown: source provenance", size=34, color="secondary")
+
+
+def frame5_claim_limit_template(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Claim Limit Template", "Inside crop vs outside crop vs claim limit")
+    panel(draw, (120, 280, 620, 900), border="secondary")
+    panel(draw, (710, 280, 1210, 900), border="primary")
+    panel(draw, (1300, 280, 1800, 900), border="inference")
+    text_block(draw, (200, 340), "Inside crop", size=46, color="secondary", bold=True)
+    text_block(draw, (770, 340), "Outside crop", size=46, color="primary", bold=True)
+    text_block(draw, (1380, 340), "Claim limit", size=46, color="inference", bold=True)
+    text_block(draw, (150, 460), "24,000 users", size=40)
+    text_block(draw, (740, 460), "Last 24 hours", size=40)
+    text_block(draw, (1340, 460), "Not total users", size=40)
+    text_block(draw, (150, 620), "Investigating", size=40)
+    text_block(draw, (740, 620), "Resolved banner", size=40)
+    text_block(draw, (1340, 620), "Incident now closed", size=40)
+
+
+def frame5_fast_verification_steps(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Fast Verification Steps", "Routine for cropped screenshot claims")
+    steps = [
+        "Write the exact claim the screenshot supports",
+        "List clues missing outside the crop",
+        "Find uncropped source view if possible",
+        "Separate direct evidence from context gaps",
+        "Lower confidence when context is unresolved",
+    ]
+    y = 270
+    for idx, step in enumerate(steps, start=1):
+        panel(draw, (170, y, 1750, y + 130), fill="panel_alt")
+        draw.ellipse((215, y + 42, 267, y + 94), fill=PALETTE["primary"])
+        text_block(draw, (234, y + 50), str(idx), size=22, color="bg", bold=True)
+        text_block(draw, (310, y + 42), step, size=38)
+        y += 145
+
+
+def frame5_observed_unknown_inference(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Observed / Unknown / Inference", "Reusable uncertainty-aware note")
+    rows = [
+        ("Observed", "Cropped screenshot shows '24,000 users'.", "primary"),
+        ("Unknown", "Whether this is total users or a filtered window.", "secondary"),
+        ("Inference", "Repost may overclaim without uncropped context.", "inference"),
+    ]
+    y = 300
+    for label, content, color in rows:
+        panel(draw, (150, y, 1770, y + 180), fill="panel_alt")
+        tag(draw, (190, y + 68), label, color)
+        text_block(draw, (440, y + 72), content, size=38)
+        y += 205
+
+
+def frame5_closing_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Closing", "Verification doctrine")
+    text_block(draw, (470, 460), "Ask what is outside the frame.", size=72, bold=True)
+    text_block(draw, (640, 580), "Real screenshot. Smaller certainty.", size=46, color="muted", bold=True)
+
+
+VIDEO5_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None]]] = [
+    ("01_title_card.png", frame5_title_card),
+    ("02_real_crop_wrong_conclusion.png", frame5_real_crop_wrong_conclusion),
+    ("03_what_is_outside_frame.png", frame5_what_is_outside_frame),
+    ("04_context_rails_grid.png", frame5_context_rails_grid),
+    ("05_chart_filter_reveal.png", frame5_chart_filter_reveal),
+    ("06_status_banner_reveal.png", frame5_status_banner_reveal),
+    ("07_draft_header_reveal.png", frame5_draft_header_reveal),
+    ("08_domain_context_reveal.png", frame5_domain_context_reveal),
+    ("09_claim_limit_template.png", frame5_claim_limit_template),
+    ("10_fast_verification_steps.png", frame5_fast_verification_steps),
+    ("11_observed_unknown_inference.png", frame5_observed_unknown_inference),
+    ("12_closing_card.png", frame5_closing_card),
+]
+
 VIDEO_FRAMES = {
     "video1": VIDEO1_FRAMES,
     "video2": VIDEO2_FRAMES,
     "video3": VIDEO3_FRAMES,
     "video4": VIDEO4_FRAMES,
+    "video5": VIDEO5_FRAMES,
 }
 
 

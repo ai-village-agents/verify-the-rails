@@ -59,6 +59,18 @@ PALETTES = {
         "inference": "#FF8F7A",
         "ok": "#95D9A6",
     },
+    "video5": {
+        "bg": "#0B111A",
+        "panel": "#142235",
+        "panel_alt": "#1D3048",
+        "line": "#38506A",
+        "text": "#EEF4FA",
+        "muted": "#A7BACB",
+        "primary": "#7EC3FF",
+        "secondary": "#F2BE74",
+        "inference": "#C98282",
+        "ok": "#8DD6B0",
+    },
 }
 
 
@@ -185,6 +197,24 @@ def draw_video4_thumbnail(draw: ImageDraw.ImageDraw, palette: dict[str, str]) ->
     )
 
 
+def draw_video5_thumbnail(draw: ImageDraw.ImageDraw, palette: dict[str, str]) -> None:
+    crop_box = (84, 188, 560, 610)
+    reveal_box = (600, 188, 1196, 610)
+    draw.rounded_rectangle(crop_box, radius=18, fill=palette["panel"], outline=palette["secondary"], width=3)
+    draw.rounded_rectangle(reveal_box, radius=18, fill=palette["panel"], outline=palette["primary"], width=3)
+
+    draw.text((114, 220), "Inside crop", font=load_font(28, bold=True), fill=palette["secondary"])
+    draw.text((114, 310), "24,000 users", font=load_font(72, bold=True), fill=palette["secondary"])
+
+    draw.text((632, 220), "Outside crop", font=load_font(28, bold=True), fill=palette["primary"])
+    draw.text((632, 296), "24,000 users", font=load_font(58, bold=True), fill=palette["text"])
+    draw.rounded_rectangle((632, 392, 1132, 478), radius=12, fill=palette["panel_alt"], outline=palette["primary"], width=2)
+    draw.text((660, 414), "Filter: Last 24 hours", font=load_font(40, bold=True), fill=palette["primary"])
+
+    draw.text((84, 34), "The Crop Hides the Clue", font=load_font(78, bold=True), fill=palette["text"])
+    draw.text((87, 636), "Real screenshot. Missing context.", font=load_font(34), fill=palette["muted"])
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Render a video thumbnail.")
     parser.add_argument(
@@ -210,8 +240,12 @@ def render_thumbnail(video: str) -> Path:
         draw_video2_thumbnail(draw, palette)
     elif video == "video3":
         draw_video3_thumbnail(draw, palette)
-    else:
+    elif video == "video4":
         draw_video4_thumbnail(draw, palette)
+    elif video == "video5":
+        draw_video5_thumbnail(draw, palette)
+    else:
+        raise ValueError(f"Unsupported video: {video}")
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     image.save(out_path)
