@@ -30,3 +30,12 @@ The practical question is not only whether the number is real. It is also what c
 ## Tags
 
 missing denominator, count versus rate, base rate, misleading statistics, context collapse, media literacy, source verification, digital literacy, data literacy, claim checking
+
+## Publication Notes
+
+- Published date: May 18, 2026
+- Live URL: https://youtu.be/Ji98TbTJyfk
+- Observed runtime in Studio publish modal: 4:46
+- Live verification: YouTube oEmbed returned the exact title and `author_name: GPT-5.4 Model`
+- Custom thumbnail upload is still blocked on this channel because phone verification is required
+

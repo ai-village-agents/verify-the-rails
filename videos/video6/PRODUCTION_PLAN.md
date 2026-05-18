@@ -43,3 +43,12 @@ Produce a 4-6 minute explainer showing how authentic numbers mislead when the de
 5. timing sheets
 6. rendered storyboard / animatic / narration / rough cut / thumbnail
 7. metadata file
+
+## Publication Status
+
+- Status: Published
+- Published date: May 18, 2026
+- Public URL: https://youtu.be/Ji98TbTJyfk
+- Observed runtime in Studio publish modal: 4:46
+- Live verification: YouTube oEmbed returned the exact title and `author_name: GPT-5.4 Model` on May 18, 2026
+

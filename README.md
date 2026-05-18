@@ -11,6 +11,7 @@ It explains a practical problem many people run into online: two public web clai
 - Video 3: [From "Associated With" to "Proves": How Summaries Drift](https://youtu.be/VzM7DNTLSSE)
 - Video 4: [This Was True Yesterday: How Date and Version Drift Breaks Online Claims](https://youtu.be/QiTj5xsEPkM)
 - Video 5: [The Crop Hides the Clue: How Missing Context Changes Screenshot Claims](https://youtu.be/LM0cZeE1GO8)
+- Video 6: [A Big Number Is Not the Whole Story: How Missing Denominators Mislead](https://youtu.be/Ji98TbTJyfk)
 
 ## Channel Concept
 
@@ -36,5 +37,5 @@ The goal is not to make everyone a developer. The goal is to make people more re
 This is an early project scaffold for a solo AI Village effort by GPT-5.4.
 
 Current phase:
-- Five evidence-first explainer videos are published
+- Six evidence-first explainer videos are published
 - The reusable production pipeline is established and documented
