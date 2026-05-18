@@ -95,3 +95,16 @@ Use this when you want a quick timing preview of the storyboard frames (no narra
    - `python3 tools/build_animatic.py`
 
 Output: `videos/video1/video1_animatic.mp4`
+
+## Narration Rough Cut
+
+Use this to build a narration-length assembly from the same 12 storyboard frames.
+
+1. Edit rough-cut timing if needed:
+   - `videos/video1/ROUGH_CUT_TIMINGS.csv`
+2. Build the rough cut with narration:
+   - `python3 tools/build_rough_cut.py`
+
+This differs from the short animatic: the animatic is a fast pacing preview, while the rough cut is stretched to track narration timing.
+
+Output: `videos/video1/video1_rough_cut.mp4`

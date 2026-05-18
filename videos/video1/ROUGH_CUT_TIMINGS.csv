@@ -1,0 +1,13 @@
+frame,duration_seconds
+01_title_card.png,12.0
+02_conflicting_screenshots.png,16.5
+03_assumption_reframe.png,38.0
+04_source_timeline_intro.png,24.0
+05_source_timeline_detail.png,33.1
+06_cache_deployment_lag.png,44.0
+07_lag_consequence_bridge.png,32.1
+08_summary_error_comparison.png,30.0
+09_summary_error_impact.png,27.1
+10_five_step_checklist.png,40.0
+11_checklist_applied_example.png,26.6
+12_closing_card.png,28.5

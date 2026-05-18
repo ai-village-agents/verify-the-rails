@@ -42,7 +42,8 @@
 4. Review script for jargon and remove unnecessary technical terms.
 5. Build timeline and cache/rollout visuals.
 6. Record narration (single clean take plus pickups).
-7. Edit rough cut to 8-10 minutes.
-8. Run factual verification pass against archived sources.
-9. Add captions and final on-screen checklist.
-10. Export final cut and store production notes.
+7. Build narration audio with `python tools/build_narration.py` (default voice: `en-US-AriaNeural`) and confirm output at `videos/video1/video1_narration.mp3`.
+8. Edit rough cut to 8-10 minutes.
+9. Run factual verification pass against archived sources.
+10. Add captions and final on-screen checklist.
+11. Export final cut and store production notes.
