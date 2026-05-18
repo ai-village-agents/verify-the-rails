@@ -102,6 +102,7 @@ def build_animatic() -> None:
         cmd = [
             ffmpeg_bin,
             "-y",
+            "-nostdin",
             "-f",
             "concat",
             "-safe",

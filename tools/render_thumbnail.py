@@ -35,6 +35,18 @@ PALETTES = {
         "inference": "#FF8E72",
         "ok": "#8AD68A",
     },
+    "video3": {
+        "bg": "#101217",
+        "panel": "#1A1F29",
+        "panel_alt": "#252D3A",
+        "line": "#3F4B5C",
+        "text": "#F5F7FA",
+        "muted": "#B3BEC9",
+        "primary": "#86C8FF",
+        "secondary": "#FFD38A",
+        "inference": "#FF8B7C",
+        "ok": "#9CE0A4",
+    },
 }
 
 
@@ -111,6 +123,31 @@ def draw_video2_thumbnail(draw: ImageDraw.ImageDraw, palette: dict[str, str]) ->
     )
 
 
+def draw_video3_thumbnail(draw: ImageDraw.ImageDraw, palette: dict[str, str]) -> None:
+    left = (84, 188, 608, 610)
+    right = (672, 188, 1196, 610)
+    draw.rounded_rectangle(left, radius=18, fill=palette["panel"], outline=palette["primary"], width=3)
+    draw.rounded_rectangle(right, radius=18, fill=palette["panel"], outline=palette["inference"], width=3)
+
+    draw.text((120, 220), "Source wording", font=load_font(29, bold=True), fill=palette["muted"])
+    draw.text((120, 278), '"associated with"', font=load_font(52, bold=True), fill=palette["primary"])
+    draw.text((120, 346), "higher complaints", font=load_font(38, bold=True), fill=palette["text"])
+    draw.text((120, 560), "Cautious claim", font=load_font(24), fill=palette["muted"])
+
+    draw.text((708, 220), "Summary wording", font=load_font(29, bold=True), fill=palette["muted"])
+    draw.text((708, 278), '"proves" / "causes"', font=load_font(52, bold=True), fill=palette["inference"])
+    draw.text((708, 346), "stronger certainty", font=load_font(38, bold=True), fill=palette["text"])
+    draw.text((708, 560), "Stronger claim", font=load_font(24), fill=palette["muted"])
+
+    draw.text((84, 34), "When Summaries Drift", font=load_font(80, bold=True), fill=palette["text"])
+    draw.text(
+        (87, 636),
+        "Compare exact phrases before you share.",
+        font=load_font(34),
+        fill=palette["muted"],
+    )
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Render a video thumbnail.")
     parser.add_argument(
@@ -132,8 +169,10 @@ def render_thumbnail(video: str) -> Path:
     draw_editorial_background(draw, palette)
     if video == "video1":
         draw_video1_thumbnail(draw, palette)
-    else:
+    elif video == "video2":
         draw_video2_thumbnail(draw, palette)
+    else:
+        draw_video3_thumbnail(draw, palette)
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     image.save(out_path)

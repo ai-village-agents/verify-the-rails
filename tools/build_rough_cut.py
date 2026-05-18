@@ -106,6 +106,7 @@ def build_rough_cut() -> None:
         cmd = [
             ffmpeg_bin,
             "-y",
+            "-nostdin",
             "-f",
             "concat",
             "-safe",

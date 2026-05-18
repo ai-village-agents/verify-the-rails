@@ -36,6 +36,18 @@ PALETTES = {
         "inference": "#FF8E72",
         "ok": "#8AD68A",
     },
+    "video3": {
+        "bg": "#101217",
+        "panel": "#1A1F29",
+        "panel_alt": "#252D3A",
+        "line": "#3F4B5C",
+        "text": "#F5F7FA",
+        "muted": "#B3BEC9",
+        "primary": "#86C8FF",
+        "secondary": "#FFD38A",
+        "inference": "#FF8B7C",
+        "ok": "#9CE0A4",
+    },
 }
 
 PALETTE = PALETTES["video1"]
@@ -442,9 +454,193 @@ VIDEO2_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None
     ("12_closing_card.png", frame2_closing_card),
 ]
 
+
+# Video 3 frames
+
+def frame3_title_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "When Summaries Drift From Sources", "Compare wording strength before sharing")
+    text_block(draw, (120, 340), "Quote First. Interpret Second.", size=62, bold=True)
+    text_block(draw, (120, 430), "Observed and inference labeled in every step.", size=34, color="muted")
+    tag(draw, (120, 520), "OBSERVED", "primary")
+    tag(draw, (340, 520), "INFERENCE", "inference")
+
+
+def frame3_source_vs_summary(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Same Topic, Stronger Retelling", "Source wording vs summary wording")
+    panel(draw, (120, 260, 900, 860), border="primary")
+    panel(draw, (1020, 260, 1800, 860), border="inference")
+    tag(draw, (160, 300), "Source", "primary")
+    tag(draw, (1060, 300), "Summary", "inference")
+    text_block(draw, (170, 430), '"associated with"', size=64, color="primary", bold=True)
+    text_block(draw, (170, 530), "higher sleep complaints", size=40)
+    text_block(draw, (1070, 430), '"proves" / "causes"', size=64, color="inference", bold=True)
+    text_block(draw, (1070, 530), "stronger certainty claim", size=40)
+    tag(draw, (160, 760), "Observed", "primary")
+    text_block(draw, (350, 768), "wording differs exactly", size=28, color="muted")
+
+
+def frame3_compare_claims_not_tone(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Compare Claims, Not Tone", "Summary utility is not the issue")
+    panel(draw, (180, 300, 860, 860))
+    panel(draw, (1060, 300, 1740, 860))
+    tag(draw, (220, 340), "Observed", "primary")
+    tag(draw, (1100, 340), "Inference", "inference")
+    text_block(draw, (230, 440), "- Source claim text\n- Summary claim text\n- Exact verb differences", size=42)
+    text_block(draw, (1110, 440), "- Drift likely from speed\n- Certainty pressure\n- Not proof of intent", size=42)
+    text_block(draw, (640, 900), "Useful summary != stronger claim", size=34, color="secondary", bold=True)
+
+
+def frame3_source_hierarchy(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Source Hierarchy", "Start at strongest evidence layer")
+    panel(draw, (260, 280, 1660, 860), fill="panel")
+    draw.polygon([(960, 320), (520, 760), (1400, 760)], fill=PALETTE["panel_alt"], outline=PALETTE["line"])
+    text_block(draw, (860, 410), "Primary", size=44, color="primary", bold=True)
+    text_block(draw, (810, 520), "Summary", size=44, color="secondary", bold=True)
+    text_block(draw, (760, 640), "Commentary", size=44, color="muted", bold=True)
+    text_block(draw, (550, 800), "Distance from primary source increases drift risk", size=32, color="inference", bold=True)
+
+
+def frame3_drift_mechanisms_table(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Five Drift Mechanisms", "Visible wording shifts")
+    panel(draw, (120, 250, 1800, 900), fill="panel")
+    rows = [
+        ("Compression", "long sentence", "short slogan"),
+        ("Omission", '"in this sample"', "removed"),
+        ("Simplification", '"associated with"', '"causes"'),
+        ("Version drift", "older draft", "reused summary"),
+        ("Status shift", '"proposes"', '"approved"'),
+    ]
+    y = 300
+    for label, left_text, right_text in rows:
+        panel(draw, (160, y, 1760, y + 104), fill="panel_alt")
+        text_block(draw, (190, y + 28), label, size=32, color="secondary", bold=True)
+        text_block(draw, (540, y + 30), left_text, size=30, color="text")
+        text_block(draw, (1020, y + 30), "->", size=30, color="muted", bold=True)
+        text_block(draw, (1100, y + 30), right_text, size=30, color="inference", bold=True)
+        y += 118
+
+
+def frame3_health_report_comparison(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Worked Example: Health Report", "Verb and scope comparison")
+    panel(draw, (140, 260, 920, 880))
+    panel(draw, (1000, 260, 1780, 880))
+    tag(draw, (180, 300), "Source", "primary")
+    tag(draw, (1040, 300), "Summary", "inference")
+    text_block(draw, (190, 430), '"associated with"\n"in surveyed adults"', size=42)
+    text_block(draw, (1050, 430), '"proves"\n"causes"\n(scope removed)', size=42)
+    draw.rectangle((180, 418, 700, 585), outline=PALETTE["secondary"], width=3)
+    draw.rectangle((1040, 418, 1450, 660), outline=PALETTE["inference"], width=3)
+    tag(draw, (180, 770), "Observed", "primary")
+    text_block(draw, (370, 780), "summary is stronger than source text", size=30, color="muted")
+
+
+def frame3_budget_memo_comparison(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Worked Example: Budget Memo", "Status wording changes claim")
+    panel(draw, (140, 260, 920, 880))
+    panel(draw, (1000, 260, 1780, 880))
+    tag(draw, (180, 300), "Source", "primary")
+    tag(draw, (1040, 300), "Summary", "inference")
+    text_block(draw, (190, 430), '"proposes"\n"pilot subsidy"\n"next fiscal year"', size=40)
+    text_block(draw, (1050, 430), '"approved"\n"free transit"\n"next year"', size=40)
+    text_block(draw, (190, 760), "Observed: proposal language", size=30, color="primary", bold=True)
+    text_block(draw, (1050, 760), "Observed: decision language", size=30, color="inference", bold=True)
+
+
+def frame3_verbs_scope_status(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Check Verbs, Scope, Status", "Three fast drift checks")
+    cards = [
+        (220, "Verb", '"associated" vs "causes"', "secondary"),
+        (720, "Scope", '"surveyed adults" vs omitted', "primary"),
+        (1220, "Status", '"proposes" vs "approved"', "inference"),
+    ]
+    for x, title, body, color in cards:
+        panel(draw, (x, 310, x + 420, 850), fill="panel_alt")
+        text_block(draw, (x + 36, 370), title, size=44, color=color, bold=True)
+        text_block(draw, (x + 36, 500), body, size=33)
+    text_block(draw, (560, 900), "Observed terms first, interpretation second", size=32, color="muted")
+
+
+def frame3_date_version_context(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Date + Version Context", "Older wording can persist in reposts")
+    panel(draw, (160, 280, 1760, 860))
+    draw.line((260, 620, 1660, 620), fill=PALETTE["line"], width=8)
+    points = [
+        (340, "Mar 4", "Draft v1", "secondary"),
+        (820, "Mar 11", "Source revised", "ok"),
+        (1320, "Mar 14", "Old summary reposted", "inference"),
+    ]
+    for x, dt, label, color in points:
+        draw.ellipse((x - 18, 602, x + 18, 638), fill=PALETTE[color])
+        text_block(draw, (x - 72, 540), dt, size=24, color="muted", bold=True)
+        text_block(draw, (x - 120, 662), label, size=30, bold=True)
+    tag(draw, (250, 730), "Observed", "primary")
+    text_block(draw, (440, 740), "date mismatch can explain apparent contradiction", size=30, color="muted")
+
+
+def frame3_fast_verification_steps(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Fast Verification Steps", "Use before sharing")
+    steps = [
+        "Capture source sentence and summary sentence",
+        "Mark date and version for both",
+        "Circle claim verbs and status words",
+        "Check scope words and missing qualifiers",
+        "Write observed vs inference lines",
+    ]
+    y = 270
+    for idx, step in enumerate(steps, start=1):
+        panel(draw, (170, y, 1750, y + 130), fill="panel_alt")
+        draw.ellipse((215, y + 42, 267, y + 94), fill=PALETTE["ok"])
+        text_block(draw, (234, y + 50), str(idx), size=22, color="bg", bold=True)
+        text_block(draw, (310, y + 42), step, size=38)
+        y += 145
+
+
+def frame3_observed_inference_template(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Reusable Template", "Explicitly separate fact from meaning")
+    panel(draw, (150, 320, 1770, 560))
+    panel(draw, (150, 620, 1770, 860))
+    tag(draw, (190, 360), "Observed", "primary")
+    tag(draw, (190, 660), "Inference", "inference")
+    text_block(
+        draw,
+        (420, 390),
+        'Source: "associated with" | Summary: "causes" | Scope changed.',
+        size=38,
+    )
+    text_block(
+        draw,
+        (420, 690),
+        "Inference: summary likely overstates certainty (confidence: likely).",
+        size=38,
+    )
+
+
+def frame3_closing_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Closing", "Verification doctrine")
+    text_block(draw, (520, 430), "Read the source.", size=74, bold=True)
+    text_block(draw, (470, 540), "Measure the drift.", size=74, bold=True)
+    text_block(draw, (590, 650), "Share with context.", size=58, color="muted")
+
+
+VIDEO3_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None]]] = [
+    ("01_title_card.png", frame3_title_card),
+    ("02_source_vs_summary.png", frame3_source_vs_summary),
+    ("03_compare_claims_not_tone.png", frame3_compare_claims_not_tone),
+    ("04_source_hierarchy.png", frame3_source_hierarchy),
+    ("05_drift_mechanisms_table.png", frame3_drift_mechanisms_table),
+    ("06_health_report_comparison.png", frame3_health_report_comparison),
+    ("07_budget_memo_comparison.png", frame3_budget_memo_comparison),
+    ("08_verbs_scope_status.png", frame3_verbs_scope_status),
+    ("09_date_version_context.png", frame3_date_version_context),
+    ("10_fast_verification_steps.png", frame3_fast_verification_steps),
+    ("11_observed_inference_template.png", frame3_observed_inference_template),
+    ("12_closing_card.png", frame3_closing_card),
+]
+
 VIDEO_FRAMES = {
     "video1": VIDEO1_FRAMES,
     "video2": VIDEO2_FRAMES,
+    "video3": VIDEO3_FRAMES,
 }
 
 
