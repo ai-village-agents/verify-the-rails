@@ -71,6 +71,18 @@ PALETTES = {
         "inference": "#C98282",
         "ok": "#8DD6B0",
     },
+    "video6": {
+        "bg": "#0D121A",
+        "panel": "#182433",
+        "panel_alt": "#223449",
+        "line": "#3A526B",
+        "text": "#EEF3F8",
+        "muted": "#AABAC8",
+        "primary": "#74B8F8",
+        "secondary": "#E4B36F",
+        "inference": "#B87A7A",
+        "ok": "#7FC8A1",
+    },
 }
 
 
@@ -215,6 +227,28 @@ def draw_video5_thumbnail(draw: ImageDraw.ImageDraw, palette: dict[str, str]) ->
     draw.text((87, 636), "Real screenshot. Missing context.", font=load_font(34), fill=palette["muted"])
 
 
+def draw_video6_thumbnail(draw: ImageDraw.ImageDraw, palette: dict[str, str]) -> None:
+    count_box = (84, 188, 570, 610)
+    context_box = (620, 188, 1196, 610)
+    draw.rounded_rectangle(count_box, radius=18, fill=palette["panel"], outline=palette["secondary"], width=3)
+    draw.rounded_rectangle(context_box, radius=18, fill=palette["panel"], outline=palette["primary"], width=3)
+
+    draw.text((116, 220), "Count card", font=load_font(28, bold=True), fill=palette["secondary"])
+    draw.text((116, 300), "24,000", font=load_font(88, bold=True), fill=palette["secondary"])
+    draw.text((116, 402), "reports", font=load_font(46, bold=True), fill=palette["text"])
+    draw.text((116, 560), "Real number", font=load_font(24), fill=palette["muted"])
+
+    draw.text((650, 220), "Context card", font=load_font(28, bold=True), fill=palette["primary"])
+    draw.rounded_rectangle((650, 286, 1150, 368), radius=12, fill=palette["panel_alt"], outline=palette["ok"], width=2)
+    draw.text((676, 308), "Out of 18,000,000 users", font=load_font(34, bold=True), fill=palette["ok"])
+    draw.rounded_rectangle((650, 396, 1150, 478), radius=12, fill=palette["panel_alt"], outline=palette["primary"], width=2)
+    draw.text((722, 418), "1.3 per 1,000", font=load_font(40, bold=True), fill=palette["primary"])
+    draw.text((650, 560), "Meaning changes with denominator", font=load_font(24), fill=palette["muted"])
+
+    draw.text((84, 34), "A Big Number Misleads", font=load_font(72, bold=True), fill=palette["text"])
+    draw.text((87, 636), "Real number. Missing denominator.", font=load_font(34), fill=palette["muted"])
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Render a video thumbnail.")
     parser.add_argument(
@@ -244,6 +278,8 @@ def render_thumbnail(video: str) -> Path:
         draw_video4_thumbnail(draw, palette)
     elif video == "video5":
         draw_video5_thumbnail(draw, palette)
+    elif video == "video6":
+        draw_video6_thumbnail(draw, palette)
     else:
         raise ValueError(f"Unsupported video: {video}")
 

@@ -72,6 +72,18 @@ PALETTES = {
         "inference": "#C98282",
         "ok": "#8DD6B0",
     },
+    "video6": {
+        "bg": "#0D121A",
+        "panel": "#182433",
+        "panel_alt": "#223449",
+        "line": "#3A526B",
+        "text": "#EEF3F8",
+        "muted": "#AABAC8",
+        "primary": "#74B8F8",
+        "secondary": "#E4B36F",
+        "inference": "#B87A7A",
+        "ok": "#7FC8A1",
+    },
 }
 
 PALETTE = PALETTES["video1"]
@@ -1013,12 +1025,193 @@ VIDEO5_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None
     ("12_closing_card.png", frame5_closing_card),
 ]
 
+
+# Video 6 frames
+
+def frame6_title_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "A Real Number, Incomplete Conclusion", "Missing denominator, baseline, or window can mislead")
+    panel(draw, (170, 300, 1750, 860), fill="panel_alt")
+    text_block(draw, (260, 430), "The number may be real.", size=62, color="primary", bold=True)
+    text_block(draw, (260, 530), "The conclusion can still overreach.", size=62, color="inference", bold=True)
+    tag(draw, (260, 700), "Observed", "primary")
+    tag(draw, (500, 700), "Missing context", "secondary")
+    tag(draw, (840, 700), "Overreach risk", "inference")
+    tag(draw, (1140, 700), "Clarifying context", "ok")
+
+
+def frame6_big_number_hook(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Big Number Hook", "Dramatic count, unclear meaning")
+    panel(draw, (180, 260, 920, 880), border="secondary")
+    panel(draw, (990, 260, 1740, 880), border="primary")
+    tag(draw, (220, 300), "Count card", "secondary")
+    text_block(draw, (250, 430), "24,000\nreports filed", size=88, color="secondary", bold=True)
+    text_block(draw, (250, 760), "Observed: number appears in source", size=30, color="primary")
+    tag(draw, (1030, 300), "Context card", "primary")
+    text_block(draw, (1070, 430), "But what does\nit mean?", size=72, color="text", bold=True)
+    text_block(draw, (1070, 730), "Need denominator, baseline,\nand time window.", size=34, color="muted")
+
+
+def frame6_out_of_how_many(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Out of How Many?", "Denominator changes interpretation")
+    panel(draw, (150, 300, 1770, 860), fill="panel")
+    panel(draw, (220, 380, 860, 780), fill="panel_alt", border="secondary")
+    panel(draw, (1030, 380, 1700, 780), fill="panel_alt", border="ok")
+    text_block(draw, (270, 470), "24,000 reports", size=64, color="secondary", bold=True)
+    text_block(draw, (1080, 470), "18,000,000 users", size=64, color="ok", bold=True)
+    draw.line((860, 580, 1030, 580), fill=PALETTE["line"], width=6)
+    text_block(draw, (650, 530), "/", size=64, color="text", bold=True)
+    panel(draw, (520, 800, 1400, 930), fill="panel_alt", border="primary")
+    text_block(draw, (610, 842), "24,000 / 18,000,000 = 1.3 per 1,000", size=42, color="primary", bold=True)
+
+
+def frame6_count_vs_rate(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Count vs Rate", "Use the metric that matches the claim")
+    panel(draw, (160, 300, 900, 860), border="secondary")
+    panel(draw, (1020, 300, 1760, 860), border="primary")
+    tag(draw, (200, 340), "Count", "secondary")
+    tag(draw, (1060, 340), "Rate", "primary")
+    text_block(draw, (220, 460), "Answers volume", size=46, color="secondary", bold=True)
+    text_block(draw, (220, 550), "City A: 12,000", size=54, color="text", bold=True)
+    text_block(draw, (220, 650), "City B: 8,000", size=54, color="text", bold=True)
+    text_block(draw, (1080, 460), "Answers prevalence", size=46, color="primary", bold=True)
+    text_block(draw, (1080, 550), "City A: 3 per 1,000", size=54, color="text", bold=True)
+    text_block(draw, (1080, 650), "City B: 8 per 1,000", size=54, color="text", bold=True)
+    text_block(draw, (540, 910), "Observed metric first, conclusion second", size=34, color="muted")
+
+
+def frame6_small_base_rate(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Small Base Rate", "Correct math can still overstate scope")
+    panel(draw, (210, 300, 1710, 860), fill="panel")
+    panel(draw, (300, 380, 820, 760), fill="panel_alt", border="inference")
+    panel(draw, (900, 380, 1620, 760), fill="panel_alt", border="secondary")
+    text_block(draw, (360, 470), '"Up 100%"', size=72, color="inference", bold=True)
+    text_block(draw, (960, 470), "3 -> 6 cases", size=80, color="secondary", bold=True)
+    text_block(draw, (960, 620), "Observed: doubling", size=34, color="primary")
+    text_block(draw, (350, 620), "Inference risk:\n'widespread now'", size=34, color="inference")
+    tag(draw, (700, 800), "Correct math, limited scope", "ok")
+
+
+def frame6_time_window_reveal(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Time Window Reveal", "Totals need a timeframe")
+    panel(draw, (170, 300, 1750, 860))
+    panel(draw, (240, 390, 860, 770), fill="panel_alt", border="secondary")
+    panel(draw, (980, 390, 1680, 770), fill="panel_alt", border="ok")
+    text_block(draw, (300, 500), "1,200 incidents", size=72, color="secondary", bold=True)
+    text_block(draw, (1040, 480), "Over 5 years", size=66, color="ok", bold=True)
+    text_block(draw, (1040, 600), "~20 per month avg", size=52, color="primary", bold=True)
+    tag(draw, (760, 800), "Window changes urgency claims", "secondary")
+
+
+def frame6_rank_vs_population(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Rank vs Population", "Per-capita adjustment can reverse rankings")
+    panel(draw, (120, 270, 900, 900), border="secondary")
+    panel(draw, (1020, 270, 1800, 900), border="primary")
+    tag(draw, (160, 310), "Raw count ranking", "secondary")
+    tag(draw, (1060, 310), "Per-capita ranking", "primary")
+    text_block(draw, (170, 430), "City A: 12,000 (4M)", size=44, bold=True)
+    text_block(draw, (170, 520), "City B: 8,000 (1M)", size=44, bold=True)
+    text_block(draw, (170, 650), "Count rank: A > B", size=50, color="secondary", bold=True)
+    text_block(draw, (1070, 430), "A: 3 per 1,000", size=48, bold=True)
+    text_block(draw, (1070, 520), "B: 8 per 1,000", size=48, bold=True)
+    text_block(draw, (1070, 650), "Rate rank: B > A", size=50, color="primary", bold=True)
+    text_block(draw, (660, 940), "Metric mismatch causes reversal", size=34, color="muted")
+
+
+def frame6_baseline_shift(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Baseline Shift", "Compared with what baseline?")
+    panel(draw, (160, 300, 1760, 860), fill="panel")
+    panel(draw, (230, 380, 1730, 760), fill="panel_alt")
+    labels = [
+        (290, "Last month", "secondary"),
+        (760, "Last year", "secondary"),
+        (1210, "Typical range", "ok"),
+    ]
+    for x, text, color in labels:
+        panel(draw, (x, 430, x + 380, 700), fill="panel", border=color)
+        text_block(draw, (x + 48, 500), text, size=44, color=color, bold=True)
+    text_block(draw, (530, 840), "Same value, different baselines -> different claims", size=36, color="primary")
+
+
+def frame6_claim_limit_template(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Claim Limit Template", "Observed, Inference, Unknown")
+    panel(draw, (140, 290, 1780, 450), fill="panel_alt")
+    panel(draw, (140, 490, 1780, 650), fill="panel_alt")
+    panel(draw, (140, 690, 1780, 850), fill="panel_alt")
+    panel(draw, (140, 890, 1780, 1020), fill="panel_alt")
+    tag(draw, (190, 348), "Observed", "primary")
+    tag(draw, (190, 548), "Inference", "inference")
+    tag(draw, (190, 748), "Unknown", "secondary")
+    tag(draw, (190, 918), "Claim limit", "ok")
+    text_block(draw, (470, 352), "Source shows 24,000 reports.", size=42)
+    text_block(draw, (470, 552), "Count alone may sound severe.", size=42)
+    text_block(draw, (470, 752), "Need denominator, baseline, and window.", size=42)
+    text_block(draw, (470, 920), "Use scoped wording until missing context is found.", size=40, color="ok")
+
+
+def frame6_fast_verification_steps(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Fast Verification Steps", "Four rails before sharing")
+    steps = [
+        "1 Out of how many?",
+        "2 Compared with what baseline?",
+        "3 Over what time window?",
+        "4 Count or rate?",
+    ]
+    y = 300
+    for idx, step in enumerate(steps, start=1):
+        panel(draw, (190, y, 1730, y + 150), fill="panel_alt")
+        draw.ellipse((240, y + 50, 292, y + 102), fill=PALETTE["primary"])
+        text_block(draw, (258, y + 58), str(idx), size=22, color="bg", bold=True)
+        text_block(draw, (340, y + 50), step, size=46)
+        y += 170
+
+
+def frame6_observed_inference_template(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Observed / Inference / Unknown", "Reusable note format")
+    rows = [
+        ("Observed", "Source says: 24,000 reports were filed.", "primary"),
+        ("Inference", "May imply elevated activity, but severity is not confirmed.", "inference"),
+        ("Unknown", "Denominator, baseline trend, and window-specific spike data.", "secondary"),
+    ]
+    y = 300
+    for label, content, color in rows:
+        panel(draw, (160, y, 1760, y + 190), fill="panel_alt")
+        tag(draw, (210, y + 72), label, color)
+        text_block(draw, (500, y + 76), content, size=38)
+        y += 215
+
+
+def frame6_closing_card(img: Image.Image, draw: ImageDraw.ImageDraw) -> None:
+    draw_header(draw, "Verify the Rails", "Real number, incomplete conclusion.")
+    text_block(draw, (470, 420), "Check denominator, baseline, window.", size=62, bold=True)
+    text_block(draw, (660, 560), "Then match count vs rate.", size=50, color="muted")
+    tag(draw, (540, 700), "Observed", "primary")
+    tag(draw, (760, 700), "Unknown", "secondary")
+    tag(draw, (980, 700), "Inference", "inference")
+    tag(draw, (1220, 700), "Context", "ok")
+
+
+VIDEO6_FRAMES: list[tuple[str, Callable[[Image.Image, ImageDraw.ImageDraw], None]]] = [
+    ("01_title_card.png", frame6_title_card),
+    ("02_big_number_hook.png", frame6_big_number_hook),
+    ("03_out_of_how_many.png", frame6_out_of_how_many),
+    ("04_count_vs_rate.png", frame6_count_vs_rate),
+    ("05_small_base_rate.png", frame6_small_base_rate),
+    ("06_time_window_reveal.png", frame6_time_window_reveal),
+    ("07_rank_vs_population.png", frame6_rank_vs_population),
+    ("08_baseline_shift.png", frame6_baseline_shift),
+    ("09_claim_limit_template.png", frame6_claim_limit_template),
+    ("10_fast_verification_steps.png", frame6_fast_verification_steps),
+    ("11_observed_inference_template.png", frame6_observed_inference_template),
+    ("12_closing_card.png", frame6_closing_card),
+]
+
 VIDEO_FRAMES = {
     "video1": VIDEO1_FRAMES,
     "video2": VIDEO2_FRAMES,
     "video3": VIDEO3_FRAMES,
     "video4": VIDEO4_FRAMES,
     "video5": VIDEO5_FRAMES,
+    "video6": VIDEO6_FRAMES,
 }
 
 
