@@ -198,13 +198,21 @@ def frame_10(path):
     img, d = base('Range reveal', 'Historical window + recovery')
     panel(d, (140, 250, 1780, 900))
     text(d, (190, 290), 'Operations Analytics', 30, bold=True)
-    chip(d, 1120, 282, 'Last 90 days (2026-02-01 to 2026-04-30)', 'blue')
-    d.rectangle((240, 420, 1560, 820), outline=PALETTE['line'], width=2)
-    pts = [(280,500),(540,480),(800,470),(1060,690),(1320,450),(1520,440)]
+    text(d, (190, 336), 'Metric: Successful Transactions (%)', 24, 'muted')
+    chip(d, 980, 282, 'Last 90 days (2026-02-01 to 2026-04-30)', 'blue', size=20)
+    d.rectangle((320, 420, 1560, 820), outline=PALETTE['line'], width=2)
+    for yy, label in [(440, '100'), (540, '95'), (640, '90'), (740, '85')]:
+        text(d, (248, yy-14), label, 22, 'muted')
+        d.line((320, yy, 1560, yy), fill='#21364E', width=1)
+    pts = [(360, 500), (620, 480), (880, 470), (1140, 690), (1380, 450), (1520, 440)]
     d.line(pts, fill=PALETTE['blue'], width=6)
-    d.line([(1060,690),(1180,520),(1320,450),(1520,440)], fill=PALETTE['green'], width=6)
-    panel(d, (1180, 560, 1680, 720), 'panel2')
-    text(d, (1210, 590), 'Recovered above 98.9%\nby 2026-04-06 05:00 UTC', 28)
+    d.line([(1140, 690), (1260, 520), (1380, 450), (1520, 440)], fill=PALETTE['green'], width=6)
+    d.ellipse((1128, 678, 1152, 702), fill=PALETTE['red'])
+    chip(d, 1000, 724, '03:00 dip', 'red', size=20)
+    chip(d, 1290, 388, '05:00 recovered', 'green', size=20)
+    panel(d, (1180, 560, 1700, 748), 'panel2')
+    text(d, (1210, 590), 'Dip: 88.4% / 87.9%\nRecovered above 98.9%\nby 2026-04-06 05:00 UTC', 26)
+    text(d, (320, 850), 'A short dip inside a 90-day window is not a live collapse.', 24, 'muted')
     chip(d, 240, 208, 'RANGE CHANGES MEANING', 'amber')
     img.save(path)
 
@@ -214,28 +222,34 @@ def frame_11(path):
     panel(d, (180, 240, 1700, 900))
     text(d, (230, 284), 'Product Updates', 30, bold=True)
     text(d, (230, 332), 'Published 2025-05-12 16:00 UTC', 26, 'muted')
-    text(d, (230, 402), 'Update: Storage retention policy adjustment', 34, bold=True)
-    text(d, (230, 468), 'Starting June 1, 2025, standard workspace retention\nchanges from 18 months to 12 months.', 30)
-    text(d, (230, 608), 'Follow-up clarification\n2025-05-20 09:30 UTC\nScope clarified in same thread.', 28, 'text')
-    chip(d, 1240, 322, 'Reposted 2026-05-19', 'red')
-    chip(d, 1240, 388, 'OLD POST, NEW PANIC', 'amber')
+    chip(d, 1200, 278, 'Reposted 2026-05-19', 'red', size=22)
+    chip(d, 1200, 334, 'OLD POST, NEW PANIC', 'amber', size=22)
+    d.line((230, 380, 1650, 380), fill=PALETTE['line'], width=2)
+    text(d, (230, 420), 'Update: Storage retention policy adjustment', 34, bold=True)
+    text(d, (230, 482), 'Starting June 1, 2025, standard workspace retention\nchanges from 18 months to 12 months.', 30)
+    panel(d, (230, 620, 1650, 806), 'panel2')
+    text(d, (262, 650), 'Follow-up clarification', 26, 'green', True)
+    text(d, (262, 692), 'Posted 2025-05-20 09:30 UTC', 24, 'muted')
+    text(d, (262, 734), 'Archived exports only; active team data unchanged.', 28)
     img.save(path)
 
 
 def frame_12(path):
     img, d = base('Ten-second time check', 'A practical routine before resharing')
     status_shell(d, x=100, y=260, w=860, h=580, full=True, resolved=True)
+    text(d, (1080, 286), 'Pause before share', 26, 'muted', True)
     steps = [
         ('1. Open source page', 'blue'),
         ('2. Check time + timezone', 'amber'),
         ('3. Scan later updates', 'green'),
         ('4. Current or past?', 'red'),
     ]
-    y = 300
+    y = 340
     for label, col in steps:
-        chip(d, 1080, y, label, col)
-        y += 96
-    text(d, (1080, 760), 'This is not forensic work.\nIt is usually ten extra seconds\nand one wider view.', 32)
+        chip(d, 1080, y, label, col, size=22)
+        y += 86
+    text(d, (1080, 732), 'Usually ten extra seconds\nand one wider view.', 36)
+    text(d, (1080, 828), 'Not forensic work.', 24, 'muted')
     img.save(path)
 
 
