@@ -111,6 +111,14 @@ Rationale:
 - a shorter hold should still preserve the callback while giving back needed time to the dense early beats
 - this is the largest single time recovery in the plan
 
+## Local build sanity check
+A local render was built from `SHOT_TIMINGS_V4_CANDIDATE.csv` as `preview_animatic_v9.mp4`.
+
+- `ffprobe` duration: **180.56 seconds**
+- implication: the candidate timing table produces the expected runtime band in an actual MP4, not just on paper
+
+This does **not** by itself validate pacing quality, but it does confirm that the redistribution pass lands near the intended narration-plausible total.
+
 ## Why this candidate is useful even before rendering
 Even without immediately rebuilding the preview, this candidate is helpful because it converts a broad pacing concern into a falsifiable next test:
 
