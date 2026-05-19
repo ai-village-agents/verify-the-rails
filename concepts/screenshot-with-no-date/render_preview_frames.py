@@ -44,10 +44,23 @@ def text(d, xy, s, size=28, color='text', bold=False, spacing=8):
     d.multiline_text(xy, s, font=font(size, bold), fill=PALETTE[color], spacing=spacing)
 
 
-def chip(d, x, y, label, color):
-    w = 22 + len(label) * 13
-    d.rounded_rectangle((x, y, x+w, y+42), radius=12, fill=PALETTE['panel2'], outline=PALETTE[color], width=2)
-    d.text((x+12, y+9), label, font=font(22, True), fill=PALETTE[color])
+def chip(d, x, y, label, color, size=24, pad_x=None, pad_y=None, height=None):
+    scale = size / 22
+    if pad_x is None:
+        pad_x = int(round(12 * scale))
+    if pad_y is None:
+        pad_y = int(round(9 * scale))
+    if height is None:
+        height = int(round(42 * scale))
+    f = font(size, True)
+    text_box = d.textbbox((0, 0), label, font=f)
+    text_w = text_box[2] - text_box[0]
+    text_h = text_box[3] - text_box[1]
+    w = text_w + (pad_x * 2)
+    radius = max(10, int(round(12 * scale)))
+    d.rounded_rectangle((x, y, x+w, y+height), radius=radius, fill=PALETTE['panel2'], outline=PALETTE[color], width=2)
+    text_y = y + max(pad_y, (height - text_h) // 2 - 1)
+    d.text((x + pad_x, text_y), label, font=f, fill=PALETTE[color])
 
 
 def status_shell(d, x=120, y=250, w=900, h=660, full=False, resolved=False):
@@ -55,7 +68,7 @@ def status_shell(d, x=120, y=250, w=900, h=660, full=False, resolved=False):
     text(d, (x+34, y+28), 'OpsStatus', 30, bold=True)
     text(d, (x+34, y+68), 'System Health', 22, 'muted')
     if full:
-        text(d, (x+w-300, y+32), 'Captured 2025-02-18 02:43 UTC', 20, 'muted')
+        text(d, (x+w-300, y+32), 'Captured 2025-02-18 02:43 UTC', 24, 'muted')
     d.rounded_rectangle((x+34, y+120, x+w-34, y+220), radius=18, fill='#5C491F', outline=PALETTE['amber'], width=2)
     text(d, (x+58, y+142), 'Partial Service Disruption', 34, bold=True)
     text(d, (x+58, y+182), 'Started: 02:14 UTC', 24, 'muted')
@@ -71,8 +84,8 @@ def status_shell(d, x=120, y=250, w=900, h=660, full=False, resolved=False):
         yy = y + 474
         for tm, msg, col in rows:
             d.line((x+72, yy+20, x+120, yy+20), fill=PALETTE[col], width=4)
-            text(d, (x+136, yy), f'{tm}  {msg}', 24)
-            yy += 54
+            text(d, (x+136, yy), f'{tm}  {msg}', 26)
+            yy += 58
 
 
 def frame_01(path):
@@ -92,7 +105,7 @@ def frame_02(path):
         box = (1020 + i*24, y, 1700 + i*24, y+130)
         panel(d, box, 'panel2')
         text(d, (box[0]+26, y+18), f'Repost {i+1}', 24, bold=True)
-        text(d, (box[0]+26, y+52), '2026-05-19 09:12 local', 20, 'muted')
+        text(d, (box[0]+26, y+52), '2026-05-19 09:12 local', 24, 'muted')
         text(d, (box[0]+26, y+80), 'Service is currently unstable.', 26)
     chip(d, 1080, 760, 'REPOSTED AS CURRENT', 'amber')
     img.save(path)
@@ -122,7 +135,7 @@ def frame_05(path):
     status_shell(d, x=100, y=220, w=980, h=720, full=True, resolved=True)
     panel(d, (1180, 300, 1760, 520), 'panel2')
     text(d, (1210, 334), 'Repost marker', 28, bold=True)
-    text(d, (1210, 382), '2026-05-19 09:12 local', 24, 'muted')
+    text(d, (1210, 382), '2026-05-19 09:12 local', 26, 'muted')
     text(d, (1210, 426), 'Used as proof\nof a live outage', 30)
     chip(d, 1180, 582, 'RESOLVED LONG BEFORE REPOST', 'green')
     img.save(path)
@@ -200,7 +213,7 @@ def frame_11(path):
     img, d = base('Old announcement, new panic', 'Publication date and follow-up restore context')
     panel(d, (180, 240, 1700, 900))
     text(d, (230, 284), 'Product Updates', 30, bold=True)
-    text(d, (230, 332), 'Published 2025-05-12 16:00 UTC', 22, 'muted')
+    text(d, (230, 332), 'Published 2025-05-12 16:00 UTC', 26, 'muted')
     text(d, (230, 402), 'Update: Storage retention policy adjustment', 34, bold=True)
     text(d, (230, 468), 'Starting June 1, 2025, standard workspace retention\nchanges from 18 months to 12 months.', 30)
     text(d, (230, 608), 'Follow-up clarification\n2025-05-20 09:30 UTC\nScope clarified in same thread.', 28, 'text')
@@ -235,8 +248,8 @@ def frame_13(path):
     marks = [(1180, '02:14', 'Started', 'amber'), (1370, '02:43', 'Captured', 'blue'), (1570, '03:26', 'Resolved', 'green'), (1730, '2026-05-19', 'Repost', 'red')]
     for x, tm, lab, col in marks:
         d.ellipse((x-10, y-10, x+10, y+10), fill=PALETTE[col])
-        text(d, (x-40, y-92), tm, 20, 'muted', True)
-        text(d, (x-44, y+20), lab, 20)
+        text(d, (x-48, y-96), tm, 24, 'muted', True)
+        text(d, (x-52, y+20), lab, 24)
     chip(d, 1140, 300, 'CHECK THE TIME BEFORE YOU SHARE', 'amber')
     img.save(path)
 
