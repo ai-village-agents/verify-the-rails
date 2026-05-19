@@ -1,51 +1,49 @@
 # Production Blueprint V1 - The Screenshot With No Date
 
 ## Production intent
-This production should feel more reveal-based and visually intentional than the Day 412 batch. The viewer should repeatedly update their interpretation on screen through crop-to-context reveals, timeline placement, and explicit claim-scope framing rather than static explanation cards.
+This version is a timestamp-specific reveal piece. Each major claim change must be shown through exact synthetic UI evidence from the three approved examples: OpsStatus incident timeline, 90-day dashboard range crop, and resurfaced policy announcement.
 
 ## Likely frame set
 
 | Frame filename suggestion | Purpose | Key visual elements | Key on-screen text | Depends on crop/reveal/timeline motion in animatic/rough-cut stage? |
 |---|---|---|---|---|
-| `01_open_crop.png` | Hook with apparent certainty before context appears. | Tight status-page crop with red `Major Outage - Investigating` banner; no visible date/time UI. | `REAL SCREENSHOT` then `WRONG CONCLUSION` | `Yes` - opening must start tightly cropped and hold before any widening. |
-| `02_repost_velocity_stack.png` | Show how fast reposting amplifies incomplete evidence. | Stacked repost cards with repeated claim language over the same cropped screenshot. | `No date visible` | `Yes` - repost cards should animate in rapid sequence to create pressure. |
-| `03_hidden_ui_edge_freeze.png` | Create first doubt that the crop is hiding relevant context. | Freeze frame with subtle frame-edge hints of hidden UI outside the crop. | `Wrong moment?` | `Yes` - freeze and edge-highlight reveal are timing-dependent. |
-| `04_zoomout_timestamp_reveal.png` | Deliver first major reveal by exposing timestamp. | Camera pullback to full status card with top-right `Updated 8:12 AM UTC`. | `Zoom out` / `Updated 8:12 AM UTC` | `Yes` - this beat only works if timestamp is revealed by animated zoom-out. |
-| `05_incident_timeline_overlay.png` | Establish sequence: capture moment vs later repost moment. | Horizontal timeline rail with outage updates and later repost marker. | `Capture -> Updates -> Repost` | `Yes` - timeline markers should animate left-to-right for causal order. |
-| `06_oiu_rails_overlay.png` | Lock in evidence taxonomy used throughout. | Blue/amber/gray chips and rails mapped to the same outage scene. | `Observed` / `Inference` / `Unknown` | `Yes` - label placement should appear progressively to match narration. |
-| `07_authentic_not_current_composer.png` | Reframe from authenticity question to claim question. | Phone-style repost composer; screenshot attachment pin (`Captured at 8:12 AM UTC`) plus claim pin (`Still down`). | `Authentic != Current` | `Yes` - two callout pins should land in sequence. |
-| `08_was_vs_is_caption_swap.png` | Clarify claim-scope difference with one image and two captions. | Same screenshot toggling between two interpretation captions. | `Was down` vs `Is down now` | `Yes` - caption swap timing carries the meaning. |
-| `09_pattern1_incident_outlives_resolution.png` | Pattern example A: incident screenshot persists after resolution. | Crop-to-full status thread with `Resolved` state visible in expanded view. | `Pattern 1: Incident outlives resolution` | `Yes` - mini reveal from crop to resolved thread is required. |
-| `10_pattern2_hidden_date_range.png` | Pattern example B: chart interpretation flips with date window. | Analytics chart with hidden date-range selector, then full UI showing `Last 1 hour`; secondary comparison with `Last 30 days`. | `Pattern 2: Hidden date range` | `Yes` - date-range toggle and comparison are motion-dependent. |
-| `11_pattern3_old_post_new_panic.png` | Pattern example C: old announcement recirculates as current. | `Breaking` repost card, pullback to old source date plus later correction on timeline. | `Pattern 3: Old post, new panic` | `Yes` - old-date and correction markers must appear in sequence. |
-| `12_ten_second_timecheck_workflow.png` | Provide practical routine viewers can execute quickly. | Pause-before-reshare UI; four-step checklist over real UI targets; quick second-screenshot pass indicator. | `Pause first` / `When captured?` / `Original source` / `Timezone` / `What changed after?` / `10 extra seconds` | `Yes` - checklist ticks and second-pass flash should animate in order. |
-| `13_return_full_context_resolved.png` | Close with full-circle return and final memory line. | Return to opening status page now fully uncropped with highlighted timeline (`Investigating -> Identified -> Monitoring -> Resolved`) settling on `Resolved`. | `Same image. New reading.` / `Check the time before you share.` | `Yes` - closing return depends on tracing timeline then resting on `Resolved`. |
+| `01_open_crop.png` | Specific paradox hook with authentic-looking urgency. | Tight `OpsStatus` crop showing `[Amber dot] Partial Service Disruption`, `Started: 02:14 UTC`, and affected components only. | `REAL SCREENSHOT` then `WRONG TIME CLAIM` | `Yes` - must open tightly cropped before any context appears. |
+| `02_repost_velocity_stack.png` | Show repost pressure and present-tense framing error. | Repost feed cards using same crop; visible repost time `2026-05-19 09:12 local`. | `Reposted as current` | `Yes` - stacked repost entries need rapid timed build. |
+| `03_hidden_ui_edge_freeze.png` | Signal missing context boundary. | Frozen crop with explicit mask edge showing hidden header/log outside frame. | `What is outside the crop?` | `Yes` - freeze and mask edge emphasis are timing-sensitive. |
+| `04_zoomout_capture_reveal.png` | Reveal original capture time. | Pullback to full status page header with capture metadata `2025-02-18 02:43 UTC`. | `Captured 2025-02-18 02:43 UTC` | `Yes` - meaning change depends on zoom-out reveal. |
+| `05_incident_resolution_vs_repost.png` | Compare resolved state against later repost. | Incident log row `Resolved 2025-02-18 03:26 UTC` plus split-frame repost marker `2026-05-19 09:12 local`. | `Resolved long before repost` | `Yes` - split-frame should appear in sequence after log reveal. |
+| `06_oiu_rails_overlay.png` | Lock evidence taxonomy to scene. | Blue/amber/gray O/I/U chips pinned to status evidence and claim text. | `Observed` / `Inference` / `Unknown` | `Yes` - staggered label entry should match narration order. |
+| `07_claim_scope_composer.png` | Shift from authenticity question to claim-timing question. | Phone-style composer with attached OpsStatus image and callouts (`Captured 2025-02-18 02:43 UTC` vs present-tense caption). | `Authentic != Current` | `Yes` - pin drops must happen sequentially. |
+| `08_was_vs_is_caption_swap.png` | Show claim flip on same evidence. | Same screenshot alternating captions: `Was disrupted` and `Is disrupted now`. | `One moment, not all moments` | `Yes` - alternating captions carry the point. |
+| `09_dashboard_crop_dip.png` | Pattern B setup with hidden range control. | Cropped `Operations Analytics` chart and tooltip: `2026-04-06 03:00 UTC`, `Core Checkout: 88.4%`, `Express Checkout: 87.9%`. | `Looks like now` | `Yes` - should hold crop before revealing range. |
+| `10_dashboard_range_reveal.png` | Pattern B resolution with full timeframe context. | Upward reveal of selector `Last 90 days (2026-02-01 to 2026-04-30)` and scrub to recovery above `98.9%` by `2026-04-06 05:00 UTC`. | `Range changes meaning` | `Yes` - reveal + scrub timing are required. |
+| `11_old_announcement_reveal.png` | Pattern C in compact form. | Product update crop with retention sentence; pullback to `Published 2025-05-12 16:00 UTC`; scroll to clarification `2025-05-20 09:30 UTC`; repost tag `2026-05-19`. | `Old post, new panic` | `Yes` - must reveal publish and follow-up metadata in order. |
+| `12_ten_second_timecheck_workflow.png` | Deliver practical routine with concrete UI anchors. | Pause-before-share state and four step overlays: source page, timestamp/timezone, later updates, claim check prompt. | `Open source` `Check time + timezone` `Scan later updates` `Current or past?` | `Yes` - checklist should tick left-to-right in one pass. |
+| `13_return_full_context_resolved.png` | Close loop with timeline contrast and memory line. | Full OpsStatus page with timeline trace from `Started 02:14 UTC` to `Resolved 2025-02-18 03:26 UTC`, held beside repost marker `2026-05-19 09:12 local`. | `Same image. Different conclusion.` / `Check the time before you share.` | `Yes` - timeline trace and hold are required for final impact. |
 
 ## Reusable visual components
-- Status-page shell (header, incident banner, update thread, timestamp area).
-- Timeline rail component with timestamp nodes and a repost marker style.
-- Social repost card stack (single source card, quote/repost variants).
-- Phone-style repost composer shell with attach area and caption field.
-- Date-range selector module (`Last 1 hour`, `Last 24 hours`, `Last 30 days`).
-- O/I/U chips and rail kit (`Observed`, `Inference`, `Unknown`) with consistent color mapping.
-- Callout pin style for claim-vs-evidence annotations.
-- Four-step verification checklist overlay with tick animation states.
-- Resolution badge/state token (`Investigating`, `Identified`, `Monitoring`, `Resolved`).
+- Synthetic `OpsStatus` shell with incident banner, affected component list, update thread, and metadata header.
+- Timeline rail component with node styles for `Started`, `Mitigation`, `Resolved`, and repost marker.
+- Social repost feed cards with optional present-tense caption styling.
+- Phone composer shell with attachment card and claim/evidence callout pins.
+- `Operations Analytics` chart module with crop-safe and full-view variants.
+- Date-range selector module fixed to `Last 90 days (2026-02-01 to 2026-04-30)` for pattern B.
+- `Product Updates` announcement template with publish metadata row and follow-up entry row.
+- O/I/U chip set with locked colors and contrast checks.
+- Four-step verification checklist overlay and tick states.
 
 ## What must be solved before production
-- Lock one canonical status-page visual design that is platform-neutral but believable.
-- Decide exact color values for O/I/U so they remain legible over both light and dark UI cards.
-- Confirm whether examples B and C use synthetic assets only or require adapted real-world references.
-- Define standard motion speed for crop reveals and timeline tracing to avoid pacing drift across shots.
-- Choose narration lock target (expected ~232s cut) and decide whether any beats can be tightened to ~220s.
-- Decide text density limits per frame so overlays stay readable on mobile.
-- Specify final handoff format for frame art (dimensions, naming, and export variants) for future `videos/video11` integration.
+- Lock one canonical synthetic visual style across all three examples so they read as one piece.
+- Set text-size minima for mobile legibility (metadata rows, timestamps, and tooltip numbers).
+- Confirm crop masks exactly match storyboard boundaries for each reveal shot.
+- Set one motion-duration standard so reveal cadence stays consistent with the 216s timing sheet.
+- Validate that every example includes both original-time evidence and repost-time evidence on screen.
+- Enforce per-frame text-density limits so overlays remain readable at playback speed.
 
 ## Minimum quality bar for greenlight
-- Every major claim shift must be shown via a visible reveal, not only told in voiceover.
-- Opening and closing must use the same base screenshot so the conclusion reversal is unmistakable.
-- At least one explicit timestamp and one explicit repost-later marker must be readable on screen.
-- O/I/U framework must appear on-screen in a consistent visual system, not ad-hoc labels.
-- Pattern examples must each include a before/after context change that can be understood without audio.
-- Verification routine must map to actionable UI targets, not abstract advice.
-- Frame naming and timing must be immediately compatible with existing storyboard and animatic tooling conventions.
+- Opening paradox uses the specific OpsStatus incident example, not generic outage language.
+- At least two absolute timestamps are readable in each pattern segment where applicable.
+- Dashboard segment must visibly reveal `Last 90 days (2026-02-01 to 2026-04-30)` and `05:00 UTC` recovery.
+- Announcement segment must visibly reveal `Published 2025-05-12 16:00 UTC` and `2025-05-20 09:30 UTC` follow-up.
+- O/I/U framework appears on screen in a consistent visual system.
+- Closing returns to the same opening image with resolved timeline trace and repost contrast.

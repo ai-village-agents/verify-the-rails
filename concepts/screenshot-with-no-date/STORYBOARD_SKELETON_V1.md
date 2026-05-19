@@ -1,106 +1,86 @@
 # Storyboard Skeleton V1 — The Screenshot With No Date
 
-## Sequence 1 (0:00-0:22) — Apparent certainty
-### Shot 1 (0:00-0:07)
-- Visual: Tight crop of status page showing only `Major Outage — Investigating` and a red indicator.
-- Narration beat: “This screenshot is real. The repost is real. The conclusion people drew from it was wrong.”
-- Reveal/change: Viewer starts in confidence; image appears decisive.
-- Overlay text: `REAL SCREENSHOT` then `WRONG CONCLUSION`.
+## Sequence 1 (0:00-0:48) — Apparent certainty to first crack
+### Shot 1 (0:00-0:22)
+- Visual: Tight crop of synthetic `OpsStatus` UI showing only `Partial Service Disruption`, `Started: 02:14 UTC`, and affected-component rows.
+- Narration beat: “This screenshot is real. The repost is real. The time claim built from it is wrong.”
+- Reveal/change: Strong paradox lands with specific UI evidence.
+- Overlay text: `REAL SCREENSHOT` then `WRONG TIME CLAIM`.
 
-### Shot 2 (0:07-0:15)
-- Visual: Social repost cards stack rapidly with captions like “Still down?” while crop remains tight.
-- Narration beat: “No date in the crop. No clock. Just the scary part.”
-- Reveal/change: Viewer feels how velocity amplifies incomplete evidence.
-- Overlay text: `No date visible`.
+### Shot 2 (0:22-0:36)
+- Visual: Repost cards stack beside the crop with timestamp label `2026-05-19 09:12 local` and claim text implying live instability.
+- Narration beat: Missing temporal context drives urgency.
+- Reveal/change: Viewer sees how fast an old moment becomes a current claim.
+- Overlay text: `Reposted as current`.
 
-### Shot 3 (0:15-0:22)
-- Visual: Freeze frame; frame edge hints there is hidden UI outside crop.
-- Narration beat: “The screenshot can be authentic and still be the wrong moment.”
-- Reveal/change: First crack in certainty.
-- Overlay text: `Wrong moment?`
+### Shot 3 (0:36-0:48)
+- Visual: Freeze frame with crop boundary line; dimmed areas hint hidden header and event log.
+- Narration beat: “The screenshot is not fabricated. The timestamp context is missing.”
+- Reveal/change: First explicit doubt.
+- Overlay text: `What is outside the crop?`
 
-## Sequence 2 (0:22-0:52) — First reveal via timeline
-### Shot 4 (0:22-0:33)
-- Visual: Camera slowly zooms out to reveal top-right timestamp `Updated 8:12 AM UTC`.
-- Narration beat: “Now zoom out.”
-- Reveal/change: Missing time marker appears; viewer reinterprets prior claim.
-- Overlay text: `Observed` (blue) near outage banner.
+## Sequence 2 (0:48-1:42) — Timeline reveal and O/I/U split
+### Shot 4 (0:48-1:08)
+- Visual: Vertical pullback reveals full-page capture metadata `2025-02-18 02:43 UTC` in the header.
+- Narration beat: “Now widen the frame.”
+- Reveal/change: Capture time enters frame and reframes claim scope.
+- Overlay text: `Captured 2025-02-18 02:43 UTC`.
 
-### Shot 5 (0:33-0:45)
-- Visual: Horizontal timeline animates in beneath screenshot with incident updates and a much later repost marker.
-- Narration beat: Reads timeline milestones briefly.
-- Reveal/change: Viewer sees sequence, not a single frozen state.
-- Overlay text: `Capture -> Updates -> Repost`.
+### Shot 5 (1:08-1:26)
+- Visual: Scroll reveals incident log ending with `Resolved 2025-02-18 03:26 UTC`; split frame keeps repost timestamp `2026-05-19 09:12 local` visible.
+- Narration beat: Outage truth vs repost timing mismatch.
+- Reveal/change: Viewer sees concrete timeline math.
+- Overlay text: `Resolved long before repost`.
 
-### Shot 6 (0:45-0:52)
-- Visual: Labels appear directly on scene: blue `Observed`, amber `Inference`, gray `Unknown`.
-- Narration beat: “Observed: down at one point. Inference: down now. Unknown: what changed after capture.”
-- Reveal/change: Distinction between evidence and claim becomes explicit.
+### Shot 6 (1:26-1:42)
+- Visual: Blue/amber/gray labels lock to scene elements: `Observed`, `Inference`, `Unknown`.
+- Narration beat: Define the three-part split.
+- Reveal/change: Evidence vs claim separation becomes explicit.
 - Overlay text: `Observed / Inference / Unknown`.
 
-## Sequence 3 (0:52-1:17) — Reframing
-### Shot 7 (0:52-1:04)
-- Visual: Phone-style repost composer. Attached outage screenshot sits above draft text: “Still down.” An annotation pins to the image (`Captured at 8:12 AM UTC`), then another pin appears on the draft sentence (`Claiming current outage`).
-- Narration beat: “The key question is not just authenticity.”
-- Reveal/change: Viewer upgrades from binary fake/real thinking.
+## Sequence 3 (1:42-2:52) — Three compressed concrete patterns
+### Shot 7 (1:42-1:58)
+- Visual: Composer view with same OpsStatus image; annotation pins compare `Captured 2025-02-18 02:43 UTC` against present-tense caption draft.
+- Narration beat: “Ask what claim this image is being used to support.”
+- Reveal/change: Authenticity question is upgraded to claim-timing question.
 - Overlay text: `Authentic != Current`.
 
-### Shot 8 (1:04-1:17)
-- Visual: Same screenshot alternates between two captions: `Was down` and `Is down now`.
-- Narration beat: “A real image proves one moment, not every moment after.”
-- Reveal/change: Claim scope becomes visibly narrower.
-- Overlay text: `One moment captured`.
+### Shot 8 (1:58-2:10)
+- Visual: Same screenshot toggles caption `Was disrupted` vs `Is disrupted now`.
+- Narration beat: One frame can support different claims.
+- Reveal/change: Claim-scope tightening.
+- Overlay text: `One moment, not all moments`.
 
-## Sequence 4 (1:17-2:35) — Three pattern examples
-### Shot 9 (1:17-1:43)
-- Visual: Mini-case A. Tight outage crop -> zoom out to full status thread -> resolved badge appears.
-- Narration beat: Pattern one: incident screenshot outlives resolution.
-- Reveal/change: Viewer sees dramatic stage persisting beyond truth state.
-- Overlay text: `Pattern 1: Incident outlives resolution`.
+### Shot 9 (2:10-2:24)
+- Visual: Dashboard crop centers dip tooltip `2026-04-06 03:00 UTC`, `Core Checkout: 88.4%`, `Express Checkout: 87.9%`; top range selector hidden.
+- Narration beat: Pattern B setup.
+- Reveal/change: Dip appears catastrophic when range is hidden.
+- Overlay text: `Looks like now`.
 
-### Shot 10 (1:43-2:09)
-- Visual: Mini-case B. Cropped analytics chart with spike; date-range selector hidden. Zoom out reveals `Last 1 hour`; toggle to `Last 30 days` flattens story.
-- Narration beat: Pattern two: dashboard crop hides window context.
-- Reveal/change: Viewer learns chart meaning can flip by timeframe.
-- Overlay text: `Pattern 2: Hidden date range`.
+### Shot 10 (2:24-2:38)
+- Visual: Upward reveal exposes `Last 90 days (2026-02-01 to 2026-04-30)` and scrub animation to recovery above `98.9%` by `2026-04-06 05:00 UTC`.
+- Narration beat: Full range flips interpretation.
+- Reveal/change: Short historical dip replaces “live collapse” story.
+- Overlay text: `Range changes meaning`.
 
-### Shot 11 (2:09-2:35)
-- Visual: Mini-case C. Screenshot of old announcement stamped “Breaking.” Pull back to reveal original post date months earlier and later correction post connected on a timeline.
-- Narration beat: Pattern three: old announcement resurfaces as new.
-- Reveal/change: Viewer sees “real + old + incomplete” in one frame.
-- Overlay text: `Pattern 3: Old post, new panic`.
+### Shot 11 (2:38-2:52)
+- Visual: Product update crop shows retention change sentence; pullback reveals `Published 2025-05-12 16:00 UTC`, then scroll to `2025-05-20 09:30 UTC` clarification, with repost tag `2026-05-19`.
+- Narration beat: Pattern C in one pass.
+- Reveal/change: Old announcement reframed as new is exposed.
+- Overlay text: `Old post, new panic`.
 
-## Sequence 5 (2:35-3:22) — Practical defense
-### Shot 12 (2:35-2:47)
-- Visual: Repost button hovers; hand pauses before tap.
-- Narration beat: “Use one short routine before you reshare.”
-- Reveal/change: Shift from diagnosis to action.
-- Overlay text: `Pause first`.
+## Sequence 4 (2:52-3:36) — Practical defense and close
+### Shot 12 (2:52-3:12)
+- Visual: Repost button pause; four-step overlay anchored to real UI targets: source page, timestamp/timezone, later updates, claim check.
+- Narration beat: Ten-second routine.
+- Reveal/change: Action path is concrete and repeatable.
+- Overlay text: `Open source` `Check time + timezone` `Scan later updates` `Current or past?`.
 
-### Shot 13 (2:47-3:07)
-- Visual: Four-step motion workflow appears on top of actual UI targets: timestamp, original source handle, timezone marker, update history.
-- Narration beat: “When captured? Original source? Timezone? What changed after?”
-- Reveal/change: Verification becomes concrete and repeatable.
-- Overlay text: `When captured?` `Original source` `Timezone` `What changed after?`
-
-### Shot 14 (3:07-3:22)
-- Visual: Quick repeat of workflow on a second screenshot to show transferability.
-- Narration beat: “Usually this takes ten extra seconds and a wider frame.”
-- Reveal/change: Viewer gains confidence this is practical, not expert-only.
-- Overlay text: `10 extra seconds`.
-
-## Sequence 6 (3:22-3:40) — Closing memory
-### Shot 15 (3:22-3:33)
-- Visual: Return to opening outage image, now fully uncropped with complete timeline and resolved state highlighted.
-- Narration beat: “Same image. Different conclusion.”
-- Reveal/change: Full-circle closure; initial assumption is intentionally overturned.
-- Overlay text: `Same image. New reading.`
-
-### Shot 16 (3:33-3:40)
-- Visual: No abstract end card. Full status page remains on screen while a thin highlight traces the incident timeline left-to-right (`Investigating -> Identified -> Monitoring -> Resolved`) and settles on `Resolved`.
-- Narration beat: “A screenshot can be true and still tell the story from the wrong time.”
-- Reveal/change: Memorable single takeaway lands.
-- Overlay text: `Check the time before you share.`
+### Shot 13 (3:12-3:36)
+- Visual: Return to full OpsStatus view; timeline trace runs `Started 02:14 UTC` to `Resolved 2025-02-18 03:26 UTC`, then holds beside repost marker `2026-05-19 09:12 local`.
+- Narration beat: “Same image. Different conclusion.” then final line.
+- Reveal/change: Full-circle memory locks with explicit timeline contrast.
+- Overlay text: `Same image. Different conclusion.` and `Check the time before you share.`
 
 ## Why this exceeds the Day 412 baseline
-This version is built around progressive visual proof, not static explanation cards: each major point is taught through crop-to-context reveals, explicit timeline shifts, and claim reinterpretation moments where the viewer updates their understanding on screen.
+This version teaches with timestamp-specific reveals and reproducible crop boundaries from synthetic examples, so the viewer updates their conclusion by seeing timeline evidence, not by accepting generic narration.
