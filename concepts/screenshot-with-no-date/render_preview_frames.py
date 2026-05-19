@@ -267,7 +267,8 @@ def frame_13(path):
     marks = [(1180, '02:14', 'Started', 'amber'), (1370, '02:43', 'Captured', 'blue'), (1570, '03:26', 'Resolved', 'green'), (1730, '2026-05-19', 'Repost', 'red')]
     for x, tm, lab, col in marks:
         d.ellipse((x-10, y-10, x+10, y+10), fill=PALETTE[col])
-        text(d, (x-48, y-96), tm, 24, 'muted', True)
+        tm_x = x - 78 if tm == '2026-05-19' else x - 48
+        text(d, (tm_x, y-96), tm, 24, 'muted', True)
         text(d, (x-52, y+20), lab, 24)
     img.save(path)
 
