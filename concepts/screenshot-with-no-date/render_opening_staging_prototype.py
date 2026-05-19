@@ -20,7 +20,7 @@ def repost_frame(path: Path, count: int) -> None:
         r.text(d, (box[0]+26, y+80), 'Service is currently unstable.', 26)
     r.chip(d, 1080, 760, 'REPOSTED AS CURRENT', 'amber')
     if count < 3:
-        r.text(d, (1080, 830), 'More reposts arrive before anyone checks the source page.', 24, 'muted')
+        r.text(d, (1080, 830), 'More reposts arrive before\nanyone checks the source page.', 24, 'muted')
     img.save(path)
 
 
