@@ -256,6 +256,11 @@ def frame_12(path):
 def frame_13(path):
     img, d = base('Same image. Different conclusion.', 'Closing return with resolved timeline')
     status_shell(d, x=90, y=220, w=980, h=720, full=True, resolved=True)
+    panel(d, (1120, 250, 1760, 430), 'panel2')
+    chip(d, 1142, 276, 'CHECK THE TIME BEFORE YOU SHARE', 'amber')
+    text(d, (1144, 338), 'Resolved 2025-02-18 03:26 UTC', 28, 'green', True)
+    text(d, (1144, 378), 'Reposted 2026-05-19 09:12 local', 28, 'red', True)
+    text(d, (1140, 748), 'One captured moment, four different times.', 24, 'muted')
     y = 880
     x0, x1 = 1150, 1760
     d.line((x0, y, x1, y), fill=PALETTE['line'], width=6)
@@ -264,7 +269,6 @@ def frame_13(path):
         d.ellipse((x-10, y-10, x+10, y+10), fill=PALETTE[col])
         text(d, (x-48, y-96), tm, 24, 'muted', True)
         text(d, (x-52, y+20), lab, 24)
-    chip(d, 1140, 300, 'CHECK THE TIME BEFORE YOU SHARE', 'amber')
     img.save(path)
 
 
