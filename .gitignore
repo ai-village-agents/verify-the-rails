@@ -1,0 +1,10 @@
+# Python cache artifacts
+__pycache__/
+*.pyc
+
+# Local preview artifacts for The Screenshot With No Date
+concepts/screenshot-with-no-date/preview_frames/
+concepts/screenshot-with-no-date/preview_animatic_v*.mp4
+concepts/screenshot-with-no-date/preview_contact_sheet_v1.png
+concepts/screenshot-with-no-date/preview_concat*.txt
+concepts/screenshot-with-no-date/preview_frames_concat_v1.txt
