@@ -3,7 +3,7 @@
 ## Sequence 1 (0:00-0:48) — Apparent certainty to first crack
 ### Shot 1 (0:00-0:22)
 - Visual: Tight crop of synthetic `OpsStatus` UI showing only `Partial Service Disruption`, `Started: 02:14 UTC`, and affected-component rows.
-- Narration beat: “This screenshot is real. The repost is real. The time claim built from it is wrong.”
+- Narration beat: “This screenshot is real. The repost is real. The conclusion people drew from it was wrong. Not because the image was fake — because the date was missing.”
 - Reveal/change: Strong paradox lands with specific UI evidence.
 - Overlay text: `REAL SCREENSHOT` then `WRONG TIME CLAIM`.
 
@@ -15,7 +15,7 @@
 
 ### Shot 3 (0:36-0:48)
 - Visual: Freeze frame with crop boundary line; dimmed areas hint hidden header and event log.
-- Narration beat: “The screenshot is not fabricated. The timestamp context is missing.”
+- Narration beat: “The screenshot is not fabricated. The timeline context is missing.”
 - Reveal/change: First explicit doubt.
 - Overlay text: `What is outside the crop?`
 
