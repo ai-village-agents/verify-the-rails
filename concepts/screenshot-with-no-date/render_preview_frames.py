@@ -288,6 +288,11 @@ FRAMES = {
     '13_return_full_context_resolved.png': frame_13,
 }
 
-for name, fn in FRAMES.items():
-    fn(OUT / name)
-print(len(FRAMES))
+def render_all_frames() -> None:
+    for name, fn in FRAMES.items():
+        fn(OUT / name)
+    print(len(FRAMES))
+
+
+if __name__ == '__main__':
+    render_all_frames()
