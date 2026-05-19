@@ -32,7 +32,7 @@ def crop_boundary_only(path: Path) -> None:
     d.rectangle((980, 250, 1200, 870), fill='#000000CC')
     d.line((220, 560, 1200, 560), fill=r.PALETTE['red'], width=6)
     r.chip(d, 1280, 360, 'CROP HIDES CONTEXT', 'red')
-    r.text(d, (1280, 450), 'Start with the exact area\nthat made the repost feel current.', 32)
+    r.text(d, (1280, 450), 'Start with the exact area\nthat made the repost\nfeel current.', 32)
     img.save(path)
 
 
@@ -45,7 +45,7 @@ def reveal_capture_date(path: Path) -> None:
     r.chip(d, 1330, 320, 'REVEAL 1: CAPTURE DATE', 'blue')
     r.text(d, (1330, 404), 'This was captured on\n2025-02-18 at 02:43 UTC.', 32)
     r.text(d, (1330, 520), 'The repost is from\n2026-05-19.', 32, 'muted')
-    r.text(d, (1330, 640), 'That alone shrinks the claim scope.', 28, 'muted')
+    r.text(d, (1330, 640), 'That alone shrinks\nthe claim scope.', 28, 'muted')
     img.save(path)
 
 
