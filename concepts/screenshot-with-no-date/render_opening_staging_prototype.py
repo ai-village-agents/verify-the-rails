@@ -72,8 +72,8 @@ def reveal_resolution(path: Path) -> None:
     img.save(path)
 
 
-def build_concat() -> list[tuple[str, float]]:
-    rows = [
+def staged_opening_rows() -> list[tuple[str, float]]:
+    return [
         ('01_open_crop.png', 2.4),
         ('02a_repost_velocity_one.png', 1.1),
         ('02b_repost_velocity_two.png', 1.1),
@@ -83,22 +83,38 @@ def build_concat() -> list[tuple[str, float]]:
         ('03c_reveal_incident_log.png', 1.8),
         ('03d_reveal_resolution.png', 2.4),
     ]
-    with CONCAT.open('w') as f:
+
+
+def write_concat_rows(
+    rows: list[tuple[str, float]],
+    concat_path: Path,
+    frames_dir: Path,
+) -> None:
+    with concat_path.open('w') as f:
         for frame, dur in rows:
-            f.write(f"file '{(OUT / frame).resolve()}'\n")
+            f.write(f"file '{(frames_dir / frame).resolve()}'\n")
             f.write(f'duration {dur}\n')
-        f.write(f"file '{(OUT / rows[-1][0]).resolve()}'\n")
+        f.write(f"file '{(frames_dir / rows[-1][0]).resolve()}'\n")
+
+
+def render_staged_opening_frames(out_dir: Path = OUT) -> None:
+    repost_frame(out_dir / '02a_repost_velocity_one.png', 1)
+    repost_frame(out_dir / '02b_repost_velocity_two.png', 2)
+    crop_boundary_only(out_dir / '03a_hidden_ui_crop_only.png')
+    reveal_capture_date(out_dir / '03b_reveal_capture_date.png')
+    reveal_incident_log(out_dir / '03c_reveal_incident_log.png')
+    reveal_resolution(out_dir / '03d_reveal_resolution.png')
+
+
+def build_concat() -> list[tuple[str, float]]:
+    rows = staged_opening_rows()
+    write_concat_rows(rows, CONCAT, OUT)
     return rows
 
 
 def main() -> None:
     r.render_all_frames()
-    repost_frame(OUT / '02a_repost_velocity_one.png', 1)
-    repost_frame(OUT / '02b_repost_velocity_two.png', 2)
-    crop_boundary_only(OUT / '03a_hidden_ui_crop_only.png')
-    reveal_capture_date(OUT / '03b_reveal_capture_date.png')
-    reveal_incident_log(OUT / '03c_reveal_incident_log.png')
-    reveal_resolution(OUT / '03d_reveal_resolution.png')
+    render_staged_opening_frames(OUT)
     build_concat()
     subprocess.run([
         'ffmpeg', '-nostdin', '-y', '-f', 'concat', '-safe', '0', '-i', str(CONCAT),
