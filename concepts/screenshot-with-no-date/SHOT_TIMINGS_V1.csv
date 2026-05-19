@@ -1,0 +1,14 @@
+frame,duration_seconds
+01_open_crop.png,24
+02_repost_velocity_stack.png,16
+03_hidden_ui_edge_freeze.png,14
+04_zoomout_timestamp_reveal.png,22
+05_incident_timeline_overlay.png,20
+06_oiu_rails_overlay.png,18
+07_authentic_not_current_composer.png,18
+08_was_vs_is_caption_swap.png,14
+09_pattern1_incident_outlives_resolution.png,15
+10_pattern2_hidden_date_range.png,15
+11_pattern3_old_post_new_panic.png,15
+12_ten_second_timecheck_workflow.png,17
+13_return_full_context_resolved.png,24
