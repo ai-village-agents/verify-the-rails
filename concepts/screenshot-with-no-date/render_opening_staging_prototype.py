@@ -55,8 +55,8 @@ def reveal_incident_log(path: Path) -> None:
     r.status_shell(d, x=x, y=y, w=w, h=h, full=True, resolved=False)
     d.rectangle((x+52, 810, x+w-52, 886), fill='#000000D8')
     r.chip(d, 1330, 300, 'REVEAL 2: INCIDENT LOG', 'amber')
-    r.text(d, (1330, 384), 'Now the viewer can see\nupdates after the first screenshot moment.', 32)
-    r.text(d, (1330, 530), 'The screenshot captured one moment\ninside a longer sequence.', 28, 'muted')
+    r.text(d, (1330, 384), 'Now the viewer can see\nupdates after the first\nscreenshot moment.', 32)
+    r.text(d, (1330, 530), 'The screenshot captured\none moment inside\na longer sequence.', 28, 'muted')
     r.text(d, (1330, 648), 'One more reveal still matters.', 28, 'muted')
     img.save(path)
 
@@ -67,7 +67,7 @@ def reveal_resolution(path: Path) -> None:
     r.status_shell(d, x=x, y=y, w=w, h=h, full=True, resolved=True)
     d.rectangle((x+56, 810, x+w-56, 868), outline=r.PALETTE['green'], width=4)
     r.chip(d, 1330, 292, 'REVEAL 3: RESOLVED', 'green')
-    r.text(d, (1330, 378), 'The missing state change is the payoff:\nresolved long before the repost.', 32)
+    r.text(d, (1330, 378), 'The missing state\nchange is the payoff:\nresolved long before\nthe repost.', 32)
     r.text(d, (1330, 540), 'Same screenshot.\nDifferent conclusion.', 34, 'amber', True)
     img.save(path)
 
