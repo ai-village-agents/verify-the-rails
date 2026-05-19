@@ -1,0 +1,14 @@
+frame,duration_seconds
+01_open_crop.png,22.0
+02_repost_velocity_stack.png,14.0
+03_hidden_ui_edge_freeze.png,12.0
+04_zoomout_capture_reveal.png,20.0
+05_incident_resolution_vs_repost.png,15
+06_oiu_rails_overlay.png,16.0
+07_claim_scope_composer.png,13
+08_was_vs_is_caption_swap.png,12.0
+09_dashboard_crop_dip.png,14.0
+10_dashboard_range_reveal.png,14.0
+11_old_announcement_reveal.png,14.0
+12_ten_second_timecheck_workflow.png,16
+13_return_full_context_resolved.png,24.0
