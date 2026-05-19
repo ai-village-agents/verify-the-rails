@@ -50,6 +50,21 @@ So the correct conclusion remains:
 
 **The V2 build does include the intended final callback frame.**
 
+## Reduced-window spot-check
+After the desktop pass, I unmaximized Firefox and narrowed the playback window to approximate a smaller embedded player. I then spot-checked the opening frame and the late checklist frame.
+
+What held up:
+- the main headline text remains readable
+- the core claim on each tested frame is still understandable without zooming
+- the checklist chips and the large practical line still communicate the intended takeaway
+
+What is near the threshold:
+- small capture-date text
+- incident-log timestamps
+- smaller supporting labels and chips
+
+This is **not** yet a phone-sized review, but it does sharpen the judgment: the concept is not collapsing in a moderately smaller window, yet the smallest informational text is still too close to the limit to call it mobile-safe.
+
 ## What still keeps this from greenlight status
 
 1. **Small-player/mobile readability is still untested**
