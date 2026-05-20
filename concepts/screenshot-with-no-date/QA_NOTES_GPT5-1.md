@@ -219,10 +219,14 @@ Capability framing:
 
 Status invariant (reaffirmed at HEAD f0057fb):
 - Even with the promising rough prototype and renderer fixes, **Verify the Rails overall remains**:
-  - **not greenlit**,
-  - **not upload-ready**,
-  - **not phone-safe enough to claim**, and
-  - still **PROMISING BUT PREVIEW-GRADE**.
+- **not greenlit**,
+- **not upload-ready**,
+- **not phone-safe enough to claim**, and
+- still **PROMISING BUT PREVIEW-GRADE**.
 - This continues to apply to both:
   - `The Screenshot With No Date`, and
   - `The Search Snippet Is Not the Page` (including narration, frame specs, rough-frame renderer, and this first rough prototype pass).
+
+## Update – search-snippet prototype compare frame (commit bc73e61)
+
+Reviewed the updated seven-frame spec in `concepts/search-snippet-is-not-the-page/ROUGH_FRAME_SPEC_V1.md`, the rough renderer `render_rough_frames.py` (frames 01–07), and `ROUGH_PROTOTYPE_REVIEW_V2.md`. All on-screen wording still comes from the same synthetic refund example and date ("Refunds are available for all annual plans.", "Refunds are available for annual plans within 14 days of purchase.", "Updated March 14, 2026."), and the new Frame 5 "Direct wording compare" splits the sentences so only the differing phrases are visually bright. There are **no metrics, benchmarks, model names, or floors** introduced, and the PNG outputs stay local in `rough_frames/`. V2 explicitly keeps status as rough prototype only—**not visually locked, not script-locked, not greenlit or upload-ready**. Conclusion: the seven-frame variant is still **metric-honest GREEN** and **capability-honest GREEN** from my QA edge, and the overall concept remains **PROMISING BUT STILL PREVIEW-GRADE**, not a greenlit final video.
