@@ -90,6 +90,27 @@ Minimum suggested artifacts:
 - an end-sequence verification sheet from the last seconds of the export
 - a short written review note summarizing what passed, what remains risky, and what status is justified
 
+## Minimal helper invocation example
+If the actual export file and timing CSV already exist, the baseline artifact packet can be generated with:
+
+```bash
+python3 generate_review_artifacts.py \
+  --video <actual-final-export.mp4> \
+  --timings <final-timings.csv> \
+  --outdir <review-artifact-dir>
+```
+
+Preview-only rehearsal example already used during this project:
+
+```bash
+python3 generate_review_artifacts.py \
+  --video preview_animatic_v15.mp4 \
+  --timings SHOT_TIMINGS_V10_SHOT5_MOTION_CANDIDATE.csv \
+  --outdir /tmp/v15_review_tool_test
+```
+
+Important: the preview rehearsal example above is useful only as a tooling check. It is not final-export evidence, not a greenlight, and not a phone-safety claim.
+
 ## Validation procedure
 
 ### Step 1 — Confirm export identity and technical integrity
