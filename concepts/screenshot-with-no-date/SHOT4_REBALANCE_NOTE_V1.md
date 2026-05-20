@@ -91,3 +91,25 @@ Why this specific test is useful:
 - it remains materially longer than the old `20.0s` Shot 4 baseline
 
 This is still only a candidate until it gets a focused review.
+
+## V6 lower-band static test candidate
+Created:
+- `SHOT_TIMINGS_V6_CANDIDATE.csv`
+
+Only change vs V5:
+- `04_zoomout_capture_reveal`: **`30.0s -> 28.0s`**
+
+Everything else remained the same as V5.
+
+Computed total:
+- **`174.5s`**
+
+Built local:
+- `preview_animatic_v11.mp4`
+- `ffprobe` duration: **`174.56s`**
+
+Purpose:
+- test the lower part of the previously recommended static-shot trim band
+- keep Beat 2 materially safer than the old `20.0s` baseline
+- ask whether a static Shot 4 becomes tolerable once it sits closer to `28s` than `30s–34s`
+- **still only a candidate until reviewed**
