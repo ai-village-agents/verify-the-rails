@@ -84,6 +84,7 @@ The validation pass should create a small audit packet, not only a yes or no imp
 Minimum suggested artifacts:
 - ffprobe summary text for the final export
 - a whole-piece midpoint sheet from the actual final file
+- reusable generation can be done with generate_review_artifacts.py
 - medium and small reduced versions of that sheet
 - focused sequence sheets for Shot 3, Shot 10, Shot 12, and the ending run
 - an end-sequence verification sheet from the last seconds of the export
