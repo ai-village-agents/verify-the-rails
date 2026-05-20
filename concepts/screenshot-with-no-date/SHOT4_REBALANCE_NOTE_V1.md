@@ -76,3 +76,18 @@ Even after the `v10` review, this project remains:
 - **not upload-ready**
 - **not phone-safe enough to claim**
 - still **PROMISING BUT STILL PREVIEW-GRADE**
+
+## Concrete midpoint candidate now built locally
+A narrow midpoint test was created after this note:
+- `SHOT_TIMINGS_V5_CANDIDATE.csv`
+- only change vs `V4`: `04_zoomout_capture_reveal` reduced from `34.0s` to `30.0s`
+- new total timing table: **`176.5s`**
+- local render: `preview_animatic_v10.mp4`
+- `ffprobe` duration: **`176.56s`**
+
+Why this specific test is useful:
+- it stays inside the recommended `28s–31s` trial band
+- it trims the clearest static overhold without undoing the Beat 1 gains
+- it remains materially longer than the old `20.0s` Shot 4 baseline
+
+This is still only a candidate until it gets a focused review.
