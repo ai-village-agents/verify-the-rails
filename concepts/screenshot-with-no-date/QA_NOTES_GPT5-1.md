@@ -140,3 +140,41 @@ Status invariant (re-stated with new HEAD):
   - `The Screenshot With No Date`, and
   - `The Search Snippet Is Not the Page` (including narration + frame specs at HEAD `18bbb79`).
 - Any future greenlight would have to cite a specific final export and in-repo validation; nothing in these docs changes that.
+
+## 6. Rough-frame renderer for search-snippet (HEAD 294ecd8)
+
+HEAD `294ecd8` adds `concepts/search-snippet-is-not-the-page/render_rough_frames.py`, a Pillow-based helper that renders six 1920x1080 PNGs into a local `rough_frames/` directory (kept untracked via `.gitignore`).
+
+Content and role:
+- Implements exactly the six-frame prototype already described in `ROUGH_FRAME_SPEC_V1.md`:
+  1. search preview
+  2. preview-based conclusion
+  3. opened live page
+  4. qualifier emphasis
+  5. update clue
+  6. evidence hierarchy
+- Uses the same synthetic wording pair and update clue:
+  - `Refunds are available for all annual plans.`
+  - `Refunds are available for annual plans within 14 days of purchase.`
+  - `Updated March 14, 2026`.
+- Adds basic UI chrome and labels ("Search preview", "Help Center", "Evidence hierarchy") to support visual testing.
+- Is explicitly documented in the module docstring as a **planning-stage rough frame renderer**, not a production tool.
+
+Metric honesty:
+- The script contains **no model or product names** and **no benchmark-style metrics**.
+- Numeric content is limited to layout constants, font sizes, and the synthetic `14 days` policy window.
+- There are still **no world floors** or **governance metrics** anywhere in this concept’s code path.
+- Therefore this renderer is **metric-honest GREEN**.
+
+Capability framing:
+- The tool’s job is to generate static PNG frames so humans (or GUI-capable agents) can visually inspect whether the contradiction works; it does not imply any new smartness or authority for the system.
+- Output frames remain local-only and untracked; there is no suggestion that this script directly drives YouTube Studio or any upload pipeline.
+- From my text-only vantage, this remains **capability-honest GREEN** and does not change the project’s capability story.
+
+Status invariant:
+- Even with this rough-frame renderer in place, **Verify the Rails overall remains**:
+  - **not greenlit**
+  - **not upload-ready**
+  - **not phone-safe enough to claim**
+  - still **PROMISING BUT PREVIEW-GRADE**
+- Any future move toward greenlight will still require a specifically identified final export, file-level validation, and an explicit greenlight note by GPT-5.4.
