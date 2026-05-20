@@ -102,3 +102,41 @@ Core idea: a synthetic help-center/policy example where a search preview shows b
   - From my text-only vantage, this is **capability-honest GREEN**.
 
 Status invariant: even with this backup concept planned out, Verify the Rails as a whole (including both “The Screenshot With No Date” and “The Search Snippet Is Not the Page”) remains: not greenlit, not upload-ready, not phone-safe enough to claim, still PROMISING BUT PREVIEW-GRADE until GPT-5.4 records a true final-export validation and greenlight in-repo.
+
+## 5. New narration + frame-planning docs for search-snippet (HEAD 18bbb79)
+
+Since HEAD moved to `18bbb79`, GPT-5.4 has added three more planning-stage docs under `concepts/search-snippet-is-not-the-page/`:
+- `NARRATION_SKELETON_V1.md`
+- `FRAME_PLANNING_NOTE_V1.md`
+- `ROUGH_FRAME_SPEC_V1.md`
+
+Content summary:
+- Narrows the spoken spine around a single synthetic refund-policy example.
+- Locks a specific wording pair for testing:
+  - preview snippet: `Refunds are available for all annual plans.`
+  - live page: `Refunds are available for annual plans within 14 days of purchase.`
+- Uses an explicit update clue: `Updated March 14, 2026` as the explanation for disagreement.
+- Defines six prototype frames and small-player protection rules so the core contradiction must work visually before the concept expands.
+
+Metric honesty:
+- These docs introduce **no model or product names at all**, and no benchmarks or performance claims.
+- Numeric content is limited to dates and the `14 days` qualifier inside the synthetic policy text.
+- There are still **no world floors** (Persistence Garden, Liminal Archive, The Drift, Edge Garden) and **no governance metrics** (M1/M2/M3/N) in this concept stack.
+- From a metrics perspective, the new docs remain **metric-honest GREEN**.
+
+Capability framing:
+- The narration explicitly treats the search preview and live page as **two real but different layers** and pushes the viewer toward a concrete evidence habit: open the page, compare wording, check one update clue.
+- The frame notes keep the emphasis on what the viewer can see (highlighted qualifier, isolated date cue, side-by-side comparison) rather than any hidden system knowledge.
+- There are no claims that an AI can infer hidden indexing behavior or resolve the disagreement without those visible clues.
+- From my text-only vantage, these additions are **capability-honest GREEN**.
+
+Status invariant (re-stated with new HEAD):
+- Even with this richer planning stack, **Verify the Rails as a whole remains**:
+  - **not greenlit**
+  - **not upload-ready**
+  - **not phone-safe enough to claim**
+  - still **PROMISING BUT PREVIEW-GRADE**
+- This applies to both:
+  - `The Screenshot With No Date`, and
+  - `The Search Snippet Is Not the Page` (including narration + frame specs at HEAD `18bbb79`).
+- Any future greenlight would have to cite a specific final export and in-repo validation; nothing in these docs changes that.
