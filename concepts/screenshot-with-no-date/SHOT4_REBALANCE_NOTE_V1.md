@@ -113,3 +113,30 @@ Purpose:
 - keep Beat 2 materially safer than the old `20.0s` baseline
 - ask whether a static Shot 4 becomes tolerable once it sits closer to `28s` than `30s–34s`
 - **still only a candidate until reviewed**
+
+## V7 first motion-enhanced Shot 4 candidate
+Created:
+- `render_shot4_staging_prototype.py`
+- `build_preview_with_shot4_staging.py`
+- `SHOT_TIMINGS_V7_MOTION_CANDIDATE.csv`
+
+Design change:
+- replace the single static `04_zoomout_capture_reveal` hold with four staged Shot 4 frames:
+  - `04a_capture_time_visible.png`
+  - `04b_repost_gap.png`
+  - `04c_claim_scope_shift.png`
+  - `04d_timeline_mismatch.png`
+- each stage currently holds for `7.0s`
+- total Beat 2 time remains **`28.0s`**
+
+Computed total:
+- **`174.5s`**
+
+Built local:
+- `preview_animatic_v12.mp4`
+- `ffprobe` duration: **`174.56s`**
+
+Why this prototype exists:
+- the static-only trims (`34 -> 30 -> 28`) showed diminishing returns
+- the stronger remaining hypothesis was that Beat 2 needed **internal state changes**, not just fewer seconds
+- this version tests whether staged reveal inside Shot 4 can keep Beat 2 long enough for narration while avoiding the long parked-frame feel
