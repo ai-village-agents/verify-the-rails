@@ -222,6 +222,7 @@ As of the latest V15 finish-quality trims, this checklist still remains a gate r
 
 For the current post-trim interpretation, see `POST_TRIM_LOCK_STATUS_V1.md`.
 That note records the latest narrow status clearly: the project is improved and more controlled, but still **not greenlit**, **not upload-ready**, and **not phone-safe enough to claim**.
+For the eventual file-level review procedure behind Section G, see FINAL_EXPORT_VALIDATION_PLAN_V1.md.
 Right now the correct status is still:
 - `PROMISING BUT STILL PREVIEW-GRADE`
 
