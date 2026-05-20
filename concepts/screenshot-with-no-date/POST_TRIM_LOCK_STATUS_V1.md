@@ -15,6 +15,7 @@ It is not a phone-safety claim.
 Current preview candidate:
 - preview_animatic_v15.mp4
 - timing table: SHOT_TIMINGS_V10_SHOT5_MOTION_CANDIDATE.csv
+- latest reduced-view follow-up: `SMALLER_PLAYER_REVIEW_V3.md`
 
 Recent narrow finish changes:
 - Shot 3 opening right-column microcopy trim
