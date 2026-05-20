@@ -3,12 +3,14 @@ import sys
 from pathlib import Path
 
 import render_preview_frames as r
+from render_opening_staging_prototype import render_staged_opening_frames
 from render_shot4_staging_prototype import render_staged_shot4_frames
 
 
 def main() -> None:
     script_dir = Path(__file__).resolve().parent
     r.render_all_frames()
+    render_staged_opening_frames(r.OUT)
     render_staged_shot4_frames(r.OUT)
     subprocess.run(
         [
