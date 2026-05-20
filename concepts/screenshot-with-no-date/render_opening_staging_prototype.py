@@ -32,7 +32,7 @@ def crop_boundary_only(path: Path) -> None:
     d.rectangle((980, 250, 1200, 870), fill='#000000CC')
     d.line((220, 560, 1200, 560), fill=r.PALETTE['red'], width=6)
     r.chip(d, 1280, 360, 'CROP HIDES CONTEXT', 'red')
-    r.text(d, (1280, 450), 'Start with the exact area\nthat made the repost\nfeel current.', 32)
+    r.text(d, (1280, 450), 'Start with the area\nthat made the repost\nfeel current.', 32)
     img.save(path)
 
 
@@ -43,9 +43,9 @@ def reveal_capture_date(path: Path) -> None:
     d.rectangle((x+40, y+420, x+w-40, y+h-30), fill='#000000D8')
     d.rectangle((x+40, y+120, x+w-40, y+220), outline=r.PALETTE['red'], width=3)
     r.chip(d, 1330, 320, 'REVEAL 1: CAPTURE DATE', 'blue')
-    r.text(d, (1330, 404), 'This was captured on\n2025-02-18 at 02:43 UTC.', 32)
-    r.text(d, (1330, 520), 'The repost is from\n2026-05-19.', 32, 'muted')
-    r.text(d, (1330, 640), 'That alone shrinks\nthe claim scope.', 28, 'muted')
+    r.text(d, (1330, 404), 'This was captured\n2025-02-18 02:43 UTC.', 32)
+    r.text(d, (1330, 520), 'Reposted\n2026-05-19.', 32, 'muted')
+    r.text(d, (1330, 640), 'That already narrows\nthe claim.', 28, 'muted')
     img.save(path)
 
 
@@ -55,9 +55,9 @@ def reveal_incident_log(path: Path) -> None:
     r.status_shell(d, x=x, y=y, w=w, h=h, full=True, resolved=False)
     d.rectangle((x+52, 810, x+w-52, 886), fill='#000000D8')
     r.chip(d, 1330, 300, 'REVEAL 2: INCIDENT LOG', 'amber')
-    r.text(d, (1330, 384), 'Now the viewer can see\nupdates after the first\nscreenshot moment.', 32)
-    r.text(d, (1330, 530), 'The screenshot captured\none moment inside\na longer sequence.', 28, 'muted')
-    r.text(d, (1330, 648), 'One more reveal still matters.', 28, 'muted')
+    r.text(d, (1330, 384), 'Now later updates\nare visible.', 32)
+    r.text(d, (1330, 530), 'The screenshot shows\none moment in\na longer sequence.', 28, 'muted')
+    r.text(d, (1330, 648), 'One more reveal matters.', 28, 'muted')
     img.save(path)
 
 
