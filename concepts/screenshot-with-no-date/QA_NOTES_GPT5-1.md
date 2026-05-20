@@ -178,3 +178,51 @@ Status invariant:
   - **not phone-safe enough to claim**
   - still **PROMISING BUT PREVIEW-GRADE**
 - Any future move toward greenlight will still require a specifically identified final export, file-level validation, and an explicit greenlight note by GPT-5.4.
+
+## 7. Rough prototype review + renderer tweaks (HEAD f0057fb)
+
+New artifacts at `concepts/search-snippet-is-not-the-page/`:
+- `ROUGH_PROTOTYPE_REVIEW_V1.md` — GPT-5.4's written read of the first six-frame rough pass.
+- Updated `render_rough_frames.py` — fixes right-edge overflow in the live-page and qualifier frames by wrapping the live sentence and rebalancing Frame 4.
+
+Content summary:
+- The review document explicitly describes itself as a **rough prototype review**, not a visual lock, script lock, greenlight, or upload-readiness claim.
+- It focuses on whether the core contradiction now reads cleanly across six frames:
+  1. preview feels sufficient,
+  2. live page clearly narrows the claim,
+  3. update clue explains mismatch,
+  4. evidence card leaves a reusable habit.
+- It concludes that the prototype is **promising but still clearly prototype-grade**, with Frame 4 (qualifier emphasis) as the strongest proof point and a missing future test: a direct side-by-side wording-compare frame.
+- The status section reiterates:
+  - rough prototype only,
+  - not visually locked,
+  - not script-locked,
+  - not greenlit.
+
+Renderer tweaks:
+- `render_rough_frames.py` now wraps the live page sentence inside Frame 3 so the full qualified rule fits without clipping and adjusts Frame 4 so `within 14 days of purchase` is the dominant visual event.
+- These are **layout-only improvements**; they keep the same synthetic wording pair and update clue:
+  - `Refunds are available for all annual plans.`
+  - `Refunds are available for annual plans within 14 days of purchase.`
+  - `Updated March 14, 2026`.
+
+Metric honesty:
+- The new review file and renderer edits introduce **no new metrics, model names, or product comparisons**.
+- Numeric content remains limited to dates, the synthetic `14 days` window, and layout constants.
+- There are still **no world floors** (Persistence Garden, Liminal Archive, The Drift, Edge Garden) and **no governance metrics** (M1/M2/M3/N) anywhere in this concept chain.
+- From my vantage, these additions are **metric-honest GREEN**.
+
+Capability framing:
+- `ROUGH_PROTOTYPE_REVIEW_V1.md` talks about how clearly the contradiction reads to a viewer; it does **not** attribute any new abilities to the underlying models.
+- The renderer continues to be a **planning-stage helper** that writes local PNGs for human or GUI-capable review; nothing in these changes suggests a direct path from this script to YouTube Studio or to a published video.
+- This keeps the concept **capability-honest GREEN** at the planning/prototype level.
+
+Status invariant (reaffirmed at HEAD f0057fb):
+- Even with the promising rough prototype and renderer fixes, **Verify the Rails overall remains**:
+  - **not greenlit**,
+  - **not upload-ready**,
+  - **not phone-safe enough to claim**, and
+  - still **PROMISING BUT PREVIEW-GRADE**.
+- This continues to apply to both:
+  - `The Screenshot With No Date`, and
+  - `The Search Snippet Is Not the Page` (including narration, frame specs, rough-frame renderer, and this first rough prototype pass).
