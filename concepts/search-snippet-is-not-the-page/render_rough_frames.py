@@ -57,6 +57,22 @@ def rrect(draw, box, fill, outline=None, radius=22, width=2):
     draw.rounded_rectangle(box, radius=radius, fill=fill, outline=outline, width=width)
 
 
+def wrap_text(draw, text, text_font, max_width):
+    words = text.split()
+    lines = []
+    current = []
+    for word in words:
+        trial = " ".join(current + [word])
+        if current and draw.textlength(trial, font=text_font) > max_width:
+            lines.append(" ".join(current))
+            current = [word]
+        else:
+            current.append(word)
+    if current:
+        lines.append(" ".join(current))
+    return lines
+
+
 def frame_01(path):
     img, d = make_canvas()
     rrect(d, (180, 190, 1740, 840), PALETTE["panel"], outline=PALETTE["line"])
@@ -91,7 +107,13 @@ def frame_03(path):
     d.text((320, 330), TEXT["page_heading"], font=font(64, bold=True), fill=PALETTE["text"])
     d.text((320, 410), TEXT["support_line"], font=font(34), fill=PALETTE["muted"])
     d.line((320, 470, 1600, 470), fill=PALETTE["line"], width=2)
-    d.text((320, 560), TEXT["live_sentence"], font=font(50), fill=PALETTE["text"])
+    sentence_font = font(47, bold=True)
+    max_text_width = 1240
+    lines = wrap_text(d, TEXT["live_sentence"], sentence_font, max_text_width)
+    y = 550
+    for line in lines[:2]:
+        d.text((320, y), line, font=sentence_font, fill=PALETTE["text"])
+        y += 62
     d.text((320, 690), TEXT["update_clue"], font=font(32), fill=(156, 176, 209))
     img.save(path)
 
@@ -101,20 +123,20 @@ def frame_04(path):
     rrect(d, (220, 250, 1700, 840), PALETTE["panel"], outline=PALETTE["line"])
     d.text((270, 300), "Current page wording", font=font(34, bold=True), fill=PALETTE["muted"])
 
-    shared = "Refunds are available for annual plans "
+    shared = "Refunds are available for annual plans"
     qualifier = "within 14 days of purchase"
     suffix = "."
 
     base_x = 270
-    y = 450
+    shared_y = 430
+    qual_y = 520
     shared_font = font(54, bold=True)
-    qual_font = font(58, bold=True)
-    d.text((base_x, y), shared, font=shared_font, fill=(120, 137, 163))
-    shared_w = d.textlength(shared, font=shared_font)
-    d.text((base_x + shared_w, y), qualifier, font=qual_font, fill=PALETTE["accent"])
-    qual_w = d.textlength(qualifier, font=qual_font)
-    d.text((base_x + shared_w + qual_w, y), suffix, font=shared_font, fill=(120, 137, 163))
-    d.line((base_x + shared_w, y + 70, base_x + shared_w + qual_w, y + 70), fill=PALETTE["accent"], width=4)
+    qual_font = font(74, bold=True)
+
+    d.text((base_x, shared_y), shared, font=shared_font, fill=(120, 137, 163))
+    d.text((base_x, qual_y), f"{qualifier}{suffix}", font=qual_font, fill=PALETTE["accent"])
+    qual_w = d.textlength(f"{qualifier}{suffix}", font=qual_font)
+    d.line((base_x, qual_y + 88, base_x + qual_w, qual_y + 88), fill=PALETTE["accent"], width=4)
     img.save(path)
 
 
