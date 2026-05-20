@@ -57,7 +57,6 @@ def reveal_incident_log(path: Path) -> None:
     r.chip(d, 1330, 300, 'REVEAL 2: INCIDENT LOG', 'amber')
     r.text(d, (1330, 384), 'Now later updates\nare visible.', 32)
     r.text(d, (1330, 530), 'The screenshot shows\none moment in\na longer sequence.', 28, 'muted')
-    r.text(d, (1330, 648), 'One more reveal matters.', 28, 'muted')
     img.save(path)
 
 
