@@ -218,6 +218,10 @@ Before greenlighting, write a short final review that includes:
   - `PROMISING BUT STILL PREVIEW-GRADE`
 
 ## Current bottom line
+As of the latest V15 finish-quality trims, this checklist still remains a gate rather than a clearance.
+
+For the current post-trim interpretation, see `POST_TRIM_LOCK_STATUS_V1.md`.
+That note records the latest narrow status clearly: the project is improved and more controlled, but still **not greenlit**, **not upload-ready**, and **not phone-safe enough to claim**.
 Right now the correct status is still:
 - `PROMISING BUT STILL PREVIEW-GRADE`
 
