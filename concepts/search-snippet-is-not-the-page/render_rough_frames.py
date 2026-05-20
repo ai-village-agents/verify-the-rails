@@ -1,0 +1,167 @@
+#!/usr/bin/env python3
+"""Planning-stage rough frame renderer for concept validation, not final production rendering."""
+
+from pathlib import Path
+
+from PIL import Image, ImageDraw, ImageFont
+
+
+WIDTH = 1920
+HEIGHT = 1080
+
+OUT_DIR = Path(__file__).resolve().parent / "rough_frames"
+
+TEXT = {
+    "title": "Refund policy — Help Center",
+    "url": "help.example.com \u203a billing \u203a refund-policy",
+    "page_heading": "Refund policy",
+    "support_line": "Billing and plan changes",
+    "preview_sentence": "Refunds are available for all annual plans.",
+    "live_sentence": "Refunds are available for annual plans within 14 days of purchase.",
+    "update_clue": "Updated March 14, 2026",
+}
+
+PALETTE = {
+    "bg": (13, 18, 27),
+    "panel": (22, 30, 44),
+    "panel_soft": (28, 38, 56),
+    "line": (65, 86, 120),
+    "text": (224, 232, 246),
+    "muted": (145, 163, 192),
+    "highlight_bg": (45, 87, 134),
+    "highlight_text": (236, 245, 255),
+    "accent": (255, 196, 103),
+    "accent_soft": (106, 83, 45),
+}
+
+
+def font(size, bold=False):
+    names = ["DejaVuSans-Bold.ttf", "DejaVuSans.ttf"] if bold else ["DejaVuSans.ttf", "DejaVuSans-Bold.ttf"]
+    for name in names:
+        try:
+            return ImageFont.truetype(name, size=size)
+        except OSError:
+            continue
+    return ImageFont.load_default()
+
+
+def make_canvas():
+    img = Image.new("RGB", (WIDTH, HEIGHT), PALETTE["bg"])
+    draw = ImageDraw.Draw(img)
+    draw.rectangle((0, 0, WIDTH, 92), fill=(9, 14, 22))
+    draw.text((72, 30), "Verify the Rails \u2022 rough frame", font=font(30, bold=True), fill=PALETTE["muted"])
+    return img, draw
+
+
+def rrect(draw, box, fill, outline=None, radius=22, width=2):
+    draw.rounded_rectangle(box, radius=radius, fill=fill, outline=outline, width=width)
+
+
+def frame_01(path):
+    img, d = make_canvas()
+    rrect(d, (180, 190, 1740, 840), PALETTE["panel"], outline=PALETTE["line"])
+    d.text((230, 230), "Search preview", font=font(30, bold=True), fill=PALETTE["muted"])
+    d.line((230, 280, 1690, 280), fill=PALETTE["line"], width=2)
+    d.text((230, 320), TEXT["title"], font=font(48, bold=True), fill=PALETTE["text"])
+    d.text((230, 388), TEXT["url"], font=font(30), fill=PALETTE["muted"])
+    rrect(d, (218, 455, 1702, 565), PALETTE["highlight_bg"], radius=14)
+    d.text((244, 484), TEXT["preview_sentence"], font=font(44, bold=True), fill=PALETTE["highlight_text"])
+    d.text((230, 630), "Other search details are intentionally quiet in this rough pass.", font=font(28), fill=(113, 130, 158))
+    img.save(path)
+
+
+def frame_02(path):
+    img, d = make_canvas()
+    rrect(d, (180, 190, 1740, 840), PALETTE["panel"], outline=PALETTE["line"])
+    d.text((230, 230), "Search preview", font=font(30, bold=True), fill=PALETTE["muted"])
+    d.text((230, 320), TEXT["title"], font=font(46, bold=True), fill=PALETTE["text"])
+    d.text((230, 386), TEXT["url"], font=font(30), fill=PALETTE["muted"])
+    rrect(d, (218, 450, 1702, 558), PALETTE["highlight_bg"], radius=14)
+    d.text((244, 480), TEXT["preview_sentence"], font=font(44, bold=True), fill=PALETTE["highlight_text"])
+    rrect(d, (640, 630, 1670, 760), (35, 55, 82), outline=(94, 123, 167), radius=20)
+    d.text((680, 675), "So refunds apply to every annual plan.", font=font(44, bold=True), fill=PALETTE["text"])
+    img.save(path)
+
+
+def frame_03(path):
+    img, d = make_canvas()
+    rrect(d, (260, 170, 1660, 900), PALETTE["panel_soft"], outline=PALETTE["line"])
+    d.text((320, 220), "Help Center", font=font(34, bold=True), fill=PALETTE["muted"])
+    d.line((320, 270, 1600, 270), fill=PALETTE["line"], width=2)
+    d.text((320, 330), TEXT["page_heading"], font=font(64, bold=True), fill=PALETTE["text"])
+    d.text((320, 410), TEXT["support_line"], font=font(34), fill=PALETTE["muted"])
+    d.line((320, 470, 1600, 470), fill=PALETTE["line"], width=2)
+    d.text((320, 560), TEXT["live_sentence"], font=font(50), fill=PALETTE["text"])
+    d.text((320, 690), TEXT["update_clue"], font=font(32), fill=(156, 176, 209))
+    img.save(path)
+
+
+def frame_04(path):
+    img, d = make_canvas()
+    rrect(d, (220, 250, 1700, 840), PALETTE["panel"], outline=PALETTE["line"])
+    d.text((270, 300), "Current page wording", font=font(34, bold=True), fill=PALETTE["muted"])
+
+    shared = "Refunds are available for annual plans "
+    qualifier = "within 14 days of purchase"
+    suffix = "."
+
+    base_x = 270
+    y = 450
+    shared_font = font(54, bold=True)
+    qual_font = font(58, bold=True)
+    d.text((base_x, y), shared, font=shared_font, fill=(120, 137, 163))
+    shared_w = d.textlength(shared, font=shared_font)
+    d.text((base_x + shared_w, y), qualifier, font=qual_font, fill=PALETTE["accent"])
+    qual_w = d.textlength(qualifier, font=qual_font)
+    d.text((base_x + shared_w + qual_w, y), suffix, font=shared_font, fill=(120, 137, 163))
+    d.line((base_x + shared_w, y + 70, base_x + shared_w + qual_w, y + 70), fill=PALETTE["accent"], width=4)
+    img.save(path)
+
+
+def frame_05(path):
+    img, d = make_canvas()
+    rrect(d, (250, 170, 1670, 900), PALETTE["panel_soft"], outline=PALETTE["line"])
+    d.text((320, 240), "Why the layers disagree", font=font(34, bold=True), fill=PALETTE["muted"])
+    rrect(d, (320, 330, 1160, 465), PALETTE["accent_soft"], outline=PALETTE["accent"], radius=18, width=3)
+    d.text((360, 375), TEXT["update_clue"], font=font(54, bold=True), fill=PALETTE["accent"])
+    d.line((320, 540, 1600, 540), fill=PALETTE["line"], width=2)
+    d.text((320, 610), TEXT["live_sentence"], font=font(42), fill=(174, 191, 219))
+    img.save(path)
+
+
+def frame_06(path):
+    img, d = make_canvas()
+    rrect(d, (420, 190, 1500, 860), PALETTE["panel"], outline=PALETTE["line"])
+    d.text((500, 270), "Evidence hierarchy", font=font(42, bold=True), fill=PALETTE["text"])
+    labels = [
+        "Preview: points to the source",
+        "Live page: current wording",
+        "Update clue: explains mismatch",
+    ]
+    y = 360
+    for label in labels:
+        rrect(d, (500, y, 1420, y + 96), (31, 46, 68), outline=(83, 109, 151), radius=14, width=2)
+        d.text((540, y + 28), label, font=font(38, bold=True), fill=PALETTE["text"])
+        y += 122
+    d.line((500, 760, 1420, 760), fill=PALETTE["line"], width=2)
+    d.text((500, 790), "Open the page. Compare the wording. Check one update clue.", font=font(34, bold=True), fill=PALETTE["accent"])
+    img.save(path)
+
+
+def main():
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    targets = [
+        ("01_search_preview.png", frame_01),
+        ("02_preview_claim.png", frame_02),
+        ("03_live_page.png", frame_03),
+        ("04_qualifier_focus.png", frame_04),
+        ("05_update_clue.png", frame_05),
+        ("06_evidence_hierarchy.png", frame_06),
+    ]
+    for name, fn in targets:
+        fn(OUT_DIR / name)
+    print(f"Wrote {len(targets)} rough frames to: {OUT_DIR}")
+
+
+if __name__ == "__main__":
+    main()
