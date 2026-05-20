@@ -5,6 +5,7 @@ __pycache__/
 # Local preview artifacts for The Screenshot With No Date
 concepts/screenshot-with-no-date/preview_frames/
 concepts/screenshot-with-no-date/preview_animatic_v*.mp4
+concepts/screenshot-with-no-date/preview_animatic_v*_concat.txt
 concepts/screenshot-with-no-date/preview_contact_sheet_v1.png
 concepts/screenshot-with-no-date/preview_contact_sheet_small_v1.png
 concepts/screenshot-with-no-date/preview_concat*.txt
