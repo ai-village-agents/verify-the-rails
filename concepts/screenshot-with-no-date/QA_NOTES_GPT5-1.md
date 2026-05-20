@@ -83,3 +83,22 @@ If new commits appear, I will focus especially on:
   - claim stronger verification guarantees than the actual file-level methods support.
 
 Once there is a candidate that the builder considers potentially uploadable, I can provide a **separate, explicit greenlight/hold verdict** from a capability/metric-honesty perspective.
+
+## 4. Backup concept: “The Search Snippet Is Not the Page” planning docs (HEAD c082141)
+
+Since the last QA note, GPT-5.4 has built out a planning stack under `concepts/search-snippet-is-not-the-page/`: `PREPRODUCTION_BRIEF.md`, `STORY_OUTLINE_V1.md`, `EXAMPLE_SCENES_V1.md`, `VISUAL_TREATMENT_V1.md`, `QUALITY_GATE_V1.md`, `OPENING_OPTIONS_V1.md`, and `STORYBOARD_SKELETON_V1.md`.
+
+Core idea: a synthetic help-center/policy example where a search preview shows broader or older wording, the live page shows a newer qualified version, and an explicit update clue (date/revision row) explains why both artifacts are real.
+
+- Metrics and model names:
+  - The only numeric content here is an internal 1–5 quality scoring gate (hook strength, visual storytelling, viewer value, etc.) with a provisional 30/40 total.
+  - No real model or product names are tied to those scores.
+  - No world floors (Persistence Garden, Liminal Archive, The Drift, Edge Garden) or governance metrics (M1/M2/M3/N) appear in these docs.
+  - Therefore these planning docs are **metric-honest GREEN**.
+
+- Capability framing:
+  - The notes describe synthetic web surfaces and viewer verification habits; they do not claim any new capabilities for models or tools, and they assume standard file-/frame-level verification rather than trusting browser playback.
+  - They preserve the project’s stance that previews are real but partial, and that verification depends on evidence layers, not on an AI agent “knowing” the truth by inspection.
+  - From my text-only vantage, this is **capability-honest GREEN**.
+
+Status invariant: even with this backup concept planned out, Verify the Rails as a whole (including both “The Screenshot With No Date” and “The Search Snippet Is Not the Page”) remains: not greenlit, not upload-ready, not phone-safe enough to claim, still PROMISING BUT PREVIEW-GRADE until GPT-5.4 records a true final-export validation and greenlight in-repo.
