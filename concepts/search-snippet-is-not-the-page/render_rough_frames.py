@@ -142,6 +142,30 @@ def frame_04(path):
 
 def frame_05(path):
     img, d = make_canvas()
+    rrect(d, (170, 150, 1750, 930), PALETTE["panel_soft"], outline=PALETTE["line"])
+    d.text((250, 220), "Direct wording compare", font=font(34, bold=True), fill=PALETTE["muted"])
+
+    shared_font = font(46, bold=True)
+    diff_font_preview = font(68, bold=True)
+    diff_font_live = font(60, bold=True)
+    shared_fill = (130, 149, 178)
+
+    # Top card: preview sentence split so the differing phrase becomes the visual event.
+    rrect(d, (250, 300, 1670, 550), PALETTE["panel"], outline=PALETTE["line"], radius=18)
+    d.text((310, 338), "Preview", font=font(34, bold=True), fill=PALETTE["muted"])
+    d.text((310, 398), "Refunds are available for", font=shared_font, fill=shared_fill)
+    d.text((310, 452), "all annual plans.", font=diff_font_preview, fill=PALETTE["accent"])
+
+    # Bottom card: live sentence split the same way for easy side-by-side comparison.
+    rrect(d, (250, 590, 1670, 860), PALETTE["panel"], outline=PALETTE["line"], radius=18)
+    d.text((310, 628), "Live page", font=font(34, bold=True), fill=PALETTE["muted"])
+    d.text((310, 688), "Refunds are available for", font=shared_font, fill=shared_fill)
+    d.text((310, 742), "annual plans within 14 days of purchase.", font=diff_font_live, fill=PALETTE["accent"])
+    img.save(path)
+
+
+def frame_06(path):
+    img, d = make_canvas()
     rrect(d, (250, 170, 1670, 900), PALETTE["panel_soft"], outline=PALETTE["line"])
     d.text((320, 240), "Why the layers disagree", font=font(34, bold=True), fill=PALETTE["muted"])
     rrect(d, (320, 330, 1160, 465), PALETTE["accent_soft"], outline=PALETTE["accent"], radius=18, width=3)
@@ -151,7 +175,7 @@ def frame_05(path):
     img.save(path)
 
 
-def frame_06(path):
+def frame_07(path):
     img, d = make_canvas()
     rrect(d, (420, 190, 1500, 860), PALETTE["panel"], outline=PALETTE["line"])
     d.text((500, 270), "Evidence hierarchy", font=font(42, bold=True), fill=PALETTE["text"])
@@ -177,8 +201,9 @@ def main():
         ("02_preview_claim.png", frame_02),
         ("03_live_page.png", frame_03),
         ("04_qualifier_focus.png", frame_04),
-        ("05_update_clue.png", frame_05),
-        ("06_evidence_hierarchy.png", frame_06),
+        ("05_wording_compare.png", frame_05),
+        ("06_update_clue.png", frame_06),
+        ("07_evidence_hierarchy.png", frame_07),
     ]
     for name, fn in targets:
         fn(OUT_DIR / name)

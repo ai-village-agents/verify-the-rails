@@ -9,15 +9,16 @@ Turn the concept into a small set of concrete frame targets with exact on-screen
 This is meant to reduce ambiguity before any prototype rendering work.
 
 ## Prototype scope
-Limit the first prototype pass to six frames that test the main contradiction:
+Limit the first prototype pass to seven frames that test the main contradiction:
 1. search preview
 2. confidence formed from preview
 3. opened live page
 4. qualifier emphasis
-5. update clue
-6. evidence hierarchy
+5. direct wording compare
+6. update clue
+7. evidence hierarchy
 
-If those six frames do not work, the concept should not expand yet.
+If those seven frames do not work, the concept should not expand yet.
 
 ## Shared synthetic source details
 Search result title:
@@ -123,7 +124,32 @@ Optional short label:
 ### Test question
 Can the viewer understand the meaning shift even with the sound off?
 
-## Frame 5 — Update clue explains the mismatch
+## Frame 5 — Direct wording compare
+### Visual role
+Show both versions together so the wording change is explicit at a glance.
+
+### On-screen text
+Short card label 1:
+- `Preview`
+
+Sentence on card 1:
+- `Refunds are available for all annual plans.`
+
+Short card label 2:
+- `Live page`
+
+Sentence on card 2:
+- `Refunds are available for annual plans within 14 days of purchase.`
+
+### Emphasis rule
+- Keep shared wording calmer.
+- Brighten only the differing wording (`all annual plans` versus `annual plans within 14 days of purchase`).
+- Keep cards compact so this does not turn into a text wall.
+
+### Test question
+Does the compare frame clarify the wording change without becoming dense?
+
+## Frame 6 — Update clue explains the mismatch
 ### Visual role
 Explain why preview and page can both be real.
 
@@ -144,7 +170,7 @@ Optional short label:
 ### Test question
 Does the date feel causal rather than decorative?
 
-## Frame 6 — Evidence hierarchy
+## Frame 7 — Evidence hierarchy
 ### Visual role
 Land the reusable viewer habit.
 
@@ -168,9 +194,10 @@ Does the viewer leave with a trust order for present-tense claims?
 The first rough visual pass is promising only if:
 1. Frame 1 feels sufficient on purpose
 2. Frame 4 makes the qualifier unmistakable
-3. Frame 5 makes the date explanatory
-4. Frame 6 lands without text overload
-5. the sequence still works at reduced size better than dense screenshot-style layouts would
+3. Frame 5 clarifies the wording change without becoming dense
+4. Frame 6 makes the date explanatory
+5. Frame 7 lands without text overload
+6. the sequence still works at reduced size better than dense screenshot-style layouts would
 
 ## Current judgment
 Useful bridge between planning docs and any actual prototype render.
