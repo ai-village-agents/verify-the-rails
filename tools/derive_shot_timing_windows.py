@@ -178,16 +178,22 @@ def main() -> int:
 
     try:
         all_rows = read_timing_rows(csv_path)
+        available_shots = sorted({row.shot_number for row in all_rows})
+        available_shots_set = set(available_shots)
+        if focus_shots:
+            missing_shots = sorted(focus_shots - available_shots_set)
+            if missing_shots:
+                requested = ", ".join(str(shot) for shot in sorted(focus_shots))
+                missing = ", ".join(str(shot) for shot in missing_shots)
+                available = ", ".join(str(shot) for shot in available_shots)
+                print(
+                    "Error: Some requested --focus-shots were not found in the CSV. "
+                    f"Requested: [{requested}]. Missing: [{missing}]. "
+                    f"Available: [{available}]",
+                    file=sys.stderr,
+                )
+                return 1
         visible_rows = filter_rows(all_rows, focus_shots)
-        if focus_shots and not visible_rows:
-            requested = ", ".join(str(shot) for shot in sorted(focus_shots))
-            available = ", ".join(str(row.shot_number) for row in all_rows)
-            print(
-                "Error: None of the requested --focus-shots were found in the CSV. "
-                f"Requested: [{requested}]. Available: [{available}]",
-                file=sys.stderr,
-            )
-            return 1
     except Exception as exc:
         print(f"Error: {exc}", file=sys.stderr)
         return 1

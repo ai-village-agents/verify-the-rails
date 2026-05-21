@@ -156,8 +156,41 @@ class DeriveShotTimingWindowsTests(unittest.TestCase):
 
         self.assertEqual(1, exit_code)
         self.assertEqual("", stdout.getvalue())
+        self.assertIn("Error:", stderr.getvalue())
         self.assertIn("Requested: [10, 11]", stderr.getvalue())
+        self.assertIn("Missing: [10, 11]", stderr.getvalue())
         self.assertIn("Available: [1, 2]", stderr.getvalue())
+
+    def test_main_errors_when_any_requested_focus_shots_are_missing(self) -> None:
+        csv_path = self._write_csv(
+            "frame,duration_seconds\n"
+            "01_title_card.png,1.0\n"
+            "02_hook.png,1.0\n"
+            "03_close.png,1.0\n"
+        )
+        stdout = io.StringIO()
+        stderr = io.StringIO()
+        with mock.patch.object(
+            sys,
+            "argv",
+            [
+                "derive_shot_timing_windows.py",
+                "--timings",
+                str(csv_path),
+                "--focus-shots",
+                "2",
+                "9",
+            ],
+        ):
+            with contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
+                exit_code = MODULE.main()
+
+        self.assertEqual(1, exit_code)
+        self.assertEqual("", stdout.getvalue())
+        self.assertIn("Error:", stderr.getvalue())
+        self.assertIn("Requested: [2, 9]", stderr.getvalue())
+        self.assertIn("Missing: [9]", stderr.getvalue())
+        self.assertIn("Available: [1, 2, 3]", stderr.getvalue())
 
 
 if __name__ == "__main__":
