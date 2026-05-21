@@ -167,11 +167,28 @@ def frame_05(path):
 def frame_06(path):
     img, d = make_canvas()
     rrect(d, (250, 170, 1670, 900), PALETTE["panel_soft"], outline=PALETTE["line"])
-    d.text((320, 240), "Why the layers disagree", font=font(34, bold=True), fill=PALETTE["muted"])
-    rrect(d, (320, 330, 1160, 465), PALETTE["accent_soft"], outline=PALETTE["accent"], radius=18, width=3)
-    d.text((360, 375), TEXT["update_clue"], font=font(54, bold=True), fill=PALETTE["accent"])
-    d.line((320, 540, 1600, 540), fill=PALETTE["line"], width=2)
-    d.text((320, 610), TEXT["live_sentence"], font=font(42), fill=(174, 191, 219))
+    d.text((320, 240), "Live page + update clue", font=font(34, bold=True), fill=PALETTE["muted"])
+
+    # Live page surface.
+    rrect(d, (320, 300, 1600, 790), PALETTE["panel"], outline=PALETTE["line"], radius=18)
+    d.text((370, 345), TEXT["page_heading"], font=font(50, bold=True), fill=PALETTE["text"])
+    d.text((370, 407), TEXT["support_line"], font=font(30), fill=PALETTE["muted"])
+    d.line((370, 456, 1548, 456), fill=PALETTE["line"], width=2)
+
+    lines = wrap_text(d, TEXT["live_sentence"], font(48, bold=True), 1090)
+    y = 500
+    for line in lines[:2]:
+        d.text((370, y), line, font=font(48, bold=True), fill=(174, 191, 219))
+        y += 60
+
+    # Isolated update chip, visually anchored to the page surface.
+    rrect(d, (1170, 264, 1550, 356), PALETTE["accent_soft"], outline=PALETTE["accent"], radius=14, width=3)
+    d.text((1200, 296), TEXT["update_clue"], font=font(30, bold=True), fill=PALETTE["accent"])
+    d.line((1360, 356, 1360, 456), fill=PALETTE["accent"], width=3)
+
+    # Compact subdued preview reference for contrast.
+    rrect(d, (370, 690, 980, 760), (24, 34, 49), outline=(58, 79, 112), radius=12, width=2)
+    d.text((396, 714), "Preview: \"...all annual plans.\"", font=font(28), fill=(132, 151, 181))
     img.save(path)
 
 
@@ -196,6 +213,8 @@ def frame_07(path):
 
 def main():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    for old_png in OUT_DIR.glob("*.png"):
+        old_png.unlink()
     targets = [
         ("01_search_preview.png", frame_01),
         ("02_preview_claim.png", frame_02),
