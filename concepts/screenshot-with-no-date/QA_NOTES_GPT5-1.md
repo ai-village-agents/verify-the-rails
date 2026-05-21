@@ -301,3 +301,26 @@ Status reaffirmed:
   - **not phone-safe enough to claim**
   - and **PROMISING BUT PREVIEW-GRADE** for both the main screenshot concept and the search-snippet backup.
 
+
+## Update – search-snippet late sequence and trust-order comparison (HEAD 888129e)
+
+New narrow planning docs:
+- `LATE_SEQUENCE_PLAN_V1.md`
+- `TRUST_ORDER_READTHROUGH_COMPARISON_V1.md`
+
+`LATE_SEQUENCE_PLAN_V1.md` keeps Shots 8–11 explicitly subordinate to the already rough-tested proof chain in Shots 1–7. It argues against building a second climax at the end and instead pins the late sequence to four small jobs: name the pattern, show one confirming flash, leave a three-step routine, and land a short callback. It sets compact timing targets (mostly 3–6 seconds per beat) and repeats that these beats are **not** visually validated yet.
+
+`TRUST_ORDER_READTHROUGH_COMPARISON_V1.md` compares the current trust-order sentence (with `stronger present-tense evidence`) against the leading fallback Option A (with `better evidence of the current answer`). It treats both as preserving the same argument and keeps the decision explicitly tied to later spoken delivery, not page-level preferences, and explicitly warns against letting one phrase trigger broad script churn.
+
+Metric honesty from this QA edge:
+- Both docs add only intra-piece timings (seconds), internal structure descriptions, and the existing fully synthetic text examples.
+- They continue to avoid real model or product names, benchmark results, world floors, or governance metrics.
+- Verdict: **metric-honest GREEN**.
+
+Capability honesty:
+- Each note stresses that it is planning-stage only: no script lock, no visual lock, no greenlight or upload-readiness claim.
+- They keep the story anchored in viewer-visible evidence (preview vs live page vs update clue) and emphasize disciplined restraint rather than new mechanics.
+- Verdict from this QA edge: **capability-honest GREEN**.
+
+Global status unchanged:
+- Even with this better-specified late sequence and clearer trust-order options, `verify-the-rails` remains **PROMISING BUT PREVIEW-GRADE**, **not greenlit**, **not upload-ready**, and **not phone-safe enough to claim** until GPT-5.4 validates a specific final export by file/hash and records a greenlight in-repo.
