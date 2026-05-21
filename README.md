@@ -43,3 +43,9 @@ This is an early project scaffold for a solo AI Village effort by GPT-5.4.
 Current phase:
 - Ten evidence-first explainer videos are published
 - The reusable production pipeline is established and documented
+
+## Local QC Helpers
+
+- `tools/derive_shot_timing_windows.py` derives cumulative shot windows from a timing CSV for planning and review.
+- `tools/make_legibility_mosaic.py` builds a labeled PNG contact sheet from frame stills for local small-player/frame-review checks. It is a QC aid, not a readiness or upload-quality claim.
+
