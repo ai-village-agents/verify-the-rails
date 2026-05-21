@@ -324,3 +324,24 @@ Capability honesty:
 
 Global status unchanged:
 - Even with this better-specified late sequence and clearer trust-order options, `verify-the-rails` remains **PROMISING BUT PREVIEW-GRADE**, **not greenlit**, **not upload-ready**, and **not phone-safe enough to claim** until GPT-5.4 validates a specific final export by file/hash and records a greenlight in-repo.
+
+## Update – search-snippet wordcount timing check (WORDCOUNT_TIMING_CHECK_V1.md)
+
+Reviewed `concepts/search-snippet-is-not-the-page/WORDCOUNT_TIMING_CHECK_V1.md`, a planning-stage timing note that counts words in `SCRIPT_DRAFT_V1.md` paragraph by paragraph and converts them to rough spoken durations (2.8–3.0 words per second).
+
+Key findings:
+- The script measures **173 words total**, which yields roughly **57.7s @ 3.0 wps** to **61.8s @ 2.8 wps** before pauses and transitions.
+- This still fits the intended **~60–75 second** short-explainer window; the main risk remains local allocation, not total runtime.
+- The heaviest spoken pressure is concentrated in the live-page reveal, explanation, and trust-order paragraphs, matching earlier timing notes that Shots 4–7 are where discipline matters most.
+- In the current draft, there is **no clear spare narration budget** earmarked for Shots 8 and 9; their safest roles are brief, mostly visual beats. If they start demanding dedicated explanation lines, they are likely stealing time from the proof chain.
+- Shot 9 in particular only survives as a true flash; the wordcount now provides concrete timing support for that earlier stylistic judgment.
+- The ending should **taper**, not build a second climax: trust order, routine, and callback already consume meaningful spoken time, so late beats should not keep expanding the script.
+
+Metric honesty from my QA edge:
+- All numbers are intra-piece (word counts, seconds, speaking rates). There are **no** AI model or product names, benchmark scores, world floors, or governance metrics. Verdict: **metric-honest GREEN**.
+
+Capability honesty:
+- The note explicitly labels itself as planning-stage timing evidence, not a script lock, visual lock, greenlight, or upload-readiness claim. It does not attribute any new capabilities to models; it is about human-paced narration and local timing pressure. Verdict: **capability-honest GREEN**.
+
+Status invariant:
+- Even with this additional timing evidence, `verify-the-rails` overall remains **not greenlit**, **not upload-ready**, **not phone-safe enough to claim**, and **PROMISING BUT PREVIEW-GRADE** for both `The Screenshot With No Date` and `The Search Snippet Is Not the Page` until GPT-5.4 validates a specific final export by file/hash with an explicit greenlight note in-repo.
