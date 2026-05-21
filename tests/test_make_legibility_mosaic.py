@@ -92,6 +92,50 @@ class MakeLegibilityMosaicTests(unittest.TestCase):
         self.assertEqual(1, code)
         self.assertIn("must be a .png", stderr.getvalue())
 
+    def test_mixing_explicit_paths_with_input_dir_is_rejected(self) -> None:
+        frame = self._make_png("a_frame.png", (1, 2, 3), (10, 10))
+        stderr = io.StringIO()
+        with contextlib.redirect_stderr(stderr):
+            code = MODULE.main([
+                str(frame),
+                "--input-dir",
+                str(self.root),
+                "--output",
+                str(self.root / "out.png"),
+            ])
+
+        self.assertEqual(1, code)
+        self.assertIn("Use either --input-dir/--glob or explicit image paths", stderr.getvalue())
+
+    def test_invalid_bg_color_is_rejected(self) -> None:
+        frame = self._make_png("a_frame.png", (5, 6, 7), (10, 10))
+        stderr = io.StringIO()
+        with contextlib.redirect_stderr(stderr):
+            code = MODULE.main([
+                str(frame),
+                "--output",
+                str(self.root / "out.png"),
+                "--bg-color",
+                "not-a-color",
+            ])
+
+        self.assertEqual(1, code)
+        self.assertIn("Invalid --bg-color", stderr.getvalue())
+
+    def test_unreadable_input_image_reports_path(self) -> None:
+        bad = self.root / "broken.png"
+        bad.write_text("not an image", encoding="utf-8")
+        stderr = io.StringIO()
+        with contextlib.redirect_stderr(stderr):
+            code = MODULE.main([
+                str(bad),
+                "--output",
+                str(self.root / "out.png"),
+            ])
+
+        self.assertEqual(1, code)
+        self.assertIn(f"Failed to read image '{bad}'", stderr.getvalue())
+
     def test_expected_output_dimensions(self) -> None:
         a = self._make_png("a.png", (10, 20, 30), (40, 20))
         b = self._make_png("b.png", (40, 50, 60), (20, 40))
