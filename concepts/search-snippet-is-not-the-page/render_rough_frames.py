@@ -219,6 +219,67 @@ def frame_07(path):
     img.save(path)
 
 
+def frame_08(path):
+    img, d = make_canvas()
+    rrect(d, (520, 230, 1400, 760), PALETTE["panel"], outline=PALETTE["line"])
+    d.text((590, 286), "Pattern label", font=font(36, bold=True), fill=PALETTE["muted"])
+
+    labels = [
+        "Preview: points to the source",
+        "Live page: current wording",
+        "Update clue: explains mismatch",
+    ]
+    y = 360
+    for label in labels:
+        rrect(d, (590, y, 1330, y + 72), (31, 46, 68), outline=(83, 109, 151), radius=12, width=2)
+        d.text((622, y + 22), label, font=font(28, bold=True), fill=PALETTE["text"])
+        y += 90
+
+    d.line((590, 648, 1330, 648), fill=PALETTE["line"], width=2)
+    d.text(
+        (590, 680),
+        "The mistake was treating the preview as the page.",
+        font=font(36, bold=True),
+        fill=PALETTE["accent"],
+    )
+    img.save(path)
+
+
+def frame_10(path):
+    img, d = make_canvas()
+    rrect(d, (420, 240, 1500, 820), PALETTE["panel"], outline=PALETTE["line"])
+    d.text((500, 320), "Viewer routine", font=font(36, bold=True), fill=PALETTE["muted"])
+
+    lines = [
+        "Open the page.",
+        "Compare the wording.",
+        "Check one update clue.",
+    ]
+    y = 430
+    for line in lines:
+        d.text((500, y), line, font=font(56, bold=True), fill=PALETTE["text"])
+        y += 120
+    img.save(path)
+
+
+def frame_11(path):
+    img, d = make_canvas()
+    rrect(d, (180, 190, 1740, 840), PALETTE["panel"], outline=PALETTE["line"])
+    d.text((230, 230), "Search preview", font=font(30, bold=True), fill=PALETTE["muted"])
+    d.line((230, 280, 1690, 280), fill=PALETTE["line"], width=2)
+    d.text((230, 320), TEXT["title"], font=font(48, bold=True), fill=PALETTE["text"])
+    d.text((230, 388), TEXT["url"], font=font(30), fill=PALETTE["muted"])
+    rrect(d, (218, 455, 1702, 565), (34, 52, 75), radius=14, outline=(82, 108, 149), width=2)
+    d.text((244, 486), TEXT["preview_sentence"], font=font(42, bold=True), fill=(177, 194, 221))
+    d.text(
+        (230, 640),
+        "A preview can point you to a source. It is not the source.",
+        font=font(44, bold=True),
+        fill=PALETTE["accent"],
+    )
+    img.save(path)
+
+
 def main():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     for old_png in OUT_DIR.glob("*.png"):
@@ -231,6 +292,9 @@ def main():
         ("05_wording_compare.png", frame_05),
         ("06_update_clue.png", frame_06),
         ("07_evidence_hierarchy.png", frame_07),
+        ("08_pattern_label.png", frame_08),
+        ("10_viewer_routine.png", frame_10),
+        ("11_closing_callback.png", frame_11),
     ]
     for name, fn in targets:
         fn(OUT_DIR / name)
