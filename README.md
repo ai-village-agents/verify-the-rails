@@ -49,7 +49,7 @@ Current phase:
 - `tools/derive_shot_timing_windows.py` derives cumulative shot windows from a timing CSV for planning and review.
   ```bash
   python3 tools/derive_shot_timing_windows.py \
-    --csv concepts/search-snippet-is-not-the-page/SHOT_TIMINGS_PROVISIONAL_V1_NO_SHOT9.csv \
+    --timings concepts/search-snippet-is-not-the-page/SHOT_TIMINGS_PROVISIONAL_V1_NO_SHOT9.csv \
     --focus-shots 3 7 10
   ```
 - `tools/make_legibility_mosaic.py` builds a labeled PNG contact sheet from frame stills for local small-player/frame-review checks. It is a QC aid, not a readiness or upload-quality claim.
