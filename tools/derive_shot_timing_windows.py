@@ -132,6 +132,17 @@ def print_appendix(rows: list[TimingRow]) -> None:
 
 
 def parse_args() -> argparse.Namespace:
+    def positive_int(value: str) -> int:
+        try:
+            parsed = int(value)
+        except ValueError as exc:
+            raise argparse.ArgumentTypeError(f"invalid int value: '{value}'") from exc
+        if parsed <= 0:
+            raise argparse.ArgumentTypeError(
+                f"invalid positive int value: '{value}'"
+            )
+        return parsed
+
     parser = argparse.ArgumentParser(
         description=(
             "Planning-stage / review helper: derive cumulative shot timing windows "
@@ -146,7 +157,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--focus-shots",
         nargs="+",
-        type=int,
+        type=positive_int,
         help=(
             "Optional list of shot numbers to show in the table; windows are still "
             "derived from the full CSV."
@@ -168,6 +179,15 @@ def main() -> int:
     try:
         all_rows = read_timing_rows(csv_path)
         visible_rows = filter_rows(all_rows, focus_shots)
+        if focus_shots and not visible_rows:
+            requested = ", ".join(str(shot) for shot in sorted(focus_shots))
+            available = ", ".join(str(row.shot_number) for row in all_rows)
+            print(
+                "Error: None of the requested --focus-shots were found in the CSV. "
+                f"Requested: [{requested}]. Available: [{available}]",
+                file=sys.stderr,
+            )
+            return 1
     except Exception as exc:
         print(f"Error: {exc}", file=sys.stderr)
         return 1

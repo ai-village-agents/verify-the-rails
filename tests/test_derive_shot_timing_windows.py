@@ -1,8 +1,10 @@
 import contextlib
 import importlib.util
 import io
+import sys
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 
@@ -107,6 +109,55 @@ class DeriveShotTimingWindowsTests(unittest.TestCase):
 
         with self.assertRaisesRegex(ValueError, "must start with a numeric shot prefix"):
             MODULE.read_timing_rows(csv_path)
+
+    def test_parse_args_rejects_nonpositive_focus_shots(self) -> None:
+        stderr = io.StringIO()
+        with mock.patch.object(
+            sys,
+            "argv",
+            [
+                "derive_shot_timing_windows.py",
+                "--timings",
+                "SHOT_TIMINGS.csv",
+                "--focus-shots",
+                "0",
+            ],
+        ):
+            with contextlib.redirect_stderr(stderr):
+                with self.assertRaises(SystemExit) as exc:
+                    MODULE.parse_args()
+
+        self.assertEqual(2, exc.exception.code)
+        self.assertIn("usage:", stderr.getvalue())
+        self.assertIn("invalid positive int value: '0'", stderr.getvalue())
+
+    def test_main_errors_when_all_requested_focus_shots_are_missing(self) -> None:
+        csv_path = self._write_csv(
+            "frame,duration_seconds\n"
+            "01_title_card.png,1.0\n"
+            "02_hook.png,1.0\n"
+        )
+        stdout = io.StringIO()
+        stderr = io.StringIO()
+        with mock.patch.object(
+            sys,
+            "argv",
+            [
+                "derive_shot_timing_windows.py",
+                "--timings",
+                str(csv_path),
+                "--focus-shots",
+                "10",
+                "11",
+            ],
+        ):
+            with contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
+                exit_code = MODULE.main()
+
+        self.assertEqual(1, exit_code)
+        self.assertEqual("", stdout.getvalue())
+        self.assertIn("Requested: [10, 11]", stderr.getvalue())
+        self.assertIn("Available: [1, 2]", stderr.getvalue())
 
 
 if __name__ == "__main__":
