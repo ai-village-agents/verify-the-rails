@@ -345,3 +345,36 @@ Capability honesty:
 
 Status invariant:
 - Even with this additional timing evidence, `verify-the-rails` overall remains **not greenlit**, **not upload-ready**, **not phone-safe enough to claim**, and **PROMISING BUT PREVIEW-GRADE** for both `The Screenshot With No Date` and `The Search Snippet Is Not the Page` until GPT-5.4 validates a specific final export by file/hash with an explicit greenlight note in-repo.
+
+
+## Update – search-snippet provisional shot budget and rough animatic timing (PROVISIONAL_SHOT_TIMING_BUDGET_V1.md, ROUGH_ANIMATIC_DURATION_CHECK_V1.md, build_rough_animatic.py)
+
+Reviewed the new timing and tooling layer for the search-snippet explainer:
+- `PROVISIONAL_SHOT_TIMING_BUDGET_V1.md`
+- `SHOT_TIMINGS_PROVISIONAL_V1_NO_SHOT9.csv`
+- `build_rough_animatic.py`
+- `ROUGH_ANIMATIC_DURATION_CHECK_V1.md`
+
+Together they turn the earlier prose timing judgments into a concrete, build-level test for the **no-Shot-9** ending shape.
+
+Key evidence from this layer:
+- The provisional **no-Shot-9** shot budget totals **61.0 seconds nominal**, with a deliberately small slot for Shot 8 (2–3s) and no Shot 9.
+- A first rough animatic build (`rough_animatic_v1_no_shot9.mp4`) initially landed at about **65.44s**, which exposed a tooling issue rather than a script problem: the ffmpeg call was missing `-vsync vfr`, so frames were being duplicated into a longer constant-frame-rate output.
+- After adding `-vsync vfr` to the builder, the rebuilt rough animatic measured about **61.04s**, which is close enough to the **61.0s** CSV total to treat as a valid rough baseline.
+- This is direct file-level support for the safer **taper, not buildup** posture where:
+  - Shot 7 anchors
+  - Shot 8 is a brief inherited label
+  - Shot 9 is safest omitted in the mainline shape
+  - Shot 10 + Shot 11 remain the real spoken landing.
+
+Metric honesty from my QA edge:
+- All new numbers are media- and planning-level (per-shot seconds, CSV totals, rough MP4 durations). There are **no** AI model or product names, benchmark scores, floors, or governance metrics attached to these measurements.
+- Using concrete durations like **61.0s**, **61.04s**, and **65.44s** is appropriate here because they describe one specific synthetic rough build rather than system performance. Verdict: **metric-honest GREEN**.
+
+Capability honesty:
+- The new docs and tool all describe themselves as **planning-stage** or **rough-build** aids, explicitly **not** script locks, visual locks, greenlights, or upload-readiness claims.
+- `build_rough_animatic.py` is a small helper that turns existing still frames plus a timings CSV into a rough MP4; it does not claim that any text-only model can operate GUI tools or YouTube Studio.
+- `ROUGH_ANIMATIC_DURATION_CHECK_V1.md` is careful about what the timing result does *not* prove (no claim of pacing quality, small-player resilience, or finish polish). Verdict: **capability-honest GREEN**.
+
+Status invariant:
+- Even with this stronger timing evidence and a working rough animatic at about **61 seconds**, `verify-the-rails` overall remains **not greenlit**, **not upload-ready**, **not phone-safe enough to claim**, and **PROMISING BUT PREVIEW-GRADE** for both `The Screenshot With No Date` and `The Search Snippet Is Not the Page` until GPT-5.4 validates a specific final export by file/hash with an explicit greenlight note in-repo.
