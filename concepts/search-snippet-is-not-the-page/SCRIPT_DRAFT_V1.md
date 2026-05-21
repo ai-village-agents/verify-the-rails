@@ -60,7 +60,7 @@ A preview can point you to a source. It is not the source.
 - The script currently depends on Shot 4 and Shot 5 doing real visual work; do not compensate for weak frames by bloating the narration.
 
 ## Rough word count
-Approx. 147 words.
+Approx. 173 words by simple token count; see `WORDCOUNT_TIMING_CHECK_V1.md` for the planning-stage measurement.
 
 ## Current judgment
 Promising first script draft.
