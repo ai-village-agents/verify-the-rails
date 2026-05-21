@@ -101,20 +101,28 @@ def frame_02(path):
 
 def frame_03(path):
     img, d = make_canvas()
-    rrect(d, (260, 170, 1660, 900), PALETTE["panel_soft"], outline=PALETTE["line"])
-    d.text((320, 220), "Help Center", font=font(34, bold=True), fill=PALETTE["muted"])
-    d.line((320, 270, 1600, 270), fill=PALETTE["line"], width=2)
-    d.text((320, 330), TEXT["page_heading"], font=font(64, bold=True), fill=PALETTE["text"])
-    d.text((320, 410), TEXT["support_line"], font=font(34), fill=PALETTE["muted"])
-    d.line((320, 470, 1600, 470), fill=PALETTE["line"], width=2)
-    sentence_font = font(47, bold=True)
-    max_text_width = 1240
+    # Browser/page setup: calm, source-like, and intentionally low-drama.
+    rrect(d, (220, 150, 1700, 920), PALETTE["panel_soft"], outline=PALETTE["line"])
+    rrect(d, (220, 150, 1700, 230), (19, 27, 39), outline=PALETTE["line"], radius=22, width=2)
+    for i, c in enumerate([(99, 121, 155), (91, 113, 146), (83, 105, 136)]):
+        d.ellipse((264 + i * 34, 180, 284 + i * 34, 200), fill=c)
+    rrect(d, (390, 172, 1580, 208), (26, 36, 52), outline=(74, 96, 130), radius=10, width=1)
+    d.text((424, 179), "help.example.com / billing / refund-policy", font=font(24), fill=(148, 167, 196))
+
+    rrect(d, (280, 270, 1640, 860), PALETTE["panel"], outline=(73, 96, 131), radius=18, width=2)
+    d.text((340, 320), "Help Center", font=font(30, bold=True), fill=(156, 176, 206))
+    d.text((340, 374), TEXT["page_heading"], font=font(58, bold=True), fill=PALETTE["text"])
+    d.text((340, 444), TEXT["support_line"], font=font(31), fill=PALETTE["muted"])
+    d.line((340, 494, 1584, 494), fill=(70, 92, 125), width=2)
+
+    sentence_font = font(42)
+    max_text_width = 1180
     lines = wrap_text(d, TEXT["live_sentence"], sentence_font, max_text_width)
-    y = 550
+    y = 548
     for line in lines[:2]:
-        d.text((320, y), line, font=sentence_font, fill=PALETTE["text"])
-        y += 62
-    d.text((320, 690), TEXT["update_clue"], font=font(32), fill=(156, 176, 209))
+        d.text((340, y), line, font=sentence_font, fill=(205, 217, 236))
+        y += 58
+    d.text((340, 700), TEXT["update_clue"], font=font(29), fill=(138, 158, 188))
     img.save(path)
 
 
