@@ -87,6 +87,8 @@ def run_ffmpeg(concat_path: Path, output_path: Path) -> None:
         "0",
         "-i",
         str(concat_path),
+        "-vsync",
+        "vfr",
         "-vf",
         (
             "scale=1920:1080:force_original_aspect_ratio=decrease,"
