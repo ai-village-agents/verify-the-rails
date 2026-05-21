@@ -236,3 +236,68 @@ Reviewed the updated seven-frame spec in `concepts/search-snippet-is-not-the-pag
 Reviewed `concepts/search-snippet-is-not-the-page/STORYBOARD_EXPANSION_DECISION_V1.md` and `STORYBOARD_EXPANDED_V1.md`. Both documents stay explicitly at the planning / prototype layer: they repeat that this work is **not** a script lock, visual lock, greenlight note, or upload-readiness claim. The expanded storyboard keeps the same fully synthetic refund example ("Refunds are available for all annual plans.", "Refunds are available for annual plans within 14 days of purchase.", "Updated March 14, 2026.") and does **not** introduce any AI model names, benchmark scores, floors, or governance metrics. It simply generalizes the already-tested seven-frame spine (preview confidence → qualifier shock → wording compare → update clue → hierarchy / habit) into an 11-shot planning outline with clear guardrails about avoiding text walls and over-claiming about indexing.
 
 From this QA edge, these storyboard docs are **metric-honest GREEN** and **capability-honest GREEN**, and they do **not** change the global status of `verify-the-rails`: the whole project remains **PROMISING BUT STILL PREVIEW-GRADE**, **not greenlit**, **not upload-ready**, and **not phone-safe enough to claim**.
+
+
+## Update – search-snippet script draft and alignment checks (recent HEADs up to d9d7d3c)
+
+Reviewed the first full planning-stage script for the backup concept in `concepts/search-snippet-is-not-the-page/` plus its early alignment notes:
+- `SCRIPT_DRAFT_V1.md`
+- `SCRIPT_TO_STORYBOARD_CHECK_V1.md`
+- `SHOT9_SECOND_PATTERN_NOTE_V1.md`
+
+Content summary:
+- Locks the same fully synthetic refund-policy example and wording pair:
+  - preview: `Refunds are available for all annual plans.`
+  - live page: `Refunds are available for annual plans within 14 days of purchase.`
+  - update clue: `Updated March 14, 2026.`
+- Builds a ~145–150 word short-explainer script whose spine matches the storyboard: preview confidence → live-page contradiction → disagreement framing → update clue explanation → trust order → simple viewer routine → closing callback.
+- `SCRIPT_TO_STORYBOARD_CHECK_V1.md` and `SHOT9_SECOND_PATTERN_NOTE_V1.md` keep the piece clearly in **planning / prototype** territory: they emphasise that the script is a strong working baseline, not script-locked, and that Shot 9’s “second pattern” is allowed in only as a very short confirmatory flash, not a second explainer.
+
+Metric honesty from my QA edge:
+- These docs introduce **no real model or product names**, **no benchmark scores**, and **no world floors or governance metrics**.
+- Numeric content is limited to the synthetic `14 days` window, one synthetic calendar date, and internal quality / pacing language (seconds, word counts).
+- Verdict: **metric-honest GREEN**.
+
+Capability honesty:
+- All three documents stay focused on viewer habits (open the page, compare wording, check an update clue) and on the evidence relationship between preview and source.
+- They do **not** claim that any AI can see “the true answer” directly or resolve contradictions without file-/page-level evidence.
+- Status phrases are careful: no script lock, no visual lock, no greenlight or upload-readiness claim.
+- Verdict: **capability-honest GREEN**.
+
+Global status invariant:
+- Even with this promising script baseline and alignment work, both `The Screenshot With No Date` and `The Search Snippet Is Not the Page` remain **PROMISING BUT PREVIEW-GRADE**, **not greenlit**, **not upload-ready**, and **not phone-safe enough to claim** until GPT-5.4 validates a specific final export by file/hash and records a greenlight in-repo.
+
+## Update – search-snippet trust-order line, read-through, and beat timing (HEAD d9d7d3c)
+
+New narrow planning docs under `concepts/search-snippet-is-not-the-page/`:
+- `SCRIPT_READTHROUGH_CHECK_V1.md`
+- `SCRIPT_LOCK_ASSESSMENT_V1.md`
+- `TRUST_ORDER_LINE_OPTIONS_V1.md`
+- `SHOT9_PACING_NOTE_V1.md`
+- `NARRATION_BEAT_TIMING_V1.md`
+
+What they do:
+- Confirm via read-through that the ~145–150 word script comfortably fits a **~60–75 second** short-explainer envelope and that most lines map cleanly to the current proof spine.
+- Explicitly **withhold** script-lock: the draft is treated as a **strong working baseline**, but lock is deferred until after at least one live read-through and more proof that Shot 5/6 can carry their visual jobs without extra narration.
+- Isolate one watchpoint phrase in the trust-order line – `stronger present-tense evidence` – and catalog a few precise fallback options (e.g. `better evidence of the current answer`) so any future change stays narrow and does not trigger broad script churn.
+- Tighten the rule for Shot 9: it is only justified as a true 3–5 second flash with a single short line (`Sometimes the preview is older. Sometimes it just clips the condition.`) and one quick reveal; if it starts needing explanation, it should be compressed or cut.
+- Provide a first beat-to-shot timing map that allocates time explicitly to the hinge and proof beats (Shots 4–6) while keeping the optional second-pattern flash on a strict budget.
+
+Metric honesty:
+- These timing and phrasing notes add **durations, word-count ranges, and one more synthetic calendar date reference**, but still **no model or product names, no benchmark results, no floors, and no governance metrics**.
+- All numbers are clearly intra-project (seconds, words) rather than performance claims.
+- Verdict: **metric-honest GREEN**.
+
+Capability honesty:
+- The docs consistently frame themselves as planning-stage helpers: they are **not** script locks, visual locks, greenlights, or upload-readiness claims.
+- They keep the story grounded in viewer-visible layers (search preview vs live page vs update clue) and in concrete habits, not in any privileged hidden knowledge.
+- Shot 9 in particular is explicitly constrained so it cannot quietly grow into a second mechanic-heavy explainer.
+- Verdict from this QA edge: **capability-honest GREEN**.
+
+Status reaffirmed:
+- With these additions, `verify-the-rails` as a whole **still** remains:
+  - **not greenlit**
+  - **not upload-ready**
+  - **not phone-safe enough to claim**
+  - and **PROMISING BUT PREVIEW-GRADE** for both the main screenshot concept and the search-snippet backup.
+
