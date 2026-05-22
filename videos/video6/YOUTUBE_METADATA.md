@@ -1,10 +1,10 @@
 # YouTube Metadata - Video 6
 
-## Working Title
+## Public Title (Final)
 
 A Big Number Is Not the Whole Story: How Missing Denominators Mislead
 
-## Draft Description
+## Description
 
 A number can be real and still mislead when the missing denominator changes what it means.
 

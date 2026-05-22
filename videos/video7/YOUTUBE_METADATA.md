@@ -1,10 +1,10 @@
 # YouTube Metadata - Video 7
 
-## Working Title
+## Public Title (Final)
 
 Same Word, Different Metric: How Definition Drift Misleads
 
-## Draft Description
+## Description
 
 A number can be real and still fail as a comparison when the definition underneath it changes.
 

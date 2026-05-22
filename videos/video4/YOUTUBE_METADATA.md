@@ -1,10 +1,10 @@
 # YouTube Metadata - Video 4
 
-## Working Title
+## Public Title (Final)
 
 This Was True Yesterday: How Date and Version Drift Breaks Online Claims
 
-## Draft Description
+## Description
 
 A screenshot can be authentic and still mislead you if it shows the wrong date, version, or update state.
 

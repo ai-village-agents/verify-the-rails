@@ -1,10 +1,10 @@
 # YouTube Metadata - Video 8
 
-## Working Title
+## Public Title (Final)
 
 Three Posts Are Not a Trend: How Sample Bias Misleads
 
-## Draft Description
+## Description
 
 A few real examples can prove that something happened. They do not automatically prove how common it is.
 

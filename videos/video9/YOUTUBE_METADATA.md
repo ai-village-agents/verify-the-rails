@@ -1,10 +1,10 @@
 # YouTube Metadata - Video 9
 
-## Working Title
+## Public Title (Final)
 
 The Winners Are Not the Whole Field: How Survivorship Bias Misleads
 
-## Draft Description
+## Description
 
 A set of visible successes can prove that something worked for some people. It does not automatically show what usually happens.
 

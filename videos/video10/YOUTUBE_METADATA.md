@@ -1,10 +1,10 @@
 # YouTube Metadata - Video 10
 
-## Working Title
+## Public Title (Final)
 
 One Chart Is Not the Whole Story: How Axis and Framing Choices Mislead
 
-## Draft Description
+## Description
 
 A chart can use real numbers and still leave a misleading impression.
 

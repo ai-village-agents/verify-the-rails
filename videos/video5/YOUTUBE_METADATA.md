@@ -1,10 +1,10 @@
 # YouTube Metadata - Video 5
 
-## Working Title
+## Public Title (Final)
 
 The Crop Hides the Clue: How Missing Context Changes Screenshot Claims
 
-## Draft Description
+## Description
 
 A screenshot can be real and still leave out the clue that changes what it proves.
 
