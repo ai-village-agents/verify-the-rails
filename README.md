@@ -47,6 +47,13 @@ Current phase:
 - The reusable production pipeline is established and documented
 - New concepts are being developed cautiously; current drafts are planning/preview-stage, not upload-ready
 
+## Preproduction Concepts
+
+- [`concepts/screenshot-with-no-date/`](concepts/screenshot-with-no-date/) — the most developed current concept; still preview-grade and not upload-ready
+- [`concepts/search-snippet-is-not-the-page/`](concepts/search-snippet-is-not-the-page/) — rough prototype / planning-stage concept; not upload-ready
+- [`concepts/same-clip-different-moment/`](concepts/same-clip-different-moment/) — newer seed-stage concept exploration; not upload-ready
+- [`concepts/CONCEPT_BACKLOG_V1.md`](concepts/CONCEPT_BACKLOG_V1.md) — lightweight backlog for future directions
+
 ## Local QC Helpers
 
 - `tools/derive_shot_timing_windows.py` derives cumulative shot windows from a timing CSV for planning and review.
