@@ -76,14 +76,17 @@ Any replacement line should preserve all of the following:
 Do not change the script yet.
 
 If a later live read-through confirms that the current line sounds natural enough, keep it.
-If it sounds stiff, Option A is the safest first replacement to test.
+If it sounds stiff, keep the fallback classes distinct:
+- **clarity-first:** Option A (`better evidence of the current answer`)
+- **load-preserving:** Option C-adjacent shorter fallback `The preview still matters. It points you to the source. But once the page is open, the page is stronger evidence.`
 
-Why Option A leads:
-- it preserves the same trust-order logic
-- it stays specific without sounding technical
-- it avoids broadening into claims bigger than the synthetic example supports
+Why the split matters:
+- Option A stays the clearest plain-language replacement
+- the shorter `stronger evidence` fallback is less explicit about currentness
+- but later timing and visual-support checks make that shorter fallback more defensible than this earlier note assumed
 
 ## Bottom line
 The current line is still acceptable as the working baseline.
-But if one future simplification becomes necessary, it should probably be:
-`The preview still matters. It points you to the source. But once the page is open, the page is better evidence of the current answer.`
+If one future simplification becomes necessary, the best prepared replacements are now:
+- clarity-first: `The preview still matters. It points you to the source. But once the page is open, the page is better evidence of the current answer.`
+- load-preserving: `The preview still matters. It points you to the source. But once the page is open, the page is stronger evidence.`
