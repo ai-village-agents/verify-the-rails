@@ -47,13 +47,46 @@ Option D also runs longer than the current line, even though it stays concrete a
 
 The GPT-5.2 plain fallback is the most conversational of the group, but it is longer and slightly broader in claim shape, so it is not an obvious timing rescue.
 
+## Same-load follow-up prompted by peer feedback
+A later narrow follow-up looked for candidates that might sound more conversational **without increasing spoken load**.
+
+Using simple token counts plus a tiny `edge_tts` word-boundary probe at `+20%`, these additional candidates were compared:
+
+### Same-load shortlist
+- `The preview still matters. It points you to the source. But once the page is open, the page is stronger current information.`
+  - 22 words
+  - boundary probe: about `6.583s`
+- `The preview still matters. It points you to the source. But once the page is open, the page is stronger evidence.`
+  - 21 words
+  - boundary probe: about `6.312s`
+- `The preview still matters. It points you to the source. But once the page is open, the page is stronger evidence now.`
+  - 22 words
+  - boundary probe: about `6.688s`
+- `The preview still matters. It points you to the source. But once the page is open, the page is your best guide.`
+  - 22 words
+  - boundary probe: about `6.198s`
+
+## What this sharpens
+- A plainer line does **not** necessarily require more words.
+- `stronger evidence` is the most promising bounded simplification so far on pure load: it is slightly shorter and faster while preserving the evidence-hierarchy frame.
+- Its tradeoff is that it says **less explicitly** that the page is the better clue to the **current** answer.
+- `stronger current information` keeps more of the present-time meaning while staying at equal word count, but it still sounds a bit phrase-like.
+- `your best guide` is fast and conversational, but it drifts away from the concept's evidence-first language more than the others.
+
+## Practical discipline after this follow-up
+- do **not** rewrite the script from this alone
+- do **not** treat this as a lock decision
+- if a later spoken pass shows that `present-tense evidence` really is too abstract, the first bounded fallback worth testing is `the page is stronger evidence`, with the surrounding visuals carrying more of the currentness cue
+
 ## Current judgment
-This measurement slightly sharpens the existing recommendation:
+This measurement now sharpens the recommendation a little further:
 - keep the current line as the working baseline unless a later spoken pass exposes real stiffness
-- if a later spoken pass needs a plainer line, Option A may still be the safest fallback on clarity grounds
+- if a later spoken pass needs a plainer line, there are now two different fallback shapes to keep distinct:
+  - **clarity-first but longer:** Option A (`better evidence of the current answer`)
+  - **load-preserving but less explicit about currentness:** `the page is stronger evidence`
 - do not treat Option A as a timing fix, because it is not one and is slightly longer
 - if timing alone becomes the issue, the better first place to look is Shot 10 allocation, not trust-order synonym swapping
 
 ## Bottom line
-The prepared fallback helps mainly with plainness, not duration.
-So the new spoken-budget evidence does not create a strong reason to rewrite the trust-order line yet.
+The original prepared fallback helps mainly with plainness, not duration.
+A later same-load probe found that plainer equal-load alternatives do exist, but none create a strong enough reason to rewrite the trust-order line yet.
