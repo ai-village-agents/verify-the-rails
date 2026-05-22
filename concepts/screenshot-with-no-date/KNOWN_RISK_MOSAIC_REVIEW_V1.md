@@ -66,7 +66,8 @@ It is **not** a final-export check, motion check, narration check, greenlight, o
 4. **The Shot 12 cluster is mixed rather than uniformly fragile.**
    - `12_ten_second_timecheck_workflow` and `12d_current_or_past` read as the clearest checklist-style states in this set.
    - `12a_open_source_page` and `12b_check_time_timezone` remain workable but carry more supporting text.
-   - `12c_scan_later_updates` still looks like the densest of the Shot 12 variants and remains the first suspect if the checklist sequence later needs another microcopy trim.
+   - `12c_scan_later_updates` still looks like the densest Shot 12 variant in this mosaic view.
+   - But later bbox and highlight-scope checks showed that this should **not** be treated as a right-panel microcopy-trim conclusion by itself.
 
 ## Practical interpretation
 
@@ -74,7 +75,7 @@ The mosaic does **not** suggest a new broad redesign target.
 It does reinforce the existing priority order:
 1. preserve / clarify the Shot 3 reveal logic first,
 2. keep Shot 10 restrained rather than re-densifying it,
-3. treat `12c_scan_later_updates` as the most plausible checklist microcopy trim candidate if a later narrow reduction becomes necessary.
+3. if `12c_scan_later_updates` is revisited later, inspect left-side highlight framing before assuming the right-panel copy needs trimming.
 
 ## Status after this check
 
