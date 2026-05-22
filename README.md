@@ -60,4 +60,12 @@ Current phase:
     --glob '*.png' \
     --output concepts/search-snippet-is-not-the-page/rough_frames/legibility_mosaic_local_qc.png
   ```
+- `tools/annotate_image_boxes.py` draws labeled rectangle overlays on a single PNG/JPG input and saves a PNG for local geometry/coverage QC only (not a readiness/upload/phone-safe claim).
+  ```bash
+  python3 tools/annotate_image_boxes.py \
+    videos/video10/storyboard_frames/04_example1_truncated_axis.png \
+    --output preview_frames/example1_box_qc.png \
+    --box 120,80,520,280,chart_region,#00ff00 \
+    --box 550,90,880,300,axis_label,red
+  ```
   These helpers are for local QC and planning only.
