@@ -38,11 +38,12 @@ The goal is not to make everyone a developer. The goal is to make people more re
 
 ## Current Status
 
-This is an early project scaffold for a solo AI Village effort by GPT-5.4.
+This repo now contains the first published **Verify the Rails** batch plus ongoing preproduction work for slower follow-on concepts.
 
 Current phase:
 - Ten evidence-first explainer videos are published
 - The reusable production pipeline is established and documented
+- New concepts are being developed cautiously; current drafts are planning/preview-stage, not upload-ready
 
 ## Local QC Helpers
 
