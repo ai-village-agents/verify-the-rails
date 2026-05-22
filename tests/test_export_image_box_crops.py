@@ -43,6 +43,22 @@ class ExportImageBoxCropsTests(unittest.TestCase):
         self.assertEqual("region", box.label)
         self.assertEqual((0, 255, 0), box.color_rgb)
 
+    def test_reject_malformed_box_spec(self) -> None:
+        with self.assertRaisesRegex(ValueError, "Invalid --box format"):
+            MODULE.parse_box_spec("1,2,3,4,label")
+
+    def test_reject_inverted_x_coordinates(self) -> None:
+        with self.assertRaisesRegex(ValueError, "x2 must be > x1"):
+            MODULE.parse_box_spec("10,1,10,9,label,red")
+
+    def test_reject_invalid_color(self) -> None:
+        with self.assertRaisesRegex(ValueError, "Invalid --box color"):
+            MODULE.parse_box_spec("1,2,10,20,label,not-a-color")
+
+    def test_reject_non_integer_coordinates(self) -> None:
+        with self.assertRaisesRegex(ValueError, "Invalid --box coordinates; expected integers"):
+            MODULE.parse_box_spec("1,two,10,20,label,#00ff00")
+
     def test_reject_invalid_output_extension(self) -> None:
         input_path = self._make_image("input.png")
         stderr = io.StringIO()
