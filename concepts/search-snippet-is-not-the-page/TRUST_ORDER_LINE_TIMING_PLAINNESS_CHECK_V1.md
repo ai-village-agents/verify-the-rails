@@ -73,6 +73,19 @@ Using simple token counts plus a tiny `edge_tts` word-boundary probe at `+20%`, 
 - `stronger current information` keeps more of the present-time meaning while staying at equal word count, but it still sounds a bit phrase-like.
 - `your best guide` is fast and conversational, but it drifts away from the concept's evidence-first language more than the others.
 
+## Full-script context follow-up
+A second narrow check compared the current line against the shortest promising fallback **inside the full working script**, not as an isolated sentence.
+
+Using `edge_tts` sentence-boundary events at `+20%` on the full script draft:
+- current trust-order sentence ended around `44.635s`
+- `the page is stronger evidence` ended around `44.125s`
+- practical effect: the shorter fallback pulled the routine sentence and closing callback earlier by about **`0.51s`** as well
+
+## What this adds
+- The `stronger evidence` fallback is not only shorter in isolation; it also creates a **real half-second of late-sequence relief** in full-script context.
+- That is meaningful enough to keep as a live fallback, especially because Shot 10 currently inherits the tail of the trust-order sentence before carrying the routine.
+- But it still does **not** settle the editorial tradeoff by itself, because the shorter line is also less explicit about the page being better evidence of the **current** answer.
+
 ## Practical discipline after this follow-up
 - do **not** rewrite the script from this alone
 - do **not** treat this as a lock decision
