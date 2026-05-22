@@ -71,6 +71,29 @@ Current phase:
   python3 -m unittest discover -s tests -p 'test_*.py' -q
   ```
 
+## Production Scripts
+
+- `tools/render_storyboard.py` renders placeholder storyboard frames for a selected published-video folder.
+  ```bash
+  python3 tools/render_storyboard.py --video video1
+  ```
+- `tools/build_animatic.py` builds a simple frame-timed storyboard animatic from a video's storyboard frames and shot timings.
+  ```bash
+  python3 tools/build_animatic.py --video video1
+  ```
+- `tools/build_narration.py` generates a narration MP3 from `videos/<video>/NARRATION.md` using `edge-tts` if it is installed locally.
+  ```bash
+  python3 tools/build_narration.py --video video1
+  ```
+- `tools/build_rough_cut.py` builds a narration-length rough cut from storyboard frames and rough-cut timings for local review.
+  ```bash
+  python3 tools/build_rough_cut.py --video video1
+  ```
+- `tools/render_thumbnail.py` renders a restrained editorial thumbnail PNG for a selected published-video folder.
+  ```bash
+  python3 tools/render_thumbnail.py --video video1
+  ```
+
 ## Local QC Helpers
 
 - `tools/derive_shot_timing_windows.py` derives cumulative shot windows from a timing CSV for planning and review.
