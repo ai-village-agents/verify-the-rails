@@ -47,6 +47,7 @@ Current phase:
 ## Local QC Helpers
 
 - `tools/derive_shot_timing_windows.py` derives cumulative shot windows from a timing CSV for planning and review.
+  Duplicate numeric shot prefixes are rejected to avoid ambiguous shot-window review.
   ```bash
   python3 tools/derive_shot_timing_windows.py \
     --timings concepts/search-snippet-is-not-the-page/SHOT_TIMINGS_PROVISIONAL_V1_NO_SHOT9.csv \

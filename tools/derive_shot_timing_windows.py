@@ -49,6 +49,7 @@ def read_timing_rows(csv_path: Path) -> list[TimingRow]:
         raise FileNotFoundError(f"Timing CSV path is not a file: {csv_path}")
 
     rows: list[TimingRow] = []
+    seen_shot_lines: dict[int, int] = {}
     cursor = 0.0
 
     with csv_path.open(newline="", encoding="utf-8") as f:
@@ -85,6 +86,13 @@ def read_timing_rows(csv_path: Path) -> list[TimingRow]:
                 raise ValueError(
                     f"duration_seconds must be positive at line {line_number}: '{duration_text}'"
                 )
+            first_line = seen_shot_lines.get(shot_number)
+            if first_line is not None:
+                raise ValueError(
+                    f"Duplicate shot number {shot_number}: first seen at line {first_line}, "
+                    f"duplicated at line {line_number}"
+                )
+            seen_shot_lines[shot_number] = line_number
 
             start = cursor
             end = cursor + duration

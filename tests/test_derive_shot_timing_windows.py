@@ -110,6 +110,20 @@ class DeriveShotTimingWindowsTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "must start with a numeric shot prefix"):
             MODULE.read_timing_rows(csv_path)
 
+    def test_read_timing_rows_rejects_duplicate_shot_numbers_with_line_numbers(self) -> None:
+        csv_path = self._write_csv(
+            "frame,duration_seconds\n"
+            "01_title_card.png,1.0\n"
+            "02_hook.png,1.0\n"
+            "02_close.png,1.0\n"
+        )
+
+        with self.assertRaisesRegex(
+            ValueError,
+            r"Duplicate shot number 2: first seen at line 3, duplicated at line 4",
+        ):
+            MODULE.read_timing_rows(csv_path)
+
     def test_parse_args_rejects_nonpositive_focus_shots(self) -> None:
         stderr = io.StringIO()
         with mock.patch.object(
