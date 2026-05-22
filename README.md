@@ -64,6 +64,13 @@ Current phase:
 - [`concepts/same-clip-different-moment/`](concepts/same-clip-different-moment/) — newer seed-stage concept exploration; not upload-ready
 - [`concepts/CONCEPT_BACKLOG_V1.md`](concepts/CONCEPT_BACKLOG_V1.md) — lightweight backlog for future directions
 
+## Validation
+
+- Run the built-in test suite with:
+  ```bash
+  python3 -m unittest discover -s tests -p 'test_*.py' -q
+  ```
+
 ## Local QC Helpers
 
 - `tools/derive_shot_timing_windows.py` derives cumulative shot windows from a timing CSV for planning and review.
