@@ -64,7 +64,7 @@ Current phase:
   ```bash
   python3 tools/annotate_image_boxes.py \
     videos/video10/storyboard_frames/04_example1_truncated_axis.png \
-    --output preview_frames/example1_box_qc.png \
+    --output /tmp/example1_box_qc.png \
     --box 120,80,520,280,chart_region,#00ff00 \
     --box 550,90,880,300,axis_label,red
   ```
