@@ -71,6 +71,16 @@ Current phase:
   python3 -m unittest discover -s tests -p 'test_*.py' -q
   ```
 
+## Local Dependencies
+
+- Install the minimal Python dependency set with:
+  ```bash
+  pip install -r requirements.txt
+  ```
+- `requirements.txt` currently installs Pillow, which the storyboard, thumbnail, and image-QC helpers use.
+- `ffmpeg` is required locally for the animatic and rough-cut builders.
+- `edge-tts` is optional and only needed if you want `tools/build_narration.py` to render narration audio locally.
+
 ## Production Scripts
 
 - `tools/render_storyboard.py` renders placeholder storyboard frames for a selected published-video folder.
