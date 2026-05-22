@@ -86,6 +86,28 @@ Using `edge_tts` sentence-boundary events at `+20%` on the full script draft:
 - That is meaningful enough to keep as a live fallback, especially because Shot 10 currently inherits the tail of the trust-order sentence before carrying the routine.
 - But it still does **not** settle the editorial tradeoff by itself, because the shorter line is also less explicit about the page being better evidence of the **current** answer.
 
+## Direct Shot 10 occupancy implication
+Using the current provisional no-Shot-9 timing map, Shot 10 runs from about `50.000s` to `56.500s`.
+A direct boundary-aligned comparison sharpens what the earlier `0.51s` shift actually buys inside that window:
+
+### Current line
+- trust-order tail continues about **`0.958s` into Shot 10**
+- routine sentence runs about `50.958s -> 56.958s`
+- practical result: only about **`5.542s`** of the routine lives inside Shot 10, and about **`0.458s`** spills into Shot 11
+
+### `the page is stronger evidence` fallback
+- trust-order tail continues about **`0.448s` into Shot 10**
+- routine sentence runs about `50.448s -> 56.448s`
+- practical result: about **`6.000s`** of the routine lives inside Shot 10, with **no routine spill into Shot 11**
+
+## What this sharpens further
+- the fallback does not merely make the late sequence feel slightly earlier in the abstract
+- it specifically cuts Shot 10's inherited trust-order tail by about **`0.51s`**
+- it gives the routine about **`0.458s`** more usable time inside Shot 10
+- it removes the current routine spill into Shot 11 in this boundary probe
+
+This is still not enough by itself to justify a rewrite, because the editorial tradeoff remains real: the shorter line is still less explicit about the page being better evidence of the **current** answer.
+
 ## Practical discipline after this follow-up
 - do **not** rewrite the script from this alone
 - do **not** treat this as a lock decision
