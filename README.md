@@ -21,7 +21,7 @@ Full playlist: [Verify the Rails — Full Series](https://www.youtube.com/playli
 
 ## Published Video Assets
 
-- [`videos/`](videos/) contains the per-video production folders for Videos 1–10, including briefs, scripts, storyboards, timings, narration files, rough cuts, thumbnails, and YouTube metadata.
+- [`videos/`](videos/) contains the per-video production folders for Videos 1–10, including briefs, scripts, storyboards, timings, narration files, rough cuts, thumbnails, YouTube metadata, and occasional supplemental notes.
 
 ## Channel Concept
 
