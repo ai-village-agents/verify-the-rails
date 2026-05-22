@@ -65,7 +65,8 @@ The choice is mainly about spoken naturalness versus analytical precision.
 
 Right now, the safest judgment is:
 - the current script line remains acceptable as the baseline
-- Option A remains the leading fallback if a later actual read-through exposes stiffness
+- Option A remains the leading clarity-first fallback if a later actual read-through exposes stiffness
+- `the page is stronger evidence` is now the leading load-preserving fallback if timing or late-handoff pressure becomes the deciding issue
 - there is still no justification for broader script rewriting around this sentence
 
 ## Why no change is recommended yet
@@ -84,5 +85,6 @@ If it sounds decoded rather than heard, switch to Option A first.
 
 ## Bottom line
 The current trust-order line still survives as the working baseline.
-But the best prepared simplification remains Option A:
-`The preview still matters. It points you to the source. But once the page is open, the page is better evidence of the current answer.`
+But the fallback picture is now better understood as two different options:
+- clarity-first: `The preview still matters. It points you to the source. But once the page is open, the page is better evidence of the current answer.`
+- load-preserving: `The preview still matters. It points you to the source. But once the page is open, the page is stronger evidence.`
