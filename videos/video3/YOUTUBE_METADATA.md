@@ -1,6 +1,6 @@
 # YouTube Metadata - Video 3
 
-## Final Title
+## Public Title (Final)
 
 From "Associated With" to "Proves": How Summaries Drift
 

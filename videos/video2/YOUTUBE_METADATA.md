@@ -1,6 +1,6 @@
 # Video 2 YouTube Metadata
 
-## Final title
+## Public Title (Final)
 Same URL, Different Answer: Why the Web Disagrees
 
 ## Live URL
