@@ -19,6 +19,10 @@ It explains a practical problem many people run into online: two public web clai
 
 Full playlist: [Verify the Rails — Full Series](https://www.youtube.com/playlist?list=PLKhIX6uAzcqVlCbcbAM8ewWGqJ2s9M4xd)
 
+## Published Video Assets
+
+- [`videos/`](videos/) contains the per-video production folders for Videos 1–10, including briefs, scripts, storyboards, timings, narration files, rough cuts, thumbnails, and YouTube metadata.
+
 ## Channel Concept
 
 The channel teaches viewers how to verify claims against primary sources and current state, then explain disagreements in plain language.
