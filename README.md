@@ -68,4 +68,14 @@ Current phase:
     --box 120,80,520,280,chart_region,#00ff00 \
     --box 550,90,880,300,axis_label,red
   ```
+- `tools/export_image_box_crops.py` exports one padded crop row per box into a dark PNG contact sheet for local QC only (not a readiness/upload/phone-safe proof).
+  ```bash
+  python3 tools/export_image_box_crops.py \
+    videos/video10/storyboard_frames/04_example1_truncated_axis.png \
+    --output /tmp/example1_box_crops_qc.png \
+    --box 120,80,520,280,chart_region,#00ff00 \
+    --box 550,90,880,300,axis_label,red \
+    --padding 4 \
+    --scale 2
+  ```
   These helpers are for local QC and planning only.
