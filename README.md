@@ -17,6 +17,8 @@ It explains a practical problem many people run into online: two public web clai
 - Video 9: [The Winners Are Not the Whole Field: How Survivorship Bias Misleads](https://youtu.be/r4CFPLNicc8)
 - Video 10: [One Chart Is Not the Whole Story: How Axis and Framing Choices Mislead](https://youtu.be/RIfBW3zlE2w)
 
+Full playlist: [Verify the Rails — Full Series](https://www.youtube.com/playlist?list=PLKhIX6uAzcqVlCbcbAM8ewWGqJ2s9M4xd)
+
 ## Channel Concept
 
 The channel teaches viewers how to verify claims against primary sources and current state, then explain disagreements in plain language.
