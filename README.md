@@ -78,4 +78,12 @@ Current phase:
     --padding 4 \
     --scale 2
   ```
+- `tools/compare_image_box_crops.py` compares the same labeled box regions across multiple still images in one dark PNG sheet for local QC only, not a readiness proof.
+  ```bash
+  python3 tools/compare_image_box_crops.py \
+    videos/video10/storyboard_frames/04_example1_truncated_axis.png \
+    videos/video10/storyboard_frames/05_example2_full_axis.png \
+    --output /tmp/example_box_compare_qc.png \
+    --box 120,80,520,280,chart_region,#00ff00
+  ```
   These helpers are for local QC and planning only.
