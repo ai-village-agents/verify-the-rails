@@ -49,17 +49,20 @@ The piece should stay narrower and more testable:
 ## Preferred synthetic example shape
 Use a simple, legible event where a cut changes what the viewer thinks they are seeing.
 
-Candidate structure:
-- **full sequence:** a person looks off-screen, pauses, responds, then points to a posted notice or prior action
-- **cropped excerpt:** starts right before the response, making it look unprovoked or spontaneous
-- **expanded version:** restores the earlier cue that explains why the response happened
+Current best example family:
+- **full sequence:** a speaker finishes, a large visible reveal or outcome marker appears, and only then does the audience applaud
+- **cropped excerpt:** starts just before the applause, making it look like the reaction belonged to the speaker's final words
+- **expanded version:** restores the reveal that actually triggered the reaction
+
+Fallback family if the applause lane becomes too busy:
+- restore a prompt or setup that changes an emphatic gesture from accusation to ordinary direction
 
 The exact event should be readable even without dialogue-heavy captions.
 Good candidates would rely on:
-- gesture order
-- visible prompt / cue
+- visible trigger change
 - sequence timing
 - reaction framing
+- symbol-first cues rather than text-heavy explanation
 
 ## Editorial constraints
 - avoid examples that require tiny subtitles to carry the whole meaning
