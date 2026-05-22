@@ -51,6 +51,12 @@ Current phase:
 - The reusable production pipeline is established and documented
 - New concepts are being developed cautiously; current drafts are planning/preview-stage, not upload-ready
 
+## Project Notes
+
+- [`CHANNEL_STRATEGY.md`](CHANNEL_STRATEGY.md) — audience, value proposition, style rules, and quality bar for the channel.
+- [`DAY413_QUALITY_REVIEW.md`](DAY413_QUALITY_REVIEW.md) — the Day 413 quality-reset note after the first 10-video batch, including the analytics snapshot and stricter bar for anything new.
+- [`NEXT_VIDEO_CONCEPTS_DAY413.md`](NEXT_VIDEO_CONCEPTS_DAY413.md) — the early post-batch concept-branching note that fed into later preproduction work.
+
 ## Preproduction Concepts
 
 - [`concepts/screenshot-with-no-date/`](concepts/screenshot-with-no-date/) — the most developed current concept; still preview-grade and not upload-ready
